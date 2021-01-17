@@ -9,31 +9,75 @@ class Taskclass_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
-    //类型count
-    public function gettaskclassAllPage($tname)
+	//在线count
+	public function getdriverCount($type,$update_time)
+	{
+		if ($type == 1){
+			//在线
+			$sqlw = " where 1=1 and update_time >= $update_time ";
+			$sql = "SELECT count(1) as number FROM `user_working` " . $sqlw;
+		}else{
+			//离线
+			$sqlw = " where 1=1 and type = 2 and user_check = 1 or driving_check = 1 ";
+			$sql = "SELECT count(1) as number FROM `user` " . $sqlw;
+		}
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+    //在线list
+	public function getdriverList($update_time)
+	{
+		$sqlw = " where 1=1 and update_time >= $update_time ";
+		$sql = "SELECT longitude,latitude FROM `user_working` " . $sqlw ;
+		return $this->db->query($sql)->result_array();
+	}
+    //count
+    public function gettaskclassAllPage()
     {
         $sqlw = " where 1=1 ";
-        if (!empty($tname)) {
-            $sqlw .= " and ( tname like '%" . $tname . "%' ) ";
-        }
-        $sql = "SELECT count(1) as number FROM `taskclass` " . $sqlw;
+        $sql = "SELECT count(1) as number FROM `coupon` co LEFT JOIN `user` us ON us.id = co.user_id " . $sqlw;
 
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
-    //类型list
-    public function gettaskclassAllNew($pg,$tname)
+    //list
+    public function gettaskclassAllNew($pg)
     {
         $sqlw = " where 1=1 ";
-        if (!empty($tname)) {
-            $sqlw .= " and ( tname like '%" . $tname . "%' ) ";
-        }
         $start = ($pg - 1) * 10;
         $stop = 10;
-
-        $sql = "SELECT * FROM `taskclass` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+        $sql = "SELECT co.*,us.name,us.account FROM `coupon` co LEFT JOIN `user` us ON us.id = co.user_id " . $sqlw . " order by co.add_time desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
+    //delete
+	public function taskclass_delete($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM coupon WHERE id = $id";
+		return $this->db->query($sql);
+	}
+    //count
+	public function gettaskclassAllPage1()
+	{
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `user_recommended` co LEFT JOIN `user` us ON us.id = co.user_id " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//list
+	public function gettaskclassAllNew1($pg)
+	{
+		$sqlw = " where 1=1 ";
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sql = "SELECT co.*,us.name,us.account FROM `user_recommended` co LEFT JOIN `user` us ON us.id = co.user_id " . $sqlw . " order by co.add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+
+
+
+
     //类型save
     public function taskclass_save($tname, $timg,$tsort, $add_time)
     {
@@ -45,13 +89,7 @@ class Taskclass_model extends CI_Model
         $sql = "INSERT INTO `taskclass` (tname,timg,tsort,add_time) VALUES ($tname,$timg,$tsort,$add_time)";
         return $this->db->query($sql);
     }
-    //类型delete
-    public function taskclass_delete($id)
-    {
-        $id = $this->db->escape($id);
-        $sql = "DELETE FROM taskclass WHERE tid = $id";
-        return $this->db->query($sql);
-    }
+
     //类型byid
     public function gettaskclassById($id)
     {

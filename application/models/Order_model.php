@@ -64,53 +64,10 @@ class Order_model extends CI_Model
 		return $number;
 	}
 
-
-
-    //充值count
-    public function getrechargeorderAllPage($starttime,$end)
-    {
-        $sqlw = " where 1=1 ";
-        if (!empty($starttime) && !empty($end)) {
-            $starttime = strtotime($starttime);
-            $end = strtotime($end)+86400;
-            $sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
-        } elseif (!empty($starttime) && empty($end)) {
-            $starttime = strtotime($starttime);
-            $sqlw .= " and m.add_time >= $starttime ";
-        } elseif (empty($starttime) && !empty($end)) {
-            $end = strtotime($end)+86400;
-            $sqlw .= " and m.add_time <= $end ";
-        }
-        $sql = "SELECT count(1) as number FROM `rechargeorder` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw;
-
-        $number = $this->db->query($sql)->row()->number;
-        return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
-    }
-    //充值list
-    public function getrechargeorderAll($pg,$starttime,$end)
-    {
-        $sqlw = " where 1=1 ";
-        if (!empty($starttime) && !empty($end)) {
-            $starttime = strtotime($starttime);
-            $end = strtotime($end)+86400;
-            $sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
-        } elseif (!empty($starttime) && empty($end)) {
-            $starttime = strtotime($starttime);
-            $sqlw .= " and m.add_time >= $starttime ";
-        } elseif (empty($starttime) && !empty($end)) {
-            $end = strtotime($end)+86400;
-            $sqlw .= " and m.add_time <= $end ";
-        }
-        $start = ($pg - 1) * 10;
-        $stop = 10;
-
-        $sql = "SELECT m.*,me.nickname FROM `rechargeorder` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
-        return $this->db->query($sql)->result_array();
-    }
-    //任务count
+    //count
     public function gettaskorderAllPage($starttime,$end)
     {
-        $sqlw = " where 1=1 ";
+        $sqlw = " where 1=1 and order_status != 1";
         if (!empty($starttime) && !empty($end)) {
             $starttime = strtotime($starttime);
             $end = strtotime($end)+86400;
@@ -122,15 +79,15 @@ class Order_model extends CI_Model
             $end = strtotime($end)+86400;
             $sqlw .= " and m.add_time <= $end ";
         }
-        $sql = "SELECT count(1) as number FROM `taorder` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw;
+        $sql = "SELECT count(1) as number FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
 
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
-    //任务list
+    //list
     public function gettaskorderAll($pg,$starttime,$end)
     {
-        $sqlw = " where 1=1 ";
+		$sqlw = " where 1=1 and order_status != 1";
         if (!empty($starttime) && !empty($end)) {
             $starttime = strtotime($starttime);
             $end = strtotime($end)+86400;
@@ -144,10 +101,23 @@ class Order_model extends CI_Model
         }
         $start = ($pg - 1) * 10;
         $stop = 10;
-
-        $sql = "SELECT m.*,me.nickname FROM `taorder` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+        $sql = "SELECT m.*,me.name,me.account FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
+    //认证byid
+	public function getorderById($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `order_town` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+
+
+
+
+
+
+
     //积分兑换count
     public function getintegralorderAllPage($starttime,$end)
     {

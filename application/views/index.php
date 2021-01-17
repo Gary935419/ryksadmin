@@ -140,32 +140,58 @@
                     </li>
                 </ul>
             </li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="监控管理">&#xe6b5;</i>
+					<cite>监控管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/taskclass/monitoring' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>实时监控</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="模块管理">&#xe6b5;</i>
-                    <cite>模块管理</cite>
+                    <i class="iconfont left-nav-li" lay-tips="推广管理">&#xe6b5;</i>
+                    <cite>推广管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a onclick="changeSrc('<?= RUN . '/taskclass/taskclass_list' ?>')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>模块列表</cite>
+                            <cite>优惠券</cite>
                         </a>
                     </li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/taskclass/taskclass_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>推荐金(司机)</cite>
+						</a>
+					</li>
                 </ul>
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="商家管理">&#xe6b5;</i>
-                    <cite>商家管理</cite>
+                    <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe6b5;</i>
+                    <cite>订单管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="changeSrc('<?= RUN . '/goods/goods_list' ?>')">
+                        <a onclick="changeSrc('<?= RUN . '/order/taskorder_list' ?>')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>商家列表</cite>
+                            <cite>订单列表(代驾)</cite>
                         </a>
                     </li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>订单列表(跑腿)</cite>
+						</a>
+					</li>
                 </ul>
             </li>
             <li>

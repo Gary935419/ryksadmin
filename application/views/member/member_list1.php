@@ -45,6 +45,7 @@
                             <th>司机昵称</th>
                             <th>司机电话</th>
                             <th>司机余额</th>
+							<th>推荐码</th>
                             <th>司机信誉分</th>
 							<th>司机状态</th>
                             <th>注册时间</th>
@@ -58,6 +59,7 @@
                                     <td><?= $once['name'] ?></td>
                                     <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
                                     <td><?= $once['money'] ?>元</td>
+									<td><?= empty($once['invitation_code2_up']) ? '暂无邀请人' : $once['invitation_code2_up'] ?></td>
                                     <td><?= $once['credit_points'] ?>分</td>
 <!--                                    <td>--><?//= $once['integral'] ?><!--积分</td>-->
 <!--                                    <td>--><?//= $once['cityname'] ?><!--</td>-->

@@ -17,47 +17,46 @@
 <body>
 <div class="x-nav">
           <span class="layui-breadcrumb">
-<!--            <a href="--><? //= RUN . '/admin/index' ?><!--">最初のページ</a>-->
             <a>
-              <cite>优惠券</cite></a>
+              <cite>等级管理</cite></a>
           </span>
-    <!--          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新">-->
-    <!--            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>-->
 </div>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-
+                <div class="layui-card-header">
+                    <button class="layui-btn" onclick="xadmin.open('添加','<?= RUN . '/set/grade_add' ?>',900,500)"><i
+                                class="layui-icon"></i>添加
+                    </button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>乘客姓名</th>
-                            <th>乘客电话</th>
-                            <th>优惠金额</th>
-							<th>是否使用</th>
-							<th>到期时间</th>
-							<th>获得时间</th>
+                            <th>等级名称</th>
+                            <th>增幅比例</th>
+                            <th>推荐次数</th>
+                            <th>完成次数</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                <tr id="p<?= $once['gid'] ?>" sid="<?= $once['gid'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['name'] ?></td>
-                                    <td><?= $once['account'] ?></td>
-                                    <td><?= $once['money'] ?>元</td>
-									<td><?= $once['is_use'] == 1?'已使用':'未使用' ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['end_time']) ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+                                    <td><?= $once['gname'] ?></td>
+                                    <td><?= $once['commission_rate'] ?>%</td>
+                                    <td><?= $once['recommend'] ?>次</td>
+                                    <td><?= $once['completion'] ?>次</td>
                                     <td class="td-manage">
+                                        <button class="layui-btn layui-btn-normal"
+                                                onclick="xadmin.open('编辑','<?= RUN . '/set/grade_edit?gid=' ?>'+<?= $once['gid'] ?>,900,500)">
+                                            <i class="layui-icon">&#xe642;</i>编辑
+                                        </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="taskclass_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
+                                                onclick="grade_delete('<?= $once['gid'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
                                     </td>
                                 </tr>
@@ -82,7 +81,7 @@
 </div>
 </body>
 <script>
-    function taskclass_delete(id) {
+    function grade_delete(id) {
         layer.confirm('您是否确认删除？', {
                 title: '温馨提示',
                 btn: ['确认', '取消']
@@ -93,7 +92,7 @@
                     type: "post",
                     data: {"id": id},
                     dataType: "json",
-                    url: "<?= RUN . '/taskclass/taskclass_delete' ?>",
+                    url: "<?= RUN . '/set/grade_delete' ?>",
                     success: function (data) {
                         if (data.success) {
                             $("#p" + id).remove();

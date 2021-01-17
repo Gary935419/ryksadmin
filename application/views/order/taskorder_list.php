@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>任务订单</cite></a>
+              <cite>订单列表(代驾)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -43,24 +43,50 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>会员昵称</th>
-                            <th>任务标题</th>
-                            <th>任务佣金</th>
-                            <th>任务积分</th>
-                            <th>任务押金</th>
-                            <th>创建时间</th>
+                            <th>乘客姓名</th>
+							<th>乘客手机号</th>
+                            <th>订单状态</th>
+                            <th>出发地点</th>
+                            <th>目的地点</th>
+                            <th>订单价格</th>
+                            <th>下单时间</th>
+							<th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['oid'] ?>" sid="<?= $once['oid'] ?>">
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['nickname'] ?></td>
-                                    <td><?= $once['otatitle'] ?></td>
-                                    <td>￥<?= $once['otacommission'] ?></td>
-                                    <td><?= $once['otaintegral'] ?>积分</td>
-                                    <td>￥<?= $once['otadeposit'] ?></td>
+                                    <td><?= $once['name'] ?></td>
+									<td><?= $once['account'] ?></td>
+									<?php if ($once['status']==1){ ?>
+										<td>待接单</td>
+									<?php }elseif ($once['status']==2){ ?>
+										<td>待接驾</td>
+									<?php }elseif ($once['status']==3){ ?>
+										<td>乘客上车</td>
+									<?php }elseif ($once['status']==4){ ?>
+										<td>已开始</td>
+									<?php }elseif ($once['status']==6){ ?>
+										<td>已完成</td>
+									<?php }elseif ($once['status']==7){ ?>
+										<td>已取消</td>
+									<?php }else{ ?>
+										<td>数据错误</td>
+									<?php } ?>
+                                    <td><?= $once['address1'] ?></td>
+                                    <td><?= $once['address2'] ?></td>
+                                    <td><?= $once['price'] ?>元</td>
                                     <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+									<td class="td-manage">
+										<button class="layui-btn layui-btn-warm"
+												onclick="xadmin.open('订单详情','<?= RUN . '/order/driver_examine_details?id=' ?>'+<?= $once['id'] ?>,900,500)">
+											<i class="layui-icon">&#xe60b;</i>查看
+										</button>
+										<button class="layui-btn layui-btn-danger"
+												onclick="order_send('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>派单
+										</button>
+									</td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>

@@ -19,7 +19,7 @@
           <span class="layui-breadcrumb">
 <!--            <a href="--><? //= RUN . '/admin/index' ?><!--">最初のページ</a>-->
             <a>
-              <cite>优惠券</cite></a>
+              <cite>推荐金(司机)</cite></a>
           </span>
     <!--          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新">-->
     <!--            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>-->
@@ -36,13 +36,10 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>乘客姓名</th>
-                            <th>乘客电话</th>
-                            <th>优惠金额</th>
-							<th>是否使用</th>
-							<th>到期时间</th>
+                            <th>司机姓名</th>
+                            <th>司机电话</th>
+                            <th>推荐金额</th>
 							<th>获得时间</th>
-                            <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
@@ -51,15 +48,8 @@
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['name'] ?></td>
                                     <td><?= $once['account'] ?></td>
-                                    <td><?= $once['money'] ?>元</td>
-									<td><?= $once['is_use'] == 1?'已使用':'未使用' ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['end_time']) ?></td>
+                                    <td>+<?= $once['price'] ?>元</td>
 									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
-                                    <td class="td-manage">
-                                        <button class="layui-btn layui-btn-danger"
-                                                onclick="taskclass_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
-                                        </button>
-                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
@@ -81,39 +71,4 @@
     </div>
 </div>
 </body>
-<script>
-    function taskclass_delete(id) {
-        layer.confirm('您是否确认删除？', {
-                title: '温馨提示',
-                btn: ['确认', '取消']
-                // 按钮
-            },
-            function (index) {
-                $.ajax({
-                    type: "post",
-                    data: {"id": id},
-                    dataType: "json",
-                    url: "<?= RUN . '/taskclass/taskclass_delete' ?>",
-                    success: function (data) {
-                        if (data.success) {
-                            $("#p" + id).remove();
-                            layer.alert(data.msg, {
-                                    title: '温馨提示',
-                                    icon: 6,
-                                    btn: ['确认']
-                                },
-                            );
-                        } else {
-                            layer.alert(data.msg, {
-                                    title: '温馨提示',
-                                    icon: 5,
-                                    btn: ['确认']
-                                },
-                            );
-                        }
-                    },
-                });
-            });
-    }
-</script>
 </html>

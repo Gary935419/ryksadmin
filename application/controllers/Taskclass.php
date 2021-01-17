@@ -18,24 +18,77 @@ class Taskclass extends CI_Controller
         $this->load->model('Taskclass_model', 'taskclass');
         header("Content-type:text/html;charset=utf-8");
     }
+	/**
+	 * 实时监控
+	 */
+	public function monitoring()
+	{
+		$update_time = floatval(time()) - 300;
+		$count1 = $this->taskclass->getdriverCount(1,$update_time);
+		$count2 = $this->taskclass->getdriverCount(2,$update_time);
+		$list = $this->taskclass->getdriverList($update_time);
+		$data = array();
+		$data['count1'] = $count1;
+		$data['count2'] = floatval($count2) - floatval($count1);
+		$str = "";
+		foreach ($list as $k => $v){
+			if ($k < 1){
+				$str = $v['latitude'] . "," . $v['longitude'];
+			}else{
+				$str = $str . ";" . $v['latitude'] . "," . $v['longitude'];
+			}
+		}
+		$data['str'] = $str;
+		$this->display("taskclass/monitoring",$data);
+	}
     /**
-     * 类型列表页
+     * 优惠券列表页
      */
     public function taskclass_list()
     {
-
-        $tname = isset($_GET['tname']) ? $_GET['tname'] : '';
         $page = isset($_GET["page"]) ? $_GET["page"] : 1;
-        $allpage = $this->taskclass->gettaskclassAllPage($tname);
+        $allpage = $this->taskclass->gettaskclassAllPage();
         $page = $allpage > $page ? $page : $allpage;
         $data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
         $data["page"] = $page;
         $data["allpage"] = $allpage;
-        $list = $this->taskclass->gettaskclassAllNew($page, $tname);
+        $list = $this->taskclass->gettaskclassAllNew($page);
         $data["list"] = $list;
-        $data["tname"] = $tname;
         $this->display("taskclass/taskclass_list", $data);
     }
+	/**
+	 * 删除
+	 */
+	public function taskclass_delete()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->taskclass->taskclass_delete($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+			return;
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+			return;
+		}
+	}
+	/**
+	 * 推荐金(司机)
+	 */
+	public function taskclass_list1()
+	{
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->taskclass->gettaskclassAllPage1();
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->taskclass->gettaskclassAllNew1($page);
+		$data["list"] = $list;
+		$this->display("taskclass/taskclass_list1", $data);
+	}
+
+
+
+
     /**
      * 类型添加页
      */
@@ -72,20 +125,7 @@ class Taskclass extends CI_Controller
             return;
         }
     }
-    /**
-     * 类型删除
-     */
-    public function taskclass_delete()
-    {
-        $id = isset($_POST['id']) ? $_POST['id'] : 0;
-        if ($this->taskclass->taskclass_delete($id)) {
-            echo json_encode(array('success' => true, 'msg' => "删除成功"));
-            return;
-        } else {
-            echo json_encode(array('success' => false, 'msg' => "删除失败"));
-            return;
-        }
-    }
+
     /**
      * 类型修改页
      */
