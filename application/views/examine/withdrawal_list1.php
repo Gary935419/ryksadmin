@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>提现记录(司机)</cite></a>
+              <cite>提现记录(乘客)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -27,7 +27,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/examine/withdrawal_list' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/examine/withdrawal_list1' ?>">
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="开始日期" value="<?php echo $start ?>" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
@@ -42,48 +42,21 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-							<th>司机电话</th>
-							<th>真实姓名</th>
-							<th>开户行</th>
-							<th>银行卡号</th>
+							<th>序号</th>
+							<th>乘客电话</th>
+							<th>乘客姓名</th>
 							<th>提现金额</th>
-							<th>审核状态</th>
-							<th>审核备注</th>
-							<th>申请时间</th>
-							<th>操作</th>
+							<th>提现时间</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
 								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+									<td><?= $num + 1 ?></td>
 									<td><?= $once['account'] ?></td>
 									<td><?= $once['name'] ?></td>
-									<td><?= $once['bank_account'] ?></td>
-									<td><?= $once['card_number'] ?></td>
-									<td><?= $once['money'] ?>元</td>
-									<?php if ($once['status']==1){ ?>
-										<td style="color: #ff820b;">审核中</td>
-									<?php }elseif ($once['status']==2){ ?>
-										<td style="color: green;">已通过</td>
-									<?php }elseif ($once['status']==3){ ?>
-										<td style="color: red;">已驳回</td>
-									<?php }else{ ?>
-										<td style="color: red;">数据错误</td>
-									<?php } ?>
-									<td><?= $once['notice'] ?></td>
+									<td><?= $once['price'] ?>元</td>
 									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
-									<td class="td-manage">
-										<?php if ($once['status']==1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('审核操作','<?= RUN . '/examine/withdrawal_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
-												<i class="layui-icon">&#xe642;</i>审核通过
-											</button>
-											<button class="layui-btn layui-btn-danger"
-													onclick="xadmin.open('审核操作','<?= RUN . '/examine/withdrawalno_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
-												<i class="layui-icon">&#xe642;</i>审核驳回
-											</button>
-										<?php } ?>
-									</td>
 								</tr>
                             <?php endforeach; ?>
                         <?php } else { ?>

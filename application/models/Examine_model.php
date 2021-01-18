@@ -73,7 +73,147 @@ class Examine_model extends CI_Model
         $sql = "SELECT m.*,me.account FROM `postal` m  LEFT JOIN `user` me ON me.id = m.driver_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
+   //提现count
+	public function getwithdrawalAllPage1($starttime,$end)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `user_withdrawal` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
 
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//提现list
+	public function getwithdrawalAll1($pg,$starttime,$end)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT m.*,me.account,me.name FROM `user_withdrawal` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	//专车送 count
+	public function getOrder1Count($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and order_type = 1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//顺风送 count
+	public function getOrder2Count($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and order_type = 2 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//代买 count
+	public function getOrder3Count($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and order_type = 3 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//账单总金额
+	public function getOrder4Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//账单总金额 非取消
+	public function getOrder5Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
     //任务byid
     public function gettaorderById($id)
     {

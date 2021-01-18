@@ -17,6 +17,7 @@ class Examine extends CI_Controller
         }
         $this->load->model('Examine_model', 'examine');
         $this->load->model('Member_model', 'member');
+		$this->load->model('Order_model', 'order');
         header("Content-type:text/html;charset=utf-8");
     }
     /**
@@ -39,6 +40,53 @@ class Examine extends CI_Controller
         $data["end"] = $end;
         $this->display("examine/withdrawal_list", $data);
     }
+	/**
+	 * 提现列表页 乘客
+	 */
+	public function withdrawal_list1()
+	{
+
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->examine->getwithdrawalAllPage1($start,$end);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->examine->getwithdrawalAll1($page,$start,$end);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$this->display("examine/withdrawal_list1", $data);
+	}
+	/**
+	 * 跑腿订单列表页
+	 */
+	public function withdrawal_list2()
+	{
+
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+		$allpage = $this->order->gettaskorderAllPage1($start,$end);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderAll1($page,$start,$end);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["ordercount1"] = $this->examine->getOrder1Count($start,$end);
+		$data["ordercount2"] = $this->examine->getOrder2Count($start,$end);
+		$data["ordercount3"] = $this->examine->getOrder3Count($start,$end);
+		$data["orderprice1"] = $this->examine->getOrder4Price($start,$end);
+		$data["orderprice2"] = $this->examine->getOrder5Price($start,$end);
+		$data["orderprice3"] = floatval($data["orderprice1"]) - floatval($data["orderprice2"]);
+		$this->display("examine/withdrawal_list2", $data);
+	}
     /**
      * 提现审核通过操作页
      */

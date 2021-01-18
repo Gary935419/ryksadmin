@@ -203,7 +203,25 @@
 						<li>
 							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现审核(司机)</cite>
+								<cite>提现记录(司机)</cite>
+							</a>
+						</li>
+						<li>
+							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list1' ?>')">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>提现记录(乘客)</cite>
+							</a>
+						</li>
+						<li>
+							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list2' ?>')">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>账单详情(跑腿)</cite>
+							</a>
+						</li>
+						<li>
+							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list3' ?>')">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>账单详情(代驾)</cite>
 							</a>
 						</li>
 					</ul>
