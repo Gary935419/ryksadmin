@@ -111,6 +111,56 @@ class Order_model extends CI_Model
 		$sql = "SELECT * FROM `order_town` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+   //count
+	public function gettaskorderAllPage1($starttime,$end)
+	{
+		$sqlw = " where 1=1 and order_status != 1";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `order_traffic` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//list
+	public function gettaskorderAll1($pg,$starttime,$end)
+	{
+		$sqlw = " where 1=1 and order_status != 1";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sql = "SELECT m.*,me.name,me.account FROM `order_traffic` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+    //认证byid
+	public function getorderById1($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `order_traffic` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+
+
+
 
 
 

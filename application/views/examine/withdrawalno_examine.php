@@ -28,15 +28,15 @@
         <form method="post" class="layui-form layui-form-pane" id="tab">
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-                    审核驳回说明
+                    审核驳回备注
                 </label>
                 <div class="layui-input-block">
-                    <textarea placeholder="请输入审核驳回说明" id="reject" name="reject" class="layui-textarea"
+                    <textarea placeholder="请输入审核驳回备注" id="reject" name="reject" class="layui-textarea"
                               lay-verify="reject"></textarea>
                 </div>
             </div>
-            <input type="hidden" id="wrid" name="wrid" value="<?php echo $wrid?>">
-            <input type="hidden" id="wrstate" name="wrstate" value="3">
+			<input type="hidden" id="id" name="id" value="<?php echo $id?>">
+			<input type="hidden" id="status" name="status" value="3">
             <div class="layui-form-item">
                 <button class="layui-btn" lay-submit="" lay-filter="add">确认操作</button>
             </div>
@@ -52,7 +52,7 @@
             form.verify({
                 reject: function (value) {
                     if ($('#reject').val() == "") {
-                        return '请输入审核驳回说明。';
+                        return '请输入审核驳回备注。';
                     }
                 },
             });

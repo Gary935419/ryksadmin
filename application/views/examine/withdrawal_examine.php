@@ -28,15 +28,15 @@
         <form method="post" class="layui-form layui-form-pane" id="tab">
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-                    审核通过说明
+                    审核通过备注
                 </label>
                 <div class="layui-input-block">
                     <textarea id="reject" name="reject" class="layui-textarea"
-                              lay-verify="reject">您的提现审核已经通过啦！</textarea>
+                              lay-verify="reject"></textarea>
                 </div>
             </div>
-            <input type="hidden" id="wrid" name="wrid" value="<?php echo $wrid?>">
-            <input type="hidden" id="wrstate" name="wrstate" value="1">
+            <input type="hidden" id="id" name="id" value="<?php echo $id?>">
+            <input type="hidden" id="status" name="status" value="2">
             <div class="layui-form-item">
                 <button class="layui-btn" lay-submit="" lay-filter="add">确认操作</button>
             </div>
@@ -52,7 +52,7 @@
             form.verify({
                 reject: function (value) {
                     if ($('#reject').val() == "") {
-                        return '请输入审核通过说明。';
+                        return '审核通过备注。';
                     }
                 },
             });

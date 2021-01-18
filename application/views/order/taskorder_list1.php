@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>提现审核(司机)</cite></a>
+              <cite>订单列表(跑腿)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -27,7 +27,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/examine/withdrawal_list' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/order/taskorder_list1' ?>">
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="开始日期" value="<?php echo $start ?>" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
@@ -42,53 +42,76 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-							<th>司机电话</th>
-							<th>真实姓名</th>
-							<th>开户行</th>
-							<th>银行卡号</th>
-							<th>提现金额</th>
-							<th>审核状态</th>
-							<th>审核备注</th>
-							<th>申请时间</th>
+                            <th>序号</th>
+                            <th>乘客姓名</th>
+							<th>乘客手机号</th>
+                            <th>订单状态</th>
+							<th>订单类型</th>
+                            <th>出发地点</th>
+                            <th>目的地点</th>
+                            <th>订单价格</th>
+                            <th>下单时间</th>
 							<th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                    <td><?= $num + 1 ?></td>
+                                    <td><?= $once['name'] ?></td>
 									<td><?= $once['account'] ?></td>
-									<td><?= $once['name'] ?></td>
-									<td><?= $once['bank_account'] ?></td>
-									<td><?= $once['card_number'] ?></td>
-									<td><?= $once['money'] ?>元</td>
-									<?php if ($once['status']==1){ ?>
-										<td style="color: #ff820b;">审核中</td>
-									<?php }elseif ($once['status']==2){ ?>
-										<td style="color: green;">已通过</td>
-									<?php }elseif ($once['status']==3){ ?>
-										<td style="color: red;">已驳回</td>
+									<?php if ($once['status']==7){ ?>
+										<td>已取消</td>
+									<?php }elseif ($once['order_status']==1){ ?>
+										<td>未付款</td>
+									<?php }elseif ($once['order_status']==2){ ?>
+										<td>待接单</td>
+									<?php }elseif ($once['order_status']==3){ ?>
+										<td>已接单</td>
+									<?php }elseif ($once['order_status']==4){ ?>
+										<td>前往出发地</td>
+									<?php }elseif ($once['order_status']==5){ ?>
+										<td>到达出发地</td>
+									<?php }elseif ($once['order_status']==6){ ?>
+										<td>待验证提货码</td>
+									<?php }elseif ($once['order_status']==7){ ?>
+									    <td>前往目的地</td>
+									<?php }elseif ($once['order_status']==8){ ?>
+									    <td>已完成</td>
 									<?php }else{ ?>
-										<td style="color: red;">数据错误</td>
+										<td>数据错误</td>
 									<?php } ?>
-									<td><?= $once['notice'] ?>元</td>
-									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+									<?php if ($once['order_type']==1){ ?>
+										<td>专车送</td>
+									<?php }elseif ($once['order_type']==2){ ?>
+										<td>顺丰送</td>
+									<?php }elseif ($once['order_type']==3){ ?>
+										<td>代买</td>
+									<?php }elseif ($once['order_type']==4){ ?>
+										<td>代驾</td>
+									<?php }else{ ?>
+										<td>数据错误</td>
+									<?php } ?>
+                                    <td><?= $once['address1'] ?></td>
+                                    <td><?= $once['address2'] ?></td>
+                                    <td><?= $once['price'] ?>元</td>
+                                    <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
 									<td class="td-manage">
-										<?php if ($once['status']==1){ ?>
-											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('审核操作','<?= RUN . '/examine/withdrawal_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
-												<i class="layui-icon">&#xe642;</i>审核通过
-											</button>
+										<button class="layui-btn layui-btn-warm"
+												onclick="xadmin.open('订单详情','<?= RUN . '/order/driver_examine_details1?id=' ?>'+<?= $once['id'] ?>,900,500)">
+											<i class="layui-icon">&#xe60b;</i>查看
+										</button>
+										<?php if ($once['order_status']==2 && $once['status']==1){ ?>
 											<button class="layui-btn layui-btn-danger"
-													onclick="xadmin.open('审核操作','<?= RUN . '/examine/withdrawalno_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
-												<i class="layui-icon">&#xe642;</i>审核驳回
+													onclick="order_send('<?= $once['id'] ?>',1)"><i class="layui-icon">&#xe60b;</i>派单
 											</button>
 										<?php } ?>
 									</td>
-								</tr>
+                                </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="9" style="text-align: center;">暂无数据</td>
+                                <td colspan="7" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>
@@ -116,5 +139,28 @@
                 elem: '#end' //指定元素
             });
         });
+	function order_send(id,type) {
+		layer.confirm('您是否确认发送通知？', {
+					title: '温馨提示',
+					btn: ['确认', '取消']
+					// 按钮
+				},
+		function (index) {
+			$.ajax({
+				type: "post",
+				data: {"id": id,"type": type},
+				dataType: "json",
+				url: "<?= RUN . '/order/order_send' ?>",
+				success: function (data) {
+					layer.alert(data.msg, {
+								title: '温馨提示',
+								icon: 6,
+								btn: ['确认']
+							},
+					);
+				},
+			});
+		});
+	}
 </script>
 </html>

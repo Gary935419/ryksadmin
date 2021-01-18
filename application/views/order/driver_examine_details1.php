@@ -44,6 +44,15 @@
                               lay-verify="price"><?= $price ?></textarea>
                 </div>
             </div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					物品名称
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交物品名称" id="goods_name" name="goods_name" class="layui-textarea"
+							  lay-verify="goods_name"><?= $goods_name ?></textarea>
+				</div>
+			</div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
                     优惠券金额
@@ -73,11 +82,11 @@
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					上车时间
+					取件时间
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交上车时间" id="takeup_time" name="takeup_time" class="layui-textarea"
-							  lay-verify="takeup_time"><?= empty($takeup_time)?'暂无数据':date('Y-m-d H:i:s', $takeup_time) ?></textarea>
+                    <textarea placeholder="暂无提交取件时间" id="takegoods_time" name="takegoods_time" class="layui-textarea"
+							  lay-verify="takegoods_time"><?= empty($takegoods_time)?'暂无数据':date('Y-m-d H:i:s', $takegoods_time) ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
@@ -91,11 +100,11 @@
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					订单备注
+					物品备注
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交订单备注" id="remarks" name="remarks" class="layui-textarea"
-							  lay-verify="remarks"><?php echo $remarks ?></textarea>
+                    <textarea placeholder="暂无提交物品备注" id="goods_remarks" name="goods_remarks" class="layui-textarea"
+							  lay-verify="goods_remarks"><?php echo $goods_remarks ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
@@ -114,6 +123,15 @@
 				<div class="layui-input-block">
                     <textarea placeholder="暂无提交小费金额" id="tip_price" name="tip_price" class="layui-textarea"
 							  lay-verify="tip_price"><?php echo $tip_price ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					保价金额
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交保价金额" id="protect_price" name="protect_price" class="layui-textarea"
+							  lay-verify="protect_price"><?php echo $protect_price ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
@@ -143,17 +161,24 @@
 							  lay-verify="address2"><?php echo $address2 ?></textarea>
 				</div>
 			</div>
-<!--            <div class="layui-form-item layui-form-text">-->
-<!--                <label for="desc" class="layui-form-label">-->
-<!--                    完成截图-->
-<!--                </label>-->
-<!--                <div class="layui-input-block">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_cards_face ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_cards_side ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_drivers ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_vehicle ?><!--" style="width: 282px;height: 282px;">-->
-<!--                </div>-->
-<!--            </div>-->
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					收货人姓名
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交收货人姓名" id="name" name="name" class="layui-textarea"
+							  lay-verify="name"><?php echo $name ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					收货人电话
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交收货人电话" id="tel" name="tel" class="layui-textarea"
+							  lay-verify="tel"><?php echo $tel ?></textarea>
+				</div>
+			</div>
         </form>
     </div>
 </div>

@@ -83,9 +83,11 @@
 												onclick="xadmin.open('订单详情','<?= RUN . '/order/driver_examine_details?id=' ?>'+<?= $once['id'] ?>,900,500)">
 											<i class="layui-icon">&#xe60b;</i>查看
 										</button>
-										<button class="layui-btn layui-btn-danger"
-												onclick="order_send('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>派单
-										</button>
+										<?php if ($once['order_status']==2 && $once['status']==1){ ?>
+											<button class="layui-btn layui-btn-danger"
+													onclick="order_send('<?= $once['id'] ?>',2)"><i class="layui-icon">&#xe60b;</i>派单
+											</button>
+										<?php } ?>
 									</td>
                                 </tr>
                             <?php endforeach; ?>
@@ -107,7 +109,8 @@
     </div>
 </div>
 </body>
-<script>layui.use(['laydate', 'form'],
+<script>
+	layui.use(['laydate', 'form'],
         function() {
             var laydate = layui.laydate;
             //执行一个laydate实例
@@ -119,5 +122,29 @@
                 elem: '#end' //指定元素
             });
         });
+
+	function order_send(id,type) {
+		layer.confirm('您是否确认发送通知？', {
+					title: '温馨提示',
+					btn: ['确认', '取消']
+					// 按钮
+				},
+		function (index) {
+			$.ajax({
+				type: "post",
+				data: {"id": id,"type": type},
+				dataType: "json",
+				url: "<?= RUN . '/order/order_send' ?>",
+				success: function (data) {
+					layer.alert(data.msg, {
+								title: '温馨提示',
+								icon: 6,
+								btn: ['确认']
+							},
+					);
+				},
+			});
+		});
+	}
 </script>
 </html>

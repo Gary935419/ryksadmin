@@ -196,31 +196,17 @@
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="审核管理">&#xe705;</i>
-                    <cite>审核管理</cite>
+                    <i class="iconfont left-nav-li" lay-tips="财务管理">&#xe705;</i>
+                    <cite>财务管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/examine/task_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>入驻审核</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe723;</i>
-                    <cite>订单管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/order/integralorder_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>合作订单</cite>
-                        </a>
-                    </li>
-                </ul>
+					<ul class="sub-menu">
+						<li>
+							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>提现审核(司机)</cite>
+							</a>
+						</li>
+					</ul>
             </li>
         </ul>
     </div>

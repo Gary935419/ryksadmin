@@ -20,7 +20,7 @@ class Examine extends CI_Controller
         header("Content-type:text/html;charset=utf-8");
     }
     /**
-     * 提现审核列表页
+     * 提现审核列表页 司机
      */
     public function withdrawal_list()
     {
@@ -44,9 +44,9 @@ class Examine extends CI_Controller
      */
     public function withdrawal_examine()
     {
-        $wrid = isset($_GET['wrid']) ? $_GET['wrid'] : 0;
+        $id = isset($_GET['id']) ? $_GET['id'] : 0;
         $data = array();
-        $data['wrid'] = $wrid;
+        $data['id'] = $id;
         $this->display("examine/withdrawal_examine", $data);
     }
     /**
@@ -54,9 +54,9 @@ class Examine extends CI_Controller
      */
     public function withdrawalno_examine()
     {
-        $wrid = isset($_GET['wrid']) ? $_GET['wrid'] : 0;
-        $data = array();
-        $data['wrid'] = $wrid;
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data = array();
+		$data['id'] = $id;
         $this->display("examine/withdrawalno_examine", $data);
     }
     /**
@@ -68,48 +68,30 @@ class Examine extends CI_Controller
             echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
             return;
         }
-        $wrid = isset($_POST["wrid"]) ? $_POST["wrid"] : '';
-        $wrstate = isset($_POST["wrstate"]) ? $_POST["wrstate"] : '';
+        $id = isset($_POST["id"]) ? $_POST["id"] : '';
+        $status = isset($_POST["status"]) ? $_POST["status"] : '';
         $reject = isset($_POST["reject"]) ? $_POST["reject"] : '';
 
-        $withdrawal_info_state = $this->examine->getwithdrawalByIdstate($wrid);
+        $withdrawal_info_state = $this->examine->getwithdrawalByIdstate($id);
         if (!empty($withdrawal_info_state)){
             echo json_encode(array('error' => false, 'msg' => "请勿重复操作"));
             return;
         }
-        $withdrawal_info = $this->examine->getwithdrawalById($wrid);
-        $mid = $withdrawal_info['mid'];
-        if ($wrstate == 3){
-            $member_info = $this->examine->getmemberById($mid);
-            $wallet = $member_info['wallet'];
-            $walletcommission = $member_info['walletcommission'];
-            $wrprice = $withdrawal_info['wrprice'];
-            if ($withdrawal_info['wtype'] == 1){
-                //押金驳回
-                $newwallet = floatval($wallet) + floatval($wrprice);
-                $this->examine->member_save_edit($mid, $newwallet);
-                $wprice = $wrprice;
-                $add_time1=time();
-                $wtype = 6;
-                $wremark = "押金提现审核不通过，金额返还。";
-                $this->examine->withdrawal_save($wprice,$add_time1,$mid,$wtype,$wremark);
-            }else{
-                //佣金驳回
-                $newwalletcommission = floatval($walletcommission) + floatval($wrprice);
-                $this->examine->member_save_edit_new($mid, $newwalletcommission);
-                $wprice = $wrprice;
-                $add_time1=time();
-                $wtype = 8;
-                $wremark = "佣金提现审核不通过，金额返还。";
-                $this->examine->withdrawal_save($wprice,$add_time1,$mid,$wtype,$wremark);
-            }
+        $withdrawal_info = $this->examine->getwithdrawalById($id);
+        $driver_id = $withdrawal_info['driver_id'];
+        if ($status == 2){
+            $member_info = $this->examine->getmemberById($driver_id);
+            $wallet = $member_info['money'];
+            $wrprice = $withdrawal_info['money'];
+            if($member_info['money'] < $withdrawal_info['money']){
+				echo json_encode(array('error' => false, 'msg' => "抱歉!该用户余额不足!"));
+				return;
+			}
+			$newwallet = floatval($wallet) - floatval($wrprice);
+			$this->examine->member_save_edit($driver_id,$newwallet);
         }
         //状态修改
-        $this->examine->examine_new_save($wrid,$wrstate,$reject);
-        $add_time = time();
-        $if_flag = 2;
-        //发送信息
-        $result = $this->member->member_new_save($mid,$reject, $add_time, $if_flag);
+		$result = $this->examine->examine_new_save($id,$status,$reject);
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
             return;

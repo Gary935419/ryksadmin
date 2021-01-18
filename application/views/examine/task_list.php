@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>任务审核</cite></a>
+              <cite>提现审核(司机)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -42,51 +42,44 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-<!--                            <th>会员昵称</th>-->
+                            <th>司机电话</th>
                             <th>真实姓名</th>
-                            <th>联系电话</th>
-                            <th>商家名称</th>
-<!--                            <th>联系邮箱</th>-->
+                            <th>开户行</th>
+                            <th>银行卡号</th>
+                            <th>提现金额</th>
                             <th>审核状态</th>
-                            <th>申请详情</th>
-                            <th>原因</th>
+							<th>审核备注</th>
                             <th>申请时间</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['oid'] ?>" sid="<?= $once['oid'] ?>">
-<!--                                    <td>--><?//= $once['nickname'] ?><!--</td>-->
-                                    <td><?= $once['truename'] ?></td>
-                                    <td><?= $once['mobile'] ?></td>
-                                    <td><?= $once['shopname'] ?></td>
-<!--                                    <td>--><?//= $once['email'] ?><!--</td>-->
-                                    <?php if ($once['ostate']==2){ ?>
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                    <td><?= $once['account'] ?></td>
+                                    <td><?= $once['name'] ?></td>
+                                    <td><?= $once['bank_account'] ?></td>
+									<td><?= $once['card_number'] ?></td>
+									<td><?= $once['money'] ?>元</td>
+                                    <?php if ($once['status']==1){ ?>
                                         <td style="color: #ff820b;">审核中</td>
-                                    <?php }elseif ($once['ostate']==3){ ?>
+                                    <?php }elseif ($once['status']==2){ ?>
                                         <td style="color: green;">已通过</td>
-                                    <?php }elseif ($once['ostate']==4){ ?>
+                                    <?php }elseif ($once['status']==3){ ?>
                                         <td style="color: red;">已驳回</td>
                                     <?php }else{ ?>
                                         <td style="color: red;">数据错误</td>
                                     <?php } ?>
-                                    <td>
-                                        <button class="layui-btn layui-btn-warm"
-                                                onclick="xadmin.open('申请详情','<?= RUN . '/examine/task_examine_details?oid=' ?>'+<?= $once['oid'] ?>,900,500)">
-                                            <i class="layui-icon">&#xe60b;</i>查看
-                                        </button>
-                                    </td>
-                                    <td><?= $once['tareject'] ?></td>
-                                    <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+									<td><?= $once['notice'] ?>元</td>
+									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
                                     <td class="td-manage">
-                                        <?php if ($once['ostate']==2){ ?>
+                                        <?php if ($once['status']==1){ ?>
                                             <button class="layui-btn layui-btn-normal"
-                                                    onclick="xadmin.open('审核操作','<?= RUN . '/examine/task_examine?oid=' ?>'+<?= $once['oid'] ?>,900,250)">
+                                                    onclick="xadmin.open('审核操作','<?= RUN . '/examine/task_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
                                                 <i class="layui-icon">&#xe642;</i>通过
                                             </button>
                                             <button class="layui-btn layui-btn-danger"
-                                                    onclick="xadmin.open('审核操作','<?= RUN . '/examine/taskno_examine?oid=' ?>'+<?= $once['oid'] ?>,900,250)">
+                                                    onclick="xadmin.open('审核操作','<?= RUN . '/examine/taskno_examine?id=' ?>'+<?= $once['id'] ?>,900,250)">
                                                 <i class="layui-icon">&#xe642;</i>驳回
                                             </button>
                                         <?php } ?>

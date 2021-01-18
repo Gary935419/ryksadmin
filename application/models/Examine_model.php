@@ -9,6 +9,29 @@ class Examine_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
+	//审核提现提交
+	public function examine_new_save($id,$status,$reject)
+	{
+		$id = $this->db->escape($id);
+		$status = $this->db->escape($status);
+		$reject = $this->db->escape($reject);
+		$sql = "UPDATE `postal` SET status=$status,notice=$reject WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	//提现byid
+	public function getwithdrawalById($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `postal` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+	//避免重复点击
+	public function getwithdrawalByIdstate($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `postal` where id=$id and status !=1 ";
+		return $this->db->query($sql)->row_array();
+	}
     //审核提现count
     public function getwithdrawalAllPage($starttime,$end)
     {
@@ -24,7 +47,7 @@ class Examine_model extends CI_Model
             $end = strtotime($end)+86400;
             $sqlw .= " and m.add_time <= $end ";
         }
-        $sql = "SELECT count(1) as number FROM `withdrawal` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw;
+        $sql = "SELECT count(1) as number FROM `postal` m  LEFT JOIN `user` me ON me.id = m.driver_id " . $sqlw;
 
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
@@ -47,25 +70,10 @@ class Examine_model extends CI_Model
         $start = ($pg - 1) * 10;
         $stop = 10;
 
-        $sql = "SELECT m.*,me.nickname,me.truename,me.opend_bank,me.bank_card FROM `withdrawal` m  LEFT JOIN `member` me ON me.mid = m.mid " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+        $sql = "SELECT m.*,me.account FROM `postal` m  LEFT JOIN `user` me ON me.id = m.driver_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
-    //审核提现提交
-    public function examine_new_save($wrid,$wrstate,$reject)
-    {
-        $wrid = $this->db->escape($wrid);
-        $wrstate = $this->db->escape($wrstate);
-        $reject = $this->db->escape($reject);
-        $sql = "UPDATE `withdrawal` SET wrstate=$wrstate,reject=$reject WHERE wrid = $wrid";
-        return $this->db->query($sql);
-    }
-    //提现byid
-    public function getwithdrawalById($id)
-    {
-        $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `withdrawal` where wrid=$id ";
-        return $this->db->query($sql)->row_array();
-    }
+
     //任务byid
     public function gettaorderById($id)
     {
@@ -84,16 +92,15 @@ class Examine_model extends CI_Model
     public function getmemberById($id)
     {
         $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `member` where mid=$id ";
+        $sql = "SELECT * FROM `user` where id=$id ";
         return $this->db->query($sql)->row_array();
     }
-    //押金驳回金额返还
-    public function member_save_edit($mid, $newwallet)
+    //审核通过金额扣除
+    public function member_save_edit($mid,$newwallet)
     {
         $mid = $this->db->escape($mid);
         $newwallet = $this->db->escape($newwallet);
-
-        $sql = "UPDATE `member` SET wallet=$newwallet WHERE mid = $mid";
+        $sql = "UPDATE `user` SET money=$newwallet WHERE id = $mid";
         return $this->db->query($sql);
     }
     //佣金驳回金额返还
@@ -283,13 +290,7 @@ class Examine_model extends CI_Model
         $sql = "SELECT * FROM `taorder` where oid=$id and ostate>2";
         return $this->db->query($sql)->row_array();
     }
-    //避免重复点击
-    public function getwithdrawalByIdstate($id)
-    {
-        $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `withdrawal` where wrid=$id and wrstate !=2 ";
-        return $this->db->query($sql)->row_array();
-    }
+
     //避免重复点击
     public function getinorderByIdstate($id)
     {
