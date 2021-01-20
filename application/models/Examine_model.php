@@ -174,6 +174,26 @@ class Examine_model extends CI_Model
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
+	//代驾 count
+	public function getOrder1Count1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `order_town` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
 	//账单总金额
 	public function getOrder4Price($starttime,$end)
 	{
@@ -210,6 +230,46 @@ class Examine_model extends CI_Model
 			$sqlw .= " and m.add_time <= $end ";
 		}
 		$sql = "SELECT sum(price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//账单总金额 代驾
+	public function getOrder4Price1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 ";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(price) as number FROM `order_town` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//账单总金额 非取消 代驾
+	public function getOrder5Price1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(price) as number FROM `order_town` m" . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;

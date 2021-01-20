@@ -9,52 +9,79 @@ class Notice_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
-    //公告count
-    public function getnoticeAllPage($ncontent)
+    //count
+    public function getnoticeAllPage($title)
     {
-        $sqlw = " where 1=1 ";
-        if (!empty($ncontent)) {
-            $sqlw .= " and ( ncontent like '%" . $ncontent . "%' ) ";
+        $sqlw = " where 1=1 and type=2";
+        if (!empty($title)) {
+            $sqlw .= " and ( title like '%" . $title . "%' ) ";
         }
-        $sql = "SELECT count(1) as number FROM `notice` " . $sqlw;
+        $sql = "SELECT count(1) as number FROM `message` " . $sqlw;
 
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
-    //公告list
+    //list
     public function getnoticeAll($pg,$ncontent)
     {
-        $sqlw = " where 1=1 ";
-        if (!empty($ncontent)) {
-            $sqlw .= " and ( ncontent like '%" . $ncontent . "%' ) ";
-        }
+		$sqlw = " where 1=1 and type=2";
+		if (!empty($title)) {
+			$sqlw .= " and ( title like '%" . $title . "%' ) ";
+		}
         $start = ($pg - 1) * 10;
         $stop = 10;
 
-        $sql = "SELECT * FROM `notice` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+        $sql = "SELECT * FROM `message` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
-    //公告save
-    public function notice_save($ncontent,$add_time)
+	//count
+	public function getnoticeAllPage1($title)
+	{
+		$sqlw = " where 1=1 and type=1";
+		if (!empty($title)) {
+			$sqlw .= " and ( title like '%" . $title . "%' ) ";
+		}
+		$sql = "SELECT count(1) as number FROM `message` " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//list
+	public function getnoticeAll1($pg,$ncontent)
+	{
+		$sqlw = " where 1=1 and type=1";
+		if (!empty($title)) {
+			$sqlw .= " and ( title like '%" . $title . "%' ) ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+
+		$sql = "SELECT * FROM `message` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+    //save
+    public function notice_save($title,$content,$type,$add_time)
     {
-        $ncontent = $this->db->escape($ncontent);
+		$title = $this->db->escape($title);
+		$content = $this->db->escape($content);
+		$type = $this->db->escape($type);
         $add_time = $this->db->escape($add_time);
 
-        $sql = "INSERT INTO `notice` (ncontent,add_time) VALUES ($ncontent,$add_time)";
+        $sql = "INSERT INTO `message` (title,content,type,add_time) VALUES ($title,$content,$type,$add_time)";
         return $this->db->query($sql);
     }
     //公告delete
     public function notice_delete($id)
     {
         $id = $this->db->escape($id);
-        $sql = "DELETE FROM notice WHERE nid = $id";
+        $sql = "DELETE FROM message WHERE id = $id";
         return $this->db->query($sql);
     }
-    //公告byid
+    //byid
     public function getnoticeById($id)
     {
         $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `notice` where nid=$id ";
+        $sql = "SELECT * FROM `message` where id=$id ";
         return $this->db->query($sql)->row_array();
     }
     //公告byname

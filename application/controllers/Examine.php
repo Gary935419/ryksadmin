@@ -87,6 +87,31 @@ class Examine extends CI_Controller
 		$data["orderprice3"] = floatval($data["orderprice1"]) - floatval($data["orderprice2"]);
 		$this->display("examine/withdrawal_list2", $data);
 	}
+	/**
+	 * 代驾订单列表页
+	 */
+	public function withdrawal_list3()
+	{
+
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+		$allpage = $this->order->gettaskorderAllPage2($start,$end);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderAll2($page,$start,$end);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["ordercount1"] = $this->examine->getOrder1Count1($start,$end);
+		$data["orderprice1"] = $this->examine->getOrder4Price1($start,$end);
+		$data["orderprice2"] = $this->examine->getOrder5Price1($start,$end);
+		$data["orderprice3"] = floatval($data["orderprice1"]) - floatval($data["orderprice2"]);
+		$this->display("examine/withdrawal_list3", $data);
+	}
     /**
      * 提现审核通过操作页
      */

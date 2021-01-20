@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>消息管理(司机)</cite></a>
+              <cite>消息管理(乘客)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -26,7 +26,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/notice/notice_list' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/notice/notice_list1' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="title" id="title" value="<?php echo $title ?>"
                                    placeholder="消息标题" autocomplete="off" class="layui-input">
@@ -38,7 +38,7 @@
                     </form>
                 </div>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('添加','<?= RUN . '/notice/notice_add' ?>',900,250)"><i
+                        onclick="xadmin.open('添加','<?= RUN . '/notice/notice_add1' ?>',900,250)"><i
                             class="layui-icon"></i>添加
                 </button>
                 <div class="layui-card-body ">

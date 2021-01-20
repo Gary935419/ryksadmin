@@ -114,32 +114,6 @@
 					</li>
                 </ul>
             </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="设置管理">&#xe6ae;</i>
-                    <cite>设置管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/notice/notice_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>公告管理</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/set/advertisement_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>广告管理</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/set/set_edit' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>联系我们</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
 			<li>
 				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="监控管理">&#xe6b5;</i>
@@ -226,6 +200,40 @@
 						</li>
 					</ul>
             </li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="消息管理">&#xe6b5;</i>
+					<cite>消息管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/notice/notice_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>消息列表(司机)</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/notice/notice_list1' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>消息列表(乘客)</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="设置管理">&#xe6ae;</i>
+					<cite>设置管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/set/set_edit' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>计费以及保价设置</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
         </ul>
     </div>
 </div>

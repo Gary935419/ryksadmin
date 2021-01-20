@@ -37,7 +37,7 @@
                               lay-verify="content"></textarea>
                 </div>
             </div>
-			<input type="hidden" id="type" name="type" value="2">
+			<input type="hidden" id="type" name="type" value="1">
             <div class="layui-form-item">
                 <button class="layui-btn" lay-submit="" lay-filter="add">确认提交</button>
             </div>

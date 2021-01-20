@@ -19,31 +19,53 @@ class Notice extends CI_Controller
         header("Content-type:text/html;charset=utf-8");
     }
     /**
-     * 公告列表页
+     * 消息列表页  司机
      */
     public function notice_list()
     {
-
-        $ncontent = isset($_GET['ncontent']) ? $_GET['ncontent'] : '';
+        $title = isset($_GET['title']) ? $_GET['title'] : '';
         $page = isset($_GET["page"]) ? $_GET["page"] : 1;
-        $allpage = $this->notice->getnoticeAllPage($ncontent);
+        $allpage = $this->notice->getnoticeAllPage($title);
         $page = $allpage > $page ? $page : $allpage;
         $data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
         $data["page"] = $page;
         $data["allpage"] = $allpage;
-        $data["list"] = $this->notice->getnoticeAll($page, $ncontent);
-        $data["ncontent"] = $ncontent;
+        $data["list"] = $this->notice->getnoticeAll($page, $title);
+        $data["title"] = $title;
         $this->display("notice/notice_list", $data);
     }
+	/**
+	 * 消息列表页  乘客
+	 */
+	public function notice_list1()
+	{
+		$title = isset($_GET['title']) ? $_GET['title'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->notice->getnoticeAllPage1($title);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$data["list"] = $this->notice->getnoticeAll1($page, $title);
+		$data["title"] = $title;
+		$this->display("notice/notice_list1", $data);
+	}
     /**
-     * 公告添加页
+     * 司机添加页
      */
     public function notice_add()
     {
         $this->display("notice/notice_add");
     }
+	/**
+	 * 乘客添加页
+	 */
+	public function notice_add1()
+	{
+		$this->display("notice/notice_add1");
+	}
     /**
-     * 公告添加提交
+     * 添加提交
      */
     public function notice_save()
     {
@@ -51,16 +73,12 @@ class Notice extends CI_Controller
             echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
             return;
         }
-
-        $ncontent = isset($_POST["ncontent"]) ? $_POST["ncontent"] : '';
+		$title = isset($_POST["title"]) ? $_POST["title"] : '';
+        $content = isset($_POST["content"]) ? $_POST["content"] : '';
         $add_time = time();
+		$type = isset($_POST["type"]) ? $_POST["type"] : '';
 
-        $notice_info = $this->notice->getnoticeByname($ncontent);
-        if (!empty($notice_info)) {
-            echo json_encode(array('error' => true, 'msg' => "该公告已经存在。"));
-            return;
-        }
-        $result = $this->notice->notice_save($ncontent,$add_time);
+        $result = $this->notice->notice_save($title,$content,$type,$add_time);
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
             return;
