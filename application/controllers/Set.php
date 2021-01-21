@@ -23,14 +23,31 @@ class Set extends CI_Controller
      */
     public function set_edit()
     {
-        $sid = 1;
-        $set_info = $this->set->getsetById($sid);
-        $data['name'] = $set_info['name'];
-        $data['email'] = $set_info['email'];
-        $data['address'] = $set_info['address'];
-        $data['contentnew'] = $set_info['contentnew'];
-        $data['contentagent'] = $set_info['contentagent'];
-        $data['customercode'] = $set_info['customercode'];
+        $set_info1 = $this->set->getsetById1(1);
+		$set_info2 = $this->set->getsetById1(2);
+		$set_info3 = $this->set->getsetById1(3);
+		$set_info4 = $this->set->getsetById1(4);
+
+        $data['price1'] = $set_info1['price1'];
+		$data['price2'] = $set_info1['price2'];
+		$data['price3'] = $set_info1['price6'];
+
+		$data['price4'] = $set_info2['price1'];
+		$data['price5'] = $set_info2['price2'];
+		$data['price6'] = $set_info2['price3'];
+		$data['price7'] = $set_info2['price4'];
+		$data['price8'] = $set_info2['price5'];
+		$data['price9'] = $set_info2['price6'];
+
+		$data['price10'] = $set_info3['price1'];
+		$data['price11'] = $set_info3['price6'];
+		$data['price12'] = $set_info3['price2'];
+
+		$data['price13'] = $set_info4['price11'];
+		$data['price14'] = $set_info4['price9'];
+		$data['price15'] = $set_info4['price10'];
+		$data['price16'] = $set_info4['price8'];
+		$data['price17'] = $set_info4['km1'];
         $this->display("set/set_edit", $data);
     }
     /**
@@ -38,27 +55,37 @@ class Set extends CI_Controller
      */
     public function set_save_edit()
     {
-
         if (empty($_SESSION['user_name'])) {
             echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
             return;
         }
-        $sid = 1;
-        $name = isset($_POST["name"]) ? $_POST["name"] : '';
-        $email = isset($_POST["email"]) ? $_POST["email"] : '';
-        $address = isset($_POST["address"]) ? $_POST["address"] : '';
-        $customercode = isset($_POST["customercode"]) ? $_POST["customercode"] : '';
-        $contentnew = isset($_POST["contentnew"]) ? $_POST["contentnew"] : '';
-        $contentagent = isset($_POST["contentagent"]) ? $_POST["contentagent"] : '';
-        $result = $this->set->set_save_edit($name,$contentagent,$email,$customercode,$address,$sid,$contentnew);
-        if ($result) {
-            echo json_encode(array('success' => true, 'msg' => "操作成功。"));
-            return;
-        } else {
-            echo json_encode(array('error' => false, 'msg' => "操作失败"));
-            return;
-        }
+        $price1 = isset($_POST["price1"]) ? $_POST["price1"] : '';
+		$price2 = isset($_POST["price2"]) ? $_POST["price2"] : '';
+		$price3 = isset($_POST["price3"]) ? $_POST["price3"] : '';
 
+		$price4 = isset($_POST["price4"]) ? $_POST["price4"] : '';
+		$price5 = isset($_POST["price5"]) ? $_POST["price5"] : '';
+		$price6 = isset($_POST["price6"]) ? $_POST["price6"] : '';
+		$price7 = isset($_POST["price7"]) ? $_POST["price7"] : '';
+		$price8 = isset($_POST["price8"]) ? $_POST["price8"] : '';
+		$price9 = isset($_POST["price9"]) ? $_POST["price9"] : '';
+
+		$price10 = isset($_POST["price10"]) ? $_POST["price10"] : '';
+		$price11 = isset($_POST["price11"]) ? $_POST["price11"] : '';
+		$price12 = isset($_POST["price12"]) ? $_POST["price12"] : '';
+
+		$price13 = isset($_POST["price13"]) ? $_POST["price13"] : '';
+		$price14 = isset($_POST["price14"]) ? $_POST["price14"] : '';
+		$price15 = isset($_POST["price15"]) ? $_POST["price15"] : '';
+		$price16 = isset($_POST["price16"]) ? $_POST["price16"] : '';
+		$price17 = isset($_POST["price17"]) ? $_POST["price17"] : '';
+        $this->set->set_save_edit($price1,$price2,$price3);
+		$this->set->set_save_edit1($price4,$price5,$price6,$price7,$price8,$price9);
+		$this->set->set_save_edit2($price10,$price11,$price12);
+		$this->set->set_save_edit3($price13,$price14,$price15,$price16,$price17);
+
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		return;
     }
     /**
      * 广告列表页

@@ -143,7 +143,7 @@
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/taskclass/taskclass_list1' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>推荐金(司机)</cite>
+							<cite>推荐金</cite>
 						</a>
 					</li>
                 </ul>

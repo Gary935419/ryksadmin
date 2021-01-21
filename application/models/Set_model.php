@@ -10,25 +10,50 @@ class Set_model extends CI_Model
         $this->load->database();
     }
     //设置根据id
-    public function getsetById($id)
+    public function getsetById1($id)
     {
         $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `setting` where sid=$id ";
+        $sql = "SELECT * FROM `car_price_setting` where sid=$id ";
         return $this->db->query($sql)->row_array();
     }
-    //设置set_save_edit
-    public function set_save_edit($name,$contentagent,$email,$customercode,$address,$sid,$contentnew)
+
+    public function set_save_edit($price1,$price2,$price3)
     {
-        $name = $this->db->escape($name);
-        $email = $this->db->escape($email);
-        $address = $this->db->escape($address);
-        $sid = $this->db->escape($sid);
-        $customercode = $this->db->escape($customercode);
-        $contentnew = $this->db->escape($contentnew);
-        $contentagent = $this->db->escape($contentagent);
-        $sql = "UPDATE `setting` SET name=$name,contentagent=$contentagent,email=$email,contentnew=$contentnew,customercode=$customercode,address=$address WHERE sid = $sid";
+		$price1 = $this->db->escape($price1);
+		$price2 = $this->db->escape($price2);
+		$price3 = $this->db->escape($price3);
+        $sql = "UPDATE `car_price_setting` SET price1 = $price1 , price2 = $price2 , price6 = $price3 WHERE sid=1";
         return $this->db->query($sql);
     }
+	public function set_save_edit1($price4,$price5,$price6,$price7,$price8,$price9)
+	{
+		$price4 = $this->db->escape($price4);
+		$price5 = $this->db->escape($price5);
+		$price6 = $this->db->escape($price6);
+		$price7 = $this->db->escape($price7);
+		$price8 = $this->db->escape($price8);
+		$price9 = $this->db->escape($price9);
+		$sql = "UPDATE `car_price_setting` SET price1 = $price4 , price2 = $price5 , price3 = $price6 , price4 = $price7 , price5 = $price8 , price6 = $price9 WHERE sid=2";
+		return $this->db->query($sql);
+	}
+	public function set_save_edit2($price10,$price11,$price12)
+	{
+		$price10 = $this->db->escape($price10);
+		$price11 = $this->db->escape($price11);
+		$price12 = $this->db->escape($price12);
+		$sql = "UPDATE `car_price_setting` SET price1 = $price10 , price6 = $price11 , price2 = $price12 WHERE sid=3";
+		return $this->db->query($sql);
+	}
+	public function set_save_edit3($price13,$price14,$price15,$price16,$price17)
+	{
+		$price13 = $this->db->escape($price13);
+		$price14 = $this->db->escape($price14);
+		$price15 = $this->db->escape($price15);
+		$price16 = $this->db->escape($price16);
+		$price17 = $this->db->escape($price17);
+		$sql = "UPDATE `car_price_setting` SET price11 = $price13 , price9 = $price14 , price10 = $price15 , price8 = $price16 , km1 = $price17 WHERE sid=4";
+		return $this->db->query($sql);
+	}
     //广告count
     public function getadvertisementAllPage($aname)
     {

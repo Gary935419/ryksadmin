@@ -22,61 +22,157 @@
         <form method="post" class="layui-form" action="" name="basic_validate" id="tab">
             <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>联系人
+                    <span class="x-red">*</span>5公里以内（专车送 起步价）
                 </label>
                 <div class="layui-input-inline" style="width: 300px;">
-                    <input type="text" id="name" name="name" lay-verify="name"
-                           autocomplete="off" value="<?php echo $name ?>" class="layui-input">
+                    <input type="number" id="price1" name="price1" lay-verify="price1"
+                           autocomplete="off" value="<?php echo $price1 ?>" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>联系邮箱
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <input type="email" id="email" name="email" lay-verify="email"
-                           autocomplete="off" value="<?php echo $email ?>" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>联系地址
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <input type="text" id="address" name="address" lay-verify="address"
-                           autocomplete="off" value="<?php echo $address ?>" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>详细说明
-                </label>
-                <div class="layui-input-inline" style="width: 610px;">
-                    <textarea id="contentnew" name="contentnew" placeholder="请输入内容" lay-verify="contentnew" class="layui-textarea"><?php echo $contentnew ?></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>主营业务
-                </label>
-                <div class="layui-input-inline" style="width: 610px;">
-                    <textarea id="contentagent" name="contentagent" placeholder="请输入内容" lay-verify="contentagent" class="layui-textarea"><?php echo $contentagent ?></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>客服二维码
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <button type="button" class="layui-btn" id="upload1">上传二维码</button>
-                    <div class="layui-upload-list">
-                        <input type="hidden" name="customercode" id="customercode" lay-verify="customercode" autocomplete="off"
-                               class="layui-input" value="<?php echo $customercode ?>">
-                        <img class="layui-upload-img" src="<?php echo $customercode ?>" style="width: 100px;height: 100px;" id="customercodeimg" name="customercodeimg">
-                        <p id="demoText"></p>
-                    </div>
-                </div>
-            </div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>5-30公里（专车送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price2" name="price2" lay-verify="price2"
+						   autocomplete="off" value="<?php echo $price2 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>30公里后（专车送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price3" name="price3" lay-verify="price3"
+						   autocomplete="off" value="<?php echo $price3 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>5公里以内（顺路送 起步价）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price4" name="price4" lay-verify="price4"
+						   autocomplete="off" value="<?php echo $price4 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>5-30公里（顺路送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price5" name="price5" lay-verify="price5"
+						   autocomplete="off" value="<?php echo $price5 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>30-50公里（顺路送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price6" name="price6" lay-verify="price6"
+						   autocomplete="off" value="<?php echo $price6 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>50-100公里（顺路送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price7" name="price7" lay-verify="price7"
+						   autocomplete="off" value="<?php echo $price7 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>100-200公里（顺路送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price8" name="price8" lay-verify="price8"
+						   autocomplete="off" value="<?php echo $price8 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>200公里后（顺路送 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price9" name="price9" lay-verify="price9"
+						   autocomplete="off" value="<?php echo $price9 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>3公里以内（代买 指定地址 起步价）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price10" name="price10" lay-verify="price10"
+						   autocomplete="off" value="<?php echo $price10 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>3公里之后（代买 指定地址 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price11" name="price11" lay-verify="price11"
+						   autocomplete="off" value="<?php echo $price11 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>3公里以内（代买 附近代买 起步价）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price12" name="price12" lay-verify="price12"
+						   autocomplete="off" value="<?php echo $price12 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>8公里以内（代驾 白天 起步价）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price13" name="price13" lay-verify="price13"
+						   autocomplete="off" value="<?php echo $price13 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>8公里之后（代驾 白天 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price14" name="price14" lay-verify="price14"
+						   autocomplete="off" value="<?php echo $price14 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>8公里以内（代驾 夜间 起步价）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price15" name="price15" lay-verify="price15"
+						   autocomplete="off" value="<?php echo $price15 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>8公里之后（代驾 夜间 里程费）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price16" name="price16" lay-verify="price16"
+						   autocomplete="off" value="<?php echo $price16 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>保价百分比数额（单位：%）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price17" name="price17" lay-verify="price17"
+						   autocomplete="off" value="<?php echo $price17 ?>" class="layui-input">
+				</div>
+			</div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>
@@ -95,94 +191,99 @@
     </div>
 </div>
 <script>
-    layui.use('upload', function(){
-        var $ = layui.jquery
-            ,upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#upload1'
-            ,url: '<?= RUN . '/upload/pushFIle' ?>'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#customercodeimg').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                if(res.code == 200){
-                    $('#customercode').val(res.src); //图片链接（base64）
-                    return layer.msg('上传成功');
-                }else {
-                    return layer.msg('上传失败');
-                }
-
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload();
-                });
-            }
-        });
-    });
-</script>
-<script>
     layui.use(['form','layedit', 'layer'],
         function () {
             var form = layui.form,
                 layer = layui.layer;
             var layedit = layui.layedit;
-            layedit.set({
-                uploadImage: {
-                    url: '<?= RUN . '/upload/pushFIletextarea' ?>',
-                    type: 'post',
-                }
-            });
-            var editIndex1 = layedit.build('contentnew', {
-                height: 300,
-            });
-            var editIndex2 = layedit.build('contentagent', {
-                height: 300,
-            });
+
             //自定义验证规则
             form.verify({
-                name: function (value) {
-                    if ($('#name').val() == "") {
-                        return '请输入联系人。';
+				price1: function (value) {
+                    if ($('#price1').val() == "") {
+                        return '请输入5公里以内（专车送 起步价）。';
                     }
                 },
-                email: function (value) {
-                    if ($('#email').val() == "") {
-                        return '请输入联系邮箱。';
-                    }
-                },
-                address: function (value) {
-                    if ($('#address').val() == "") {
-                        return '请输入联系地址。';
-                    }
-                },
-                contentnew: function(value) {
-                    // 将富文本编辑器的值同步到之前的textarea中
-                    layedit.sync(editIndex1);
-                    if ($('#contentnew').val() == "") {
-                        return '请输入详细说明。';
-                    }
-                },
-                contentagent: function(value) {
-                    // 将富文本编辑器的值同步到之前的textarea中
-                    layedit.sync(editIndex2);
-                    if ($('#contentagent').val() == "") {
-                        return '请输入主营业务。';
-                    }
-                },
-                customercode: function (value) {
-                    if ($('#customercode').val() == "") {
-                        return '请上传客服二维码。';
-                    }
-                },
+				price2: function (value) {
+					if ($('#price2').val() == "") {
+						return '请输入5-30公里（专车送 里程费）。';
+					}
+				},
+				price3: function (value) {
+					if ($('#price3').val() == "") {
+						return '请输入30公里后（专车送 里程费）。';
+					}
+				},
+				price4: function (value) {
+					if ($('#price4').val() == "") {
+						return '请输入5公里以内（顺路送 起步价）。';
+					}
+				},
+				price5: function (value) {
+					if ($('#price5').val() == "") {
+						return '请输入5-30公里（顺路送 里程费）。';
+					}
+				},
+				price6: function (value) {
+					if ($('#price6').val() == "") {
+						return '请输入30-50公里（顺路送 里程费）。';
+					}
+				},
+				price7: function (value) {
+					if ($('#price7').val() == "") {
+						return '请输入50-100公里（顺路送 里程费）。';
+					}
+				},
+				price8: function (value) {
+					if ($('#price8').val() == "") {
+						return '请输入100-200公里（顺路送 里程费）。';
+					}
+				},
+				price9: function (value) {
+					if ($('#price9').val() == "") {
+						return '请输入200公里后（顺路送 里程费）。';
+					}
+				},
+				price10: function (value) {
+					if ($('#price10').val() == "") {
+						return '请输入3公里以内（代买 指定地址 起步价）。';
+					}
+				},
+				price11: function (value) {
+					if ($('#price11').val() == "") {
+						return '请输入3公里之后（代买 指定地址 里程费）。';
+					}
+				},
+				price12: function (value) {
+					if ($('#price12').val() == "") {
+						return '请输入3公里以内（代买 附近代买 起步价）。';
+					}
+				},
+				price13: function (value) {
+					if ($('#price13').val() == "") {
+						return '请输入8公里以内（代驾 白天 起步价）。';
+					}
+				},
+				price14: function (value) {
+					if ($('#price14').val() == "") {
+						return '请输入8公里之后（代驾 白天 里程费）。';
+					}
+				},
+				price15: function (value) {
+					if ($('#price15').val() == "") {
+						return '请输入8公里以内（代驾 夜间 起步价）。';
+					}
+				},
+				price16: function (value) {
+					if ($('#price16').val() == "") {
+						return '请输入8公里之后（代驾 夜间 里程费）。';
+					}
+				},
+				price17: function (value) {
+					if ($('#price17').val() == "") {
+						return '请输入保价百分比数额（单位：%）。';
+					}
+				},
             });
 
             $("#tab").validate({
