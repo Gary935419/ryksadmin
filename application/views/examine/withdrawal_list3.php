@@ -75,6 +75,10 @@
                         </div>
                     </form>
                 </div>
+				<a href="<?= RUN. '/examine/examine_csv2?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"") ?>">
+					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"><i class="layui-icon"></i>账单导出
+					</button>
+				</a>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>

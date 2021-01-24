@@ -82,6 +82,10 @@
                         </div>
                     </form>
                 </div>
+				<a href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"") ?>">
+					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"><i class="layui-icon"></i>账单导出
+					</button>
+				</a>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -103,7 +107,7 @@
 									<?php if ($once['order_type']==1){ ?>
 										<td>专车送</td>
 									<?php }elseif ($once['order_type']==2){ ?>
-										<td>顺丰送</td>
+										<td>顺路送</td>
 									<?php }elseif ($once['order_type']==3){ ?>
 										<td>代买</td>
 									<?php }elseif ($once['order_type']==4){ ?>
