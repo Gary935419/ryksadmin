@@ -31,30 +31,30 @@
 					<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
 						<li class="layui-col-md2 layui-col-xs6">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>代驾总订单量（单位：个）</h3>
-								<p>
-									<cite><?php echo $ordercount1 ?></cite></p>
-							</a>
-						</li>
-						<li class="layui-col-md2 layui-col-xs6">
-							<a href="javascript:;" class="x-admin-backlog-body">
 								<h3>账单总金额（单位：元）</h3>
 								<p>
-									<cite><?php echo $orderprice1 ?></cite></p>
+									<cite><?php echo empty($orderprice1)?0.00:$orderprice1 ?></cite></p>
 							</a>
 						</li>
 						<li class="layui-col-md2 layui-col-xs6">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>账单总收入（单位：元）</h3>
+								<h3>司机总金额（单位：元）</h3>
 								<p>
-									<cite><?php echo $orderprice2 ?></cite></p>
+									<cite><?php echo empty($orderprice2)?0.00:$orderprice2 ?></cite></p>
 							</a>
 						</li>
 						<li class="layui-col-md2 layui-col-xs6">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>账单总支出（单位：元）</h3>
+								<h3>平台总抽成（单位：元）</h3>
 								<p>
-									<cite><?php echo $orderprice3 ?></cite></p>
+									<cite><?php echo empty($orderprice3)?0.00:$orderprice3 ?></cite></p>
+							</a>
+						</li>
+						<li class="layui-col-md2 layui-col-xs6">
+							<a href="javascript:;" class="x-admin-backlog-body">
+								<h3>平台总小费（单位：元）</h3>
+								<p>
+									<cite><?php echo empty($orderprice5)?0.00:$orderprice5 ?></cite></p>
 							</a>
 						</li>
 					</ul>
@@ -79,17 +79,18 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-							<th>账单序号</th>
 							<th>账单时间</th>
 							<th>账单类型</th>
 							<th>账单状态</th>
-							<th>账单金额</th>
+							<th>账单总金额</th>
+							<th>账单司机费</th>
+							<th>账单小费</th>
+							<th>账单抽成费</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
 								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-									<td><?= $num + 1 ?></td>
 									<td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
 									<td>代驾</td>
 									<?php if ($once['status']==1){ ?>
@@ -97,7 +98,7 @@
 									<?php }elseif ($once['status']==2){ ?>
 										<td>待接驾</td>
 									<?php }elseif ($once['status']==3){ ?>
-										<td>乘客上车</td>
+										<td>用户上车</td>
 									<?php }elseif ($once['status']==4){ ?>
 										<td>已开始</td>
 									<?php }elseif ($once['status']==6){ ?>
@@ -107,7 +108,10 @@
 									<?php }else{ ?>
 										<td>数据错误</td>
 									<?php } ?>
-									<td><?= $once['price'] ?>元</td>
+									<td><?= empty($once['price'])?0.00:$once['price'] ?>元</td>
+									<td><?= empty($once['order_driver_price'])?0.00:$once['order_driver_price'] ?>元</td>
+									<td><?= empty($once['tip_price'])?0.00:$once['tip_price'] ?>元</td>
+									<td><?= empty($once['cost_price'])?0.00:$once['cost_price'] ?>元</td>
 								</tr>
                             <?php endforeach; ?>
                         <?php } else { ?>

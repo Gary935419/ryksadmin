@@ -50,6 +50,7 @@
 <div class="left-nav">
     <div style="color: green" id="side-nav">
         <ul id="nav">
+			<?php if ($role_status1 == 1){ ?>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="管理员管理">&#xe726;</i>
@@ -70,6 +71,8 @@
 					</li>
                 </ul>
             </li>
+			<?php } ?>
+			<?php if ($role_status2 == 1){ ?>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
@@ -79,7 +82,7 @@
                     <li>
                         <a onclick="changeSrc('<?= RUN . '/member/member_list' ?>')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>乘客列表</cite>
+                            <cite>用户列表</cite>
                         </a>
                     </li>
 					<li>
@@ -114,6 +117,8 @@
 					</li>
                 </ul>
             </li>
+			<?php } ?>
+			<?php if ($role_status3 == 1){ ?>
 			<li>
 				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="监控管理">&#xe6b5;</i>
@@ -128,6 +133,8 @@
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
+			<?php if ($role_status4 == 1){ ?>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="推广管理">&#xe6b5;</i>
@@ -148,6 +155,8 @@
 					</li>
                 </ul>
             </li>
+			<?php } ?>
+			<?php if ($role_status5 == 1){ ?>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe6b5;</i>
@@ -168,6 +177,8 @@
 					</li>
                 </ul>
             </li>
+			<?php } ?>
+			<?php if ($role_status6 == 1){ ?>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="财务管理">&#xe705;</i>
@@ -183,7 +194,7 @@
 						<li>
 							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list1' ?>')">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现记录(乘客)</cite>
+								<cite>提现记录(用户)</cite>
 							</a>
 						</li>
 						<li>
@@ -200,6 +211,8 @@
 						</li>
 					</ul>
             </li>
+			<?php } ?>
+			<?php if ($role_status7 == 1){ ?>
 			<li>
 				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="消息管理">&#xe6b5;</i>
@@ -215,11 +228,13 @@
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/notice/notice_list1' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>消息列表(乘客)</cite>
+							<cite>消息列表(用户)</cite>
 						</a>
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
+			<?php if ($role_status8 == 1){ ?>
 			<li>
 				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="设置管理">&#xe6ae;</i>
@@ -234,6 +249,7 @@
 					</li>
 				</ul>
 			</li>
+			<?php } ?>
         </ul>
     </div>
 </div>

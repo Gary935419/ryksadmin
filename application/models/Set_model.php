@@ -44,14 +44,16 @@ class Set_model extends CI_Model
 		$sql = "UPDATE `car_price_setting` SET price1 = $price10 , price6 = $price11 , price2 = $price12 WHERE sid=3";
 		return $this->db->query($sql);
 	}
-	public function set_save_edit3($price13,$price14,$price15,$price16,$price17)
+	public function set_save_edit3($price13,$price14,$price15,$price16,$price17,$price18,$price19)
 	{
 		$price13 = $this->db->escape($price13);
 		$price14 = $this->db->escape($price14);
 		$price15 = $this->db->escape($price15);
 		$price16 = $this->db->escape($price16);
 		$price17 = $this->db->escape($price17);
-		$sql = "UPDATE `car_price_setting` SET price11 = $price13 , price9 = $price14 , price10 = $price15 , price8 = $price16 , km1 = $price17 WHERE sid=4";
+		$price18 = $this->db->escape($price18);
+		$price19 = $this->db->escape($price19);
+		$sql = "UPDATE `car_price_setting` SET price11 = $price13 , price9 = $price14 , price10 = $price15 , price8 = $price16 , km1 = $price17 , kg1 = $price18 , km2 = $price19 WHERE sid=4";
 		return $this->db->query($sql);
 	}
     //广告count

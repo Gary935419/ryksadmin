@@ -41,7 +41,7 @@ class Examine extends CI_Controller
         $this->display("examine/withdrawal_list", $data);
     }
 	/**
-	 * 提现列表页 乘客
+	 * 提现列表页 用户
 	 */
 	public function withdrawal_list1()
 	{
@@ -79,12 +79,14 @@ class Examine extends CI_Controller
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
-		$data["ordercount1"] = $this->examine->getOrder1Count($start,$end);
-		$data["ordercount2"] = $this->examine->getOrder2Count($start,$end);
-		$data["ordercount3"] = $this->examine->getOrder3Count($start,$end);
-		$data["orderprice1"] = $this->examine->getOrder4Price($start,$end);
-		$data["orderprice2"] = $this->examine->getOrder5Price($start,$end);
-		$data["orderprice3"] = floatval($data["orderprice1"]) - floatval($data["orderprice2"]);
+//		$data["ordercount1"] = $this->examine->getOrder1Count($start,$end);
+//		$data["ordercount2"] = $this->examine->getOrder2Count($start,$end);
+//		$data["ordercount3"] = $this->examine->getOrder3Count($start,$end);
+		$data["orderprice1"] = $this->examine->getOrder5Price($start,$end);
+		$data["orderprice2"] = $this->examine->getOrder6Price($start,$end);
+		$data["orderprice3"] = $this->examine->getOrder7Price($start,$end);
+		$data["orderprice4"] = $this->examine->getOrder8Price($start,$end);
+		$data["orderprice5"] = $this->examine->getOrder9Price($start,$end);
 		$this->display("examine/withdrawal_list2", $data);
 	}
 	/**
@@ -106,10 +108,11 @@ class Examine extends CI_Controller
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
-		$data["ordercount1"] = $this->examine->getOrder1Count1($start,$end);
-		$data["orderprice1"] = $this->examine->getOrder4Price1($start,$end);
-		$data["orderprice2"] = $this->examine->getOrder5Price1($start,$end);
-		$data["orderprice3"] = floatval($data["orderprice1"]) - floatval($data["orderprice2"]);
+//		$data["ordercount1"] = $this->examine->getOrder1Count1($start,$end);
+		$data["orderprice1"] = $this->examine->getOrder5Price1($start,$end);
+		$data["orderprice2"] = $this->examine->getOrder6Price1($start,$end);
+		$data["orderprice3"] = $this->examine->getOrder7Price1($start,$end);
+		$data["orderprice5"] = $this->examine->getOrder8Price1($start,$end);
 		$this->display("examine/withdrawal_list3", $data);
 	}
     /**

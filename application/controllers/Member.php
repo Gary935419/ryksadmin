@@ -207,7 +207,7 @@ class Member extends CI_Controller
 		$this->display("member/complaint_list1", $data);
 	}
     /**
-     * 乘客列表页
+     * 用户列表页
      */
     public function member_list()
     {
@@ -239,6 +239,50 @@ class Member extends CI_Controller
 		$data["list"] = $list;
 		$data["account"] = $account;
 		$this->display("member/member_list1", $data);
+	}
+	/**
+	 * 司机列表页  派单   代驾
+	 */
+	public function member_list2()
+	{
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$order_id = isset($_GET['id']) ? $_GET['id'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->member->getmemberAllPage1($account);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->member->getmemberAll1($page, $account);
+		foreach ($list as $k=>$v){
+			$list[$k]['order_id'] = $order_id;
+		}
+		$data["list"] = $list;
+		$data["account"] = $account;
+		$data["order_id"] = $order_id;
+		$this->display("member/member_list2", $data);
+	}
+	/**
+	 * 司机列表页  派单  跑腿
+	 */
+	public function member_list3()
+	{
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$order_id = isset($_GET['id']) ? $_GET['id'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->member->getmemberAllPage1($account);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->member->getmemberAll1($page, $account);
+		foreach ($list as $k=>$v){
+			$list[$k]['order_id'] = $order_id;
+		}
+		$data["list"] = $list;
+		$data["account"] = $account;
+		$data["order_id"] = $order_id;
+		$this->display("member/member_list3", $data);
 	}
     /**
      * 会员修改页

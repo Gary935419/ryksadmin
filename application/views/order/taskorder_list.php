@@ -43,8 +43,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>乘客姓名</th>
-							<th>乘客手机号</th>
+                            <th>用户姓名</th>
+							<th>用户手机号</th>
                             <th>订单状态</th>
                             <th>出发地点</th>
                             <th>目的地点</th>
@@ -64,7 +64,7 @@
 									<?php }elseif ($once['status']==2){ ?>
 										<td>待接驾</td>
 									<?php }elseif ($once['status']==3){ ?>
-										<td>乘客上车</td>
+										<td>用户上车</td>
 									<?php }elseif ($once['status']==4){ ?>
 										<td>已开始</td>
 									<?php }elseif ($once['status']==6){ ?>
@@ -74,8 +74,16 @@
 									<?php }else{ ?>
 										<td>数据错误</td>
 									<?php } ?>
-                                    <td><?= $once['address1'] ?></td>
-                                    <td><?= $once['address2'] ?></td>
+                                    <td>
+										<?= $once['start_location'] ?>
+										<br>
+										<?= $once['address1'] ?>
+									</td>
+                                    <td>
+										<?= $once['end_location'] ?>
+										<br>
+										<?= $once['address2'] ?>
+									</td>
                                     <td><?= $once['price'] ?>元</td>
                                     <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
 									<td class="td-manage">
@@ -84,8 +92,9 @@
 											<i class="layui-icon">&#xe60b;</i>查看
 										</button>
 										<?php if ($once['order_status']==2 && $once['status']==1){ ?>
-											<button class="layui-btn layui-btn-danger"
-													onclick="order_send('<?= $once['id'] ?>',2)"><i class="layui-icon">&#xe60b;</i>派单
+											<button class="layui-btn layui-btn-warm"
+													onclick="xadmin.open('派单司机','<?= RUN . '/member/member_list2?id=' ?>'+<?= $once['id'] ?>,900,500)">
+												<i class="layui-icon">&#xe60b;</i>派单
 											</button>
 										<?php } ?>
 									</td>
@@ -122,29 +131,5 @@
                 elem: '#end' //指定元素
             });
         });
-
-	function order_send(id,type) {
-		layer.confirm('您是否确认发送通知？', {
-					title: '温馨提示',
-					btn: ['确认', '取消']
-					// 按钮
-				},
-		function (index) {
-			$.ajax({
-				type: "post",
-				data: {"id": id,"type": type},
-				dataType: "json",
-				url: "<?= RUN . '/order/order_send' ?>",
-				success: function (data) {
-					layer.alert(data.msg, {
-								title: '温馨提示',
-								icon: 6,
-								btn: ['确认']
-							},
-					);
-				},
-			});
-		});
-	}
 </script>
 </html>

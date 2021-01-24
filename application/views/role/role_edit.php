@@ -36,33 +36,53 @@
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <!--                <div class="layui-form-item layui-form-text">-->
-            <!--                    <label class="layui-form-label">-->
-            <!--                        拥有权限-->
-            <!--                    </label>-->
-            <!--                    <table  class="layui-table layui-input-block">-->
-            <!--                        <tbody>-->
-            <!--                            <tr>-->
-            <!--                                <td>-->
-            <!--                                    <input type="checkbox" name="like1[write]" lay-skin="primary" lay-filter="father" title="全部权限">-->
-            <!--                                </td>-->
-            <!--                                <td>-->
-            <!--                                    <div class="layui-input-block">-->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" title="用户停用" value="2"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户删除"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户修改"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户改密"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户列表">-->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户改密"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户列表">-->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户改密"> -->
-            <!--                                        <input name="id[]" lay-skin="primary" type="checkbox" value="2" title="用户列表"> -->
-            <!--                                    </div>-->
-            <!--                                </td>-->
-            <!--                            </tr>-->
-            <!--                        </tbody>-->
-            <!--                    </table>-->
-            <!--                </div>-->
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">
+					拥有模块权限
+				</label>
+				<table class="layui-table layui-input-block">
+					<tbody>
+					<tr>
+						<td>
+							<input type="checkbox" <?php echo $role_status1 == 1 ?'checked':'' ?> name="menu[]" value="1" lay-skin="primary" lay-filter="father"
+								   lay-verify="check" title="管理员管理模块">
+						</td>
+						<td>
+							<input name="menu[]" <?php echo $role_status2 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="2" title="用户管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+						<td>
+							<input name="menu[]" <?php echo $role_status3 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="3" title="监控管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input name="menu[]" <?php echo $role_status4 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="4" title="推广管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+						<td>
+							<input name="menu[]" <?php echo $role_status5 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="5" title="订单管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+						<td>
+							<input name="menu[]" <?php echo $role_status6 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="6" title="财务管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input name="menu[]" <?php echo $role_status7 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="7" title="消息管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+						<td>
+							<input name="menu[]" <?php echo $role_status8 == 1 ?'checked':'' ?> lay-skin="primary" type="checkbox" value="8" title="设置管理模块"
+								   lay-verify="check" lay-filter="father">
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
             <input type="hidden" name="rid" id="rid" value="<?php echo $rid ?>">
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
@@ -96,6 +116,12 @@
                         return '请输入描述内容。';
                     }
                 },
+				check: function () {
+					var checked = $("input[type='checkbox']:checked").length;
+					if (checked < 1) {
+						return '请勾选权限。';
+					}
+				}
             });
 
             $("#tab").validate({

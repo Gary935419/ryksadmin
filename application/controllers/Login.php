@@ -36,6 +36,7 @@ class Login extends CI_Controller
                 header("Location: " . RUN . '/login?err=2');
             } else {
                 $_SESSION['user_name'] = $rest['username'];
+				$_SESSION['rid'] = $rest['rid'];
                 header("Location: " . RUN . '/admin');
             }
         } else {
@@ -48,7 +49,7 @@ class Login extends CI_Controller
     public function logout()
     {
         unset($_SESSION['user_name']);
+		unset($_SESSION['rid']);
         header("Location: " . RUN . '/login');  // 跳转登录页
     }
-
 }

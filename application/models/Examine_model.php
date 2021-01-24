@@ -234,6 +234,86 @@ class Examine_model extends CI_Model
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
+	//司机总金额 非取消
+	public function getOrder6Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(order_driver_price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//平台总抽成 非取消
+	public function getOrder7Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(cost_price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//平台总保价 非取消
+	public function getOrder8Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(protect_price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//平台总小费 非取消
+	public function getOrder9Price($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(tip_price) as number FROM `order_traffic` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
 	//账单总金额 代驾
 	public function getOrder4Price1($starttime,$end)
 	{
@@ -270,6 +350,66 @@ class Examine_model extends CI_Model
 			$sqlw .= " and m.add_time <= $end ";
 		}
 		$sql = "SELECT sum(price) as number FROM `order_town` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//司机总金额 非取消 代驾
+	public function getOrder6Price1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(order_driver_price) as number FROM `order_town` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//平台总抽成 非取消 代驾
+	public function getOrder7Price1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(cost_price) as number FROM `order_town` m" . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return $number;
+	}
+	//平台总小费 非取消 代驾
+	public function getOrder8Price1($starttime,$end)
+	{
+		$sqlw = " where order_status > 1 and status != 7";
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+		$sql = "SELECT sum(tip_price) as number FROM `order_town` m" . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;

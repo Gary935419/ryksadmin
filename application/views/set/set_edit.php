@@ -173,6 +173,24 @@
 						   autocomplete="off" value="<?php echo $price17 ?>" class="layui-input">
 				</div>
 			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>抽成百分比数额（单位：%）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price18" name="price18" lay-verify="price18"
+						   autocomplete="off" value="<?php echo $price18 ?>" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>每天最大接单量（单位：个）
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="number" id="price19" name="price19" lay-verify="price19"
+						   autocomplete="off" value="<?php echo $price19 ?>" class="layui-input">
+				</div>
+			</div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>
@@ -282,6 +300,16 @@
 				price17: function (value) {
 					if ($('#price17').val() == "") {
 						return '请输入保价百分比数额（单位：%）。';
+					}
+				},
+				price18: function (value) {
+					if ($('#price18').val() == "") {
+						return '请输入抽成百分比数额（单位：%）。';
+					}
+				},
+				price19: function (value) {
+					if ($('#price19').val() == "") {
+						return '请输入每天最大接单量（单位：个）。';
 					}
 				},
             });

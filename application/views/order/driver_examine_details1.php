@@ -179,6 +179,54 @@
 							  lay-verify="tel"><?php echo $tel ?></textarea>
 				</div>
 			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					平台抽成费用
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交平台抽成费用" id="cost_price" name="cost_price" class="layui-textarea"
+							  lay-verify="cost_price"><?php echo $cost_price ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					司机费用
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交司机费用" id="order_driver_price" name="order_driver_price" class="layui-textarea"
+							  lay-verify="order_driver_price"><?php echo $order_driver_price ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					抽成比例
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交抽成比例" id="cost_num" name="cost_num" class="layui-textarea"
+							  lay-verify="cost_num"><?php echo $cost_num ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					取货码
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交取货码" id="pick_up_code" name="pick_up_code" class="layui-textarea"
+							  lay-verify="pick_up_code"><?php echo $pick_up_code ?></textarea>
+				</div>
+			</div>
+			<?php if (!empty($img1) && !empty($img2) && !empty($img3)){ ?>
+				<div class="layui-form-item layui-form-text">
+					<label for="desc" class="layui-form-label">
+						物品照片
+					</label>
+					<div class="layui-input-block">
+						<img src="http://ryks.ychlkj.cn/<?php echo $img1 ?>" style="width: 282px;height: 282px;">
+						<img src="http://ryks.ychlkj.cn/<?php echo $img2 ?>" style="width: 282px;height: 282px;">
+						<img src="http://ryks.ychlkj.cn/<?php echo $img3 ?>" style="width: 282px;height: 282px;">
+					</div>
+				</div>
+			<?php } ?>
         </form>
     </div>
 </div>

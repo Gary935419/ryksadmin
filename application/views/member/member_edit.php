@@ -36,7 +36,7 @@
 					<?php if($user_type == 1){ ?>
 						<span class="x-red">*</span>司机状态
 					<?php }else{ ?>
-						<span class="x-red">*</span>乘客状态
+						<span class="x-red">*</span>用户状态
 					<?php } ?>
                 </label>
                 <div class="layui-input-inline" style="width: 500px;">

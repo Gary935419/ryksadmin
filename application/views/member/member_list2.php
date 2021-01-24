@@ -15,24 +15,17 @@
     <script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
 </head>
 <body>
-<div class="x-nav">
-          <span class="layui-breadcrumb">
-<!--            <a href="--><? //= RUN . '/admin/index' ?><!--">最初のページ</a>-->
-            <a>
-              <cite>用户管理</cite></a>
-          </span>
-    <!--          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新">-->
-    <!--            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>-->
-</div>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/member_list' ?>">
+                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/member_list2' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="account" id="account" value="<?php echo $account ?>"
-                                   placeholder="用户电话" autocomplete="off" class="layui-input">
+                                   placeholder="司机电话" autocomplete="off" class="layui-input">
+							<input type="hidden" name="id" id="id" value="<?php echo $order_id ?>"
+								    autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -44,39 +37,30 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th>用户昵称</th>
-                            <th>用户电话</th>
-                            <th>用户余额</th>
-                            <th>推荐码</th>
-							<th>用户状态</th>
-                            <th>注册时间</th>
+                            <th>司机昵称</th>
+                            <th>司机电话</th>
+                            <th>司机余额</th>
+                            <th>司机信誉分</th>
+							<th>司机状态</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $num + 1 ?></td>
                                     <td><?= $once['name'] ?></td>
                                     <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
                                     <td><?= $once['money'] ?>元</td>
-									<td><?= empty($once['invitation_code1_up']) ? '暂无邀请人' : $once['invitation_code1_up'] ?></td>
-<!--                                    <td>--><?//= $once['credit_points'] ?><!--分</td>-->
-<!--                                    <td>--><?//= $once['integral'] ?><!--积分</td>-->
-<!--                                    <td>--><?//= $once['cityname'] ?><!--</td>-->
-                                    <?php if ($once['is_logoff'] == 1) { ?>
-                                        <td style="color: red">锁定</td>
-                                    <?php } else { ?>
-                                        <td style="color: green">开启</td>
-                                    <?php } ?>
-<!--                                    <td>--><?//= empty($once['member_id']) ? '暂无推荐人' : $once['member_id'] ?><!--</td>-->
-                                    <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+                                    <td><?= $once['credit_points'] ?>分</td>
+									<?php if ($once['is_logoff'] == 1) { ?>
+										<td style="color: red">锁定</td>
+									<?php } else { ?>
+										<td style="color: green">开启</td>
+									<?php } ?>
                                     <td class="td-manage">
-                                        <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
-                                            <i class="layui-icon">&#xe642;</i>编辑
-                                        </button>
+										<button class="layui-btn layui-btn-danger"
+												onclick="order_send('<?= $once['id'] ?>','<?= $once['order_id'] ?>',2)"><i class="layui-icon">&#xe60b;</i>派单
+										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -98,5 +82,43 @@
         </div>
     </div>
 </div>
+<script>
+	layui.use(['laydate', 'form'],
+			function() {
+				var laydate = layui.laydate;
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#start' //指定元素
+				});
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#end' //指定元素
+				});
+			});
+
+	function order_send(id,order_id,type) {
+		layer.confirm('您是否确认派单该司机？', {
+					title: '温馨提示',
+					btn: ['确认', '取消']
+					// 按钮
+				},
+				function (index) {
+					$.ajax({
+						type: "post",
+						data: {"id": id,"type": type,"order_id": order_id},
+						dataType: "json",
+						url: "<?= RUN . '/order/order_send' ?>",
+						success: function (data) {
+							layer.alert(data.msg, {
+										title: '温馨提示',
+										icon: 6,
+										btn: ['确认']
+									},
+							);
+						},
+					});
+				});
+	}
+</script>
 </body>
 </html>

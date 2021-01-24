@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>提现记录(乘客)</cite></a>
+              <cite>提现记录(用户)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -43,8 +43,8 @@
                         <thead>
                         <tr>
 							<th>序号</th>
-							<th>乘客电话</th>
-							<th>乘客姓名</th>
+							<th>用户电话</th>
+							<th>用户姓名</th>
 							<th>提现金额</th>
 							<th>提现时间</th>
                         </thead>

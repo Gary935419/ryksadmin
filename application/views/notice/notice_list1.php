@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>消息管理(乘客)</cite></a>
+              <cite>消息管理(用户)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">

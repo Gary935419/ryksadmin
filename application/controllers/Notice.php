@@ -35,7 +35,7 @@ class Notice extends CI_Controller
         $this->display("notice/notice_list", $data);
     }
 	/**
-	 * 消息列表页  乘客
+	 * 消息列表页  用户
 	 */
 	public function notice_list1()
 	{
@@ -58,7 +58,7 @@ class Notice extends CI_Controller
         $this->display("notice/notice_add");
     }
 	/**
-	 * 乘客添加页
+	 * 用户添加页
 	 */
 	public function notice_add1()
 	{

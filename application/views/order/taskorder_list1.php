@@ -43,8 +43,8 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>乘客姓名</th>
-							<th>乘客手机号</th>
+                            <th>用户姓名</th>
+							<th>用户手机号</th>
                             <th>订单状态</th>
 							<th>订单类型</th>
                             <th>出发地点</th>
@@ -84,7 +84,7 @@
 									<?php if ($once['order_type']==1){ ?>
 										<td>专车送</td>
 									<?php }elseif ($once['order_type']==2){ ?>
-										<td>顺丰送</td>
+										<td>顺路送</td>
 									<?php }elseif ($once['order_type']==3){ ?>
 										<td>代买</td>
 									<?php }elseif ($once['order_type']==4){ ?>
@@ -92,8 +92,20 @@
 									<?php }else{ ?>
 										<td>数据错误</td>
 									<?php } ?>
-                                    <td><?= $once['address1'] ?></td>
-                                    <td><?= $once['address2'] ?></td>
+									<td>
+										<?php if ($once['start_location'] != '附近地址购买'){ ?>
+											<?= $once['start_location'] ?>
+											<br>
+											<?= $once['address1'] ?>
+										<?php }else{ ?>
+											<?= $once['start_location'] ?>
+										<?php } ?>
+									</td>
+									<td>
+										<?= $once['end_location'] ?>
+										<br>
+										<?= $once['address2'] ?>
+									</td>
                                     <td><?= $once['price'] ?>元</td>
                                     <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
 									<td class="td-manage">
@@ -102,8 +114,9 @@
 											<i class="layui-icon">&#xe60b;</i>查看
 										</button>
 										<?php if ($once['order_status']==2 && $once['status']==1){ ?>
-											<button class="layui-btn layui-btn-danger"
-													onclick="order_send('<?= $once['id'] ?>',1)"><i class="layui-icon">&#xe60b;</i>派单
+											<button class="layui-btn layui-btn-warm"
+													onclick="xadmin.open('派单司机','<?= RUN . '/member/member_list3?id=' ?>'+<?= $once['id'] ?>,900,500)">
+												<i class="layui-icon">&#xe60b;</i>派单
 											</button>
 										<?php } ?>
 									</td>

@@ -191,14 +191,19 @@ class Order_model extends CI_Model
 		$sql = "SELECT m.*,me.name,me.account FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
-    //认证byid
+
 	public function getorderById1($id)
 	{
 		$id = $this->db->escape($id);
 		$sql = "SELECT * FROM `order_traffic` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-
+	public function getorderById2($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `order_extend` where order_id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 
 
 

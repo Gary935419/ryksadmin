@@ -82,6 +82,9 @@ class Order extends CI_Controller
 		$data['evaluate'] = empty($driver_info['evaluate'])?'':$driver_info['evaluate'];
 		$data['address1'] = empty($driver_info['address1'])?'':$driver_info['address1'];
 		$data['address2'] = empty($driver_info['address2'])?'':$driver_info['address2'];
+		$data['cost_price'] = empty($driver_info['cost_price'])?'':$driver_info['cost_price'];
+		$data['order_driver_price'] = empty($driver_info['order_driver_price'])?'':$driver_info['order_driver_price'];
+		$data['cost_num'] = empty($driver_info['cost_num'])?'':$driver_info['cost_num'];
 		$this->display("order/driver_examine_details",$data);
 	}
 	/**
@@ -109,24 +112,36 @@ class Order extends CI_Controller
 		$data['address2'] = empty($driver_info['address2'])?'':$driver_info['address2'];
 		$data['name'] = empty($driver_info['name'])?'':$driver_info['name'];
 		$data['tel'] = empty($driver_info['tel'])?'':$driver_info['tel'];
+		$data['cost_price'] = empty($driver_info['cost_price'])?'':$driver_info['cost_price'];
+		$data['order_driver_price'] = empty($driver_info['order_driver_price'])?'':$driver_info['order_driver_price'];
+		$data['cost_num'] = empty($driver_info['cost_num'])?'':$driver_info['cost_num'];
+		$images_info = $this->order->getorderById2($id);
+		$data['img1'] = empty($images_info['goods_image'])?'':$images_info['goods_image'];
+		$data['img2'] = empty($images_info['goods_image1'])?'':$images_info['goods_image1'];
+		$data['img3'] = empty($images_info['goods_image2'])?'':$images_info['goods_image2'];
+		$data['pick_up_code'] = empty($images_info['pick_up_code'])?'':$images_info['pick_up_code'];
 		$this->display("order/driver_examine_details1",$data);
 	}
 	/**
-	 * 发送通知
+	 * 派单处理
 	 */
 	public function order_send()
 	{
 		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		$order_id = isset($_POST['order_id']) ? $_POST['order_id'] : 0;
 		$type = isset($_POST['type']) ? $_POST['type'] : 1;
 		$param = array();
 		$param['id'] = $id;
-		$param['type'] = $type;
+		$param['md5'] = '4EF82E3603825745124695977A46E8C2';
+		$param['taker_type_id'] = $type;
+		$param['waiting_id'] = $order_id;
 		$url = "https://ryks.ychlkj.cn/index.php/home/UserCall/order_send";
+		print_r($this->send_post($url, $param));die;
 		if ($this->send_post($url, $param)) {
-			echo json_encode(array('success' => true, 'msg' => "发送成功"));
+			echo json_encode(array('success' => true, 'msg' => "派单成功"));
 			return;
 		} else {
-			echo json_encode(array('success' => false, 'msg' => "发送失败"));
+			echo json_encode(array('success' => false, 'msg' => "派单失败"));
 			return;
 		}
 	}

@@ -16,14 +16,24 @@ class Admin extends CI_Controller
             header("Location:" . RUN . '/login/logout');
         }
         header("Content-type:text/html;charset=utf-8");
-        $this->load->model('Users_model', 'users');
+		$this->load->model('Users_model', 'users');
+		$this->load->model('Role_model', 'role');
     }
     /**
      * 后台首页
      */
     public function index()
     {
-        $this->display("index");
+		$rid = $_SESSION['rid'];
+		$data['role_status1'] = empty($this->role->getroleByIdRtom($rid,1))?0:1;
+		$data['role_status2'] = empty($this->role->getroleByIdRtom($rid,2))?0:1;
+		$data['role_status3'] = empty($this->role->getroleByIdRtom($rid,3))?0:1;
+		$data['role_status4'] = empty($this->role->getroleByIdRtom($rid,4))?0:1;
+		$data['role_status5'] = empty($this->role->getroleByIdRtom($rid,5))?0:1;
+		$data['role_status6'] = empty($this->role->getroleByIdRtom($rid,6))?0:1;
+		$data['role_status7'] = empty($this->role->getroleByIdRtom($rid,7))?0:1;
+		$data['role_status8'] = empty($this->role->getroleByIdRtom($rid,8))?0:1;
+        $this->display("index",$data);
     }
     /**
      * 修改密码页

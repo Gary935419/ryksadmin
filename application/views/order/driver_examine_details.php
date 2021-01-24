@@ -143,17 +143,33 @@
 							  lay-verify="address2"><?php echo $address2 ?></textarea>
 				</div>
 			</div>
-<!--            <div class="layui-form-item layui-form-text">-->
-<!--                <label for="desc" class="layui-form-label">-->
-<!--                    完成截图-->
-<!--                </label>-->
-<!--                <div class="layui-input-block">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_cards_face ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_cards_side ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_drivers ?><!--" style="width: 282px;height: 282px;">-->
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_vehicle ?><!--" style="width: 282px;height: 282px;">-->
-<!--                </div>-->
-<!--            </div>-->
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					平台抽成费用
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交平台抽成费用" id="cost_price" name="cost_price" class="layui-textarea"
+							  lay-verify="cost_price"><?php echo $cost_price ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					司机费用
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交司机费用" id="order_driver_price" name="order_driver_price" class="layui-textarea"
+							  lay-verify="order_driver_price"><?php echo $order_driver_price ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					抽成比例
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交抽成比例" id="cost_num" name="cost_num" class="layui-textarea"
+							  lay-verify="cost_num"><?php echo $cost_num ?></textarea>
+				</div>
+			</div>
         </form>
     </div>
 </div>

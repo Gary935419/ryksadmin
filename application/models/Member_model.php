@@ -157,7 +157,7 @@ class Member_model extends CI_Model
 		$sql = "SELECT oc.id,me.name,me.account,ot.number,oc.content,oc.dateline FROM `order_complaint` oc  LEFT JOIN `user` me ON me.id = oc.uid LEFT JOIN `order_town` ot ON ot.id = oc.order_id " . $sqlw . " order by oc.dateline desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
-    //获取会员总人数  乘客
+    //获取会员总人数  用户
     public function getmemberAllPage($account)
     {
         $sqlw = " where 1=1 and type = 1 ";
@@ -168,7 +168,7 @@ class Member_model extends CI_Model
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
-    //获取会员总信息 乘客
+    //获取会员总信息 用户
     public function getmemberAll($pg, $account)
     {
 		$sqlw = " where 1=1 and type = 1 ";

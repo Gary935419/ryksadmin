@@ -48,6 +48,8 @@ class Set extends CI_Controller
 		$data['price15'] = $set_info4['price10'];
 		$data['price16'] = $set_info4['price8'];
 		$data['price17'] = $set_info4['km1'];
+		$data['price18'] = $set_info4['kg1'];
+		$data['price19'] = $set_info4['km2'];
         $this->display("set/set_edit", $data);
     }
     /**
@@ -79,10 +81,12 @@ class Set extends CI_Controller
 		$price15 = isset($_POST["price15"]) ? $_POST["price15"] : '';
 		$price16 = isset($_POST["price16"]) ? $_POST["price16"] : '';
 		$price17 = isset($_POST["price17"]) ? $_POST["price17"] : '';
+		$price18 = isset($_POST["price18"]) ? $_POST["price18"] : '';
+		$price19 = isset($_POST["price19"]) ? $_POST["price19"] : '';
         $this->set->set_save_edit($price1,$price2,$price3);
 		$this->set->set_save_edit1($price4,$price5,$price6,$price7,$price8,$price9);
 		$this->set->set_save_edit2($price10,$price11,$price12);
-		$this->set->set_save_edit3($price13,$price14,$price15,$price16,$price17);
+		$this->set->set_save_edit3($price13,$price14,$price15,$price16,$price17,$price18,$price19);
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		return;
