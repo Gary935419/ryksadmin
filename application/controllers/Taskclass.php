@@ -31,15 +31,52 @@ class Taskclass extends CI_Controller
 		$data['count1'] = $count1;
 		$data['count2'] = floatval($count2) - floatval($count1);
 		$str = "";
+		$str_name = "";
+		$str_account = "";
 		foreach ($list as $k => $v){
 			if ($k < 1){
 				$str = $v['latitude'] . "," . $v['longitude'];
+				$str_name = $v['name'];
+				$str_account = $v['account'];
 			}else{
 				$str = $str . ";" . $v['latitude'] . "," . $v['longitude'];
+				$str_name = $str_name . ";" . $v['name'];
+				$str_account = $str_account . ";" . $v['account'];
 			}
 		}
 		$data['str'] = $str;
+		$data['str_name'] = $str_name;
+		$data['str_account'] = $str_account;
 		$this->display("taskclass/monitoring",$data);
+	}
+	public function monitoringing()
+	{
+		$update_time = floatval(time()) - 300;
+		$count1 = $this->taskclass->getdriverCount(1,$update_time);
+		$count2 = $this->taskclass->getdriverCount(2,$update_time);
+		$list = $this->taskclass->getdriverList($update_time);
+		$data = array();
+		$data['count1'] = $count1;
+		$data['count2'] = floatval($count2) - floatval($count1);
+		$str = "";
+		$str_name = "";
+		$str_account = "";
+		foreach ($list as $k => $v){
+			if ($k < 1){
+				$str = $v['latitude'] . "," . $v['longitude'];
+				$str_name = $v['name'];
+				$str_account = $v['account'];
+			}else{
+				$str = $str . ";" . $v['latitude'] . "," . $v['longitude'];
+				$str_name = $str_name . ";" . $v['name'];
+				$str_account = $str_account . ";" . $v['account'];
+			}
+		}
+		$data['str'] = $str;
+		$data['str_name'] = $str_name;
+		$data['str_account'] = $str_account;
+		echo json_encode(array('success' => true, 'str' => $str, 'str_name' => $str_name, 'str_account' => $str_account));
+		return;
 	}
     /**
      * 优惠券列表页
