@@ -53,6 +53,7 @@ class Member extends CI_Controller
 		$data['img_drivers'] = empty($driver_info['img_drivers'])?'':$driver_info['img_drivers'];
 		$data['img_vehicle'] = empty($driver_info['img_vehicle'])?'':$driver_info['img_vehicle'];
 		$data['img_car_user'] = empty($driver_info['img_car_user'])?'':$driver_info['img_car_user'];
+		$data['img_worker'] = empty($driver_info['img_worker'])?'':$driver_info['img_worker'];
 		$this->display("member/driver_examine_details",$data);
 	}
 	/**

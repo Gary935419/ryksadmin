@@ -62,7 +62,8 @@
 					<img src="http://ryks.ychlkj.cn/<?= $img_cards_side ?>" style="width: 282px;height: 282px;">
 					<img src="http://ryks.ychlkj.cn/<?= $img_drivers ?>" style="width: 282px;height: 282px;">
 					<img src="http://ryks.ychlkj.cn/<?= $img_vehicle ?>" style="width: 282px;height: 282px;">
-<!--					<img src="http://ryks.ychlkj.cn/--><?//= $img_car_user ?><!--" style="width: 282px;height: 282px;">-->
+					<img src="http://ryks.ychlkj.cn/<?= $img_car_user ?>" style="width: 282px;height: 282px;">
+					<img src="http://ryks.ychlkj.cn/<?= $img_worker ?>" style="width: 282px;height: 282px;">
                 </div>
             </div>
         </form>
