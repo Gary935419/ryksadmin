@@ -73,12 +73,12 @@ class Examine extends CI_Controller
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-		$allpage = $this->order->gettaskorderAllPage1($start,$end);
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,0);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->order->gettaskorderAll1($page,$start,$end);
+		$list = $this->order->gettaskorderAll1($page,$start,$end,0);
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;

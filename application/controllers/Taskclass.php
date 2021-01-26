@@ -33,20 +33,24 @@ class Taskclass extends CI_Controller
 		$str = "";
 		$str_name = "";
 		$str_account = "";
+		$str_number = "";
 		foreach ($list as $k => $v){
 			if ($k < 1){
 				$str = $v['latitude'] . "," . $v['longitude'];
 				$str_name = $v['name'];
 				$str_account = $v['account'];
+				$str_number = $v['car_number'];
 			}else{
 				$str = $str . ";" . $v['latitude'] . "," . $v['longitude'];
 				$str_name = $str_name . ";" . $v['name'];
 				$str_account = $str_account . ";" . $v['account'];
+				$str_number = $str_number . ";" . $v['car_number'];
 			}
 		}
 		$data['str'] = $str;
 		$data['str_name'] = $str_name;
 		$data['str_account'] = $str_account;
+		$data['str_number'] = $str_number;
 		$this->display("taskclass/monitoring",$data);
 	}
 	public function monitoringing()

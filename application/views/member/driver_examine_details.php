@@ -44,18 +44,45 @@
                               lay-verify="times"><?= $times ?></textarea>
                 </div>
             </div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					车牌号码
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交车牌号码" id="driving_car_number" name="driving_car_number" class="layui-textarea"
+							  lay-verify="driving_car_number"><?php echo $car_number ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					车辆品牌
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交车辆品牌" id="brand" name="brand" class="layui-textarea"
+							  lay-verify="brand"><?php echo $brand ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					车辆颜色
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交车辆颜色" id="attribute" name="attribute" class="layui-textarea"
+							  lay-verify="attribute"><?php echo $attribute ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					车辆车型
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交车辆车型" id="car_name" name="car_name" class="layui-textarea"
+							  lay-verify="car_name"><?php echo $car_name ?></textarea>
+				</div>
+			</div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-                    车牌号码
-                </label>
-                <div class="layui-input-block">
-                    <textarea placeholder="暂无提交车牌号码" id="car_number" name="car_number" class="layui-textarea"
-                              lay-verify="car_number"><?php echo $car_number ?></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label for="desc" class="layui-form-label">
-                    完成截图
+					认证资料图片
                 </label>
                 <div class="layui-input-block">
 					<img src="http://ryks.ychlkj.cn/<?= $img_cards_face ?>" style="width: 282px;height: 282px;">

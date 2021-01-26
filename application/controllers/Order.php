@@ -41,7 +41,7 @@ class Order extends CI_Controller
         $this->display("order/taskorder_list", $data);
     }
 	/**
-	 * 跑腿订单列表页
+	 * 专车订单列表页
 	 */
 	public function taskorder_list1()
 	{
@@ -50,16 +50,58 @@ class Order extends CI_Controller
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-		$allpage = $this->order->gettaskorderAllPage1($start,$end);
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,1);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->order->gettaskorderAll1($page,$start,$end);
+		$list = $this->order->gettaskorderAll1($page,$start,$end,1);
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
 		$this->display("order/taskorder_list1", $data);
+	}
+	/**
+	 * 顺路订单列表页
+	 */
+	public function taskorder_list2()
+	{
+
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,2);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderAll1($page,$start,$end,2);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$this->display("order/taskorder_list2", $data);
+	}
+	/**
+	 * 代买订单列表页
+	 */
+	public function taskorder_list3()
+	{
+
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,3);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderAll1($page,$start,$end,3);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$this->display("order/taskorder_list3", $data);
 	}
 	/**
 	 * 认证审核详情 代驾

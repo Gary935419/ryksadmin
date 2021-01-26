@@ -28,7 +28,7 @@ class Taskclass_model extends CI_Model
 	public function getdriverList($update_time)
 	{
 		$sqlw = " where 1=1 and co.update_time >= $update_time ";
-		$sql = "SELECT co.longitude,co.latitude,us.name,us.account FROM `user_working` co LEFT JOIN `user` us ON us.id = co.driver_id " . $sqlw ;
+		$sql = "SELECT co.longitude,co.latitude,us.name,us.account,us.car_number FROM `user_working` co LEFT JOIN `user` us ON us.id = co.driver_id " . $sqlw ;
 		return $this->db->query($sql)->result_array();
 	}
     //count

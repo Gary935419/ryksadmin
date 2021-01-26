@@ -46,22 +46,13 @@
             </div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-                    车牌号码
-                </label>
-                <div class="layui-input-block">
-                    <textarea placeholder="暂无提交车牌号码" id="driving_car_number" name="driving_car_number" class="layui-textarea"
-                              lay-verify="driving_car_number"><?php echo $driving_car_number ?></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label for="desc" class="layui-form-label">
-                    完成截图
+					认证资料图片
                 </label>
                 <div class="layui-input-block">
 					<img src="http://ryks.ychlkj.cn/<?= $driving_img_cards_face ?>" style="width: 282px;height: 282px;">
 					<img src="http://ryks.ychlkj.cn/<?= $driving_img_cards_side ?>" style="width: 282px;height: 282px;">
 					<img src="http://ryks.ychlkj.cn/<?= $driving_img_drivers ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $driving_img_vehicle ?>" style="width: 282px;height: 282px;">
+					<img src="http://ryks.ychlkj.cn/<?= $driving_img_worker ?>" style="width: 282px;height: 282px;">
                 </div>
             </div>
         </form>

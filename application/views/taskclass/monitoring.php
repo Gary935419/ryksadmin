@@ -66,6 +66,7 @@
 	<input type="hidden" name="str" id="str" value="<?php echo $str ?>">
 	<input type="hidden" name="str_name" id="str_name" value="<?php echo $str_name ?>">
 	<input type="hidden" name="str_account" id="str_account" value="<?php echo $str_account ?>">
+	<input type="hidden" name="str_number" id="str_number" value="<?php echo $str_number ?>">
 	<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新"><i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
 </div>
 <script charset="utf-8" src="https://map.qq.com/api/gljs?v=1.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77"></script>
@@ -135,11 +136,13 @@
 				var str_name_arr = str_name.split(";");
 				var str_account = $("#str_account").val();
 				var str_account_arr = str_account.split(";");
+				var str_number = $("#str_number").val();
+				var str_number_arr = str_number.split(";");
 				arr.forEach((item,index,array)=>{
 					var arr1 = item.split(",");
 					markerBounce = new TMap.InfoWindow({
 						map,
-						content:'姓名：' + str_name_arr[index] +'。<br>电话：' + str_account_arr[index] + '。',
+						content:'姓名：' + str_name_arr[index] +'<br>车牌号：' + str_number_arr[index] + '<br>电话：' + str_account_arr[index],
 						position: new TMap.LatLng(arr1[0],arr1[1]),
 						offset: { x: 0, y: 0 } //设置信息窗相对position偏移像素，为了使其显示在Marker的上方
 					});

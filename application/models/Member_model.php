@@ -55,6 +55,12 @@ class Member_model extends CI_Model
 		$sql = "SELECT * FROM `user` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+	public function car_info($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `car_type` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 	//审核任务提交
 	public function examine_new_save_task($id,$user_check,$reason)
 	{

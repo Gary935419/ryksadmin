@@ -45,6 +45,10 @@ class Member extends CI_Controller
 		$data = array();
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$driver_info = $this->member->getdriverById($id);
+		$car_info = $this->member->car_info($driver_info['car_type_id']);
+		$data['car_name'] = empty($car_info['name'])?'':$car_info['name'];
+		$data['brand'] = empty($driver_info['brand'])?'':$driver_info['brand'];
+		$data['attribute'] = empty($driver_info['attribute'])?'':$driver_info['attribute'];
 		$data['cards'] = empty($driver_info['cards'])?'':$driver_info['cards'];
 		$data['times'] = empty($driver_info['times'])?'':$driver_info['times'];
 		$data['car_number'] = empty($driver_info['car_number'])?'':$driver_info['car_number'];
@@ -151,7 +155,7 @@ class Member extends CI_Controller
 		$data['driving_img_cards_face'] = empty($driver_info['driving_img_cards_face'])?'':$driver_info['driving_img_cards_face'];
 		$data['driving_img_cards_side'] = empty($driver_info['driving_img_cards_side'])?'':$driver_info['driving_img_cards_side'];
 		$data['driving_img_drivers'] = empty($driver_info['driving_img_drivers'])?'':$driver_info['driving_img_drivers'];
-		$data['driving_img_vehicle'] = empty($driver_info['driving_img_vehicle'])?'':$driver_info['driving_img_vehicle'];
+		$data['driving_img_worker'] = empty($driver_info['driving_img_worker'])?'':$driver_info['driving_img_worker'];
 		$this->display("member/driver_examine_details1",$data);
 	}
 	/**

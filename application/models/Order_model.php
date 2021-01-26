@@ -181,10 +181,14 @@ class Order_model extends CI_Model
 		$sql = "SELECT * FROM `order_town` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
-   //count
-	public function gettaskorderAllPage1($starttime,$end)
+    //count
+	public function gettaskorderAllPage1($starttime,$end,$order_type)
 	{
-		$sqlw = " where 1=1 and order_status != 1";
+		if (empty($order_type)){
+			$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
+		}else{
+			$sqlw = " where 1=1 and order_status != 1 and order_type = " . $order_type;
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -202,9 +206,13 @@ class Order_model extends CI_Model
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
 	//list
-	public function gettaskorderAll1($pg,$starttime,$end)
+	public function gettaskorderAll1($pg,$starttime,$end,$order_type)
 	{
-		$sqlw = " where 1=1 and order_status != 1";
+		if (empty($order_type)){
+			$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
+		}else{
+			$sqlw = " where 1=1 and order_status != 1 and order_type = " . $order_type;
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -224,7 +232,7 @@ class Order_model extends CI_Model
 	//count
 	public function gettaskorderAllPage2($starttime,$end)
 	{
-		$sqlw = " where 1=1 and order_status != 1";
+		$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -244,7 +252,7 @@ class Order_model extends CI_Model
 	//list
 	public function gettaskorderAll2($pg,$starttime,$end)
 	{
-		$sqlw = " where 1=1 and order_status != 1";
+		$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;

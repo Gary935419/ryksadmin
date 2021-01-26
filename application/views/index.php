@@ -166,13 +166,25 @@
                     <li>
                         <a onclick="changeSrc('<?= RUN . '/order/taskorder_list' ?>')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>订单列表(代驾)</cite>
+                            <cite>代驾订单</cite>
                         </a>
                     </li>
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list1' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>订单列表(跑腿)</cite>
+							<cite>专车订单</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list2' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>顺路订单</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list3' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>代买订单</cite>
 						</a>
 					</li>
                 </ul>
