@@ -26,15 +26,17 @@ class Member extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->member->getdriverupAllPage($start,$end);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->member->getdriverupAllPage($start,$end,$account);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->member->getdriverupAll($page,$start,$end);
+		$list = $this->member->getdriverupAll($page,$start,$end,$account);
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
+		$data["account"] = $account;
 		$this->display("member/driver_uplist", $data);
 	}
 	/**
@@ -47,17 +49,22 @@ class Member extends CI_Controller
 		$driver_info = $this->member->getdriverById($id);
 		$car_info = $this->member->car_info($driver_info['car_type_id']);
 		$data['car_name'] = empty($car_info['name'])?'':$car_info['name'];
+		$data['name'] = empty($driver_info['name'])?'':$driver_info['name'];
+		$data['account'] = empty($driver_info['account'])?'':$driver_info['account'];
+		$data['sex'] = $driver_info['sex'] == 1?'男':'女';
 		$data['brand'] = empty($driver_info['brand'])?'':$driver_info['brand'];
 		$data['attribute'] = empty($driver_info['attribute'])?'':$driver_info['attribute'];
 		$data['cards'] = empty($driver_info['cards'])?'':$driver_info['cards'];
 		$data['times'] = empty($driver_info['times'])?'':$driver_info['times'];
 		$data['car_number'] = empty($driver_info['car_number'])?'':$driver_info['car_number'];
-		$data['img_cards_face'] = empty($driver_info['img_cards_face'])?'':$driver_info['img_cards_face'];
-		$data['img_cards_side'] = empty($driver_info['img_cards_side'])?'':$driver_info['img_cards_side'];
-		$data['img_drivers'] = empty($driver_info['img_drivers'])?'':$driver_info['img_drivers'];
-		$data['img_vehicle'] = empty($driver_info['img_vehicle'])?'':$driver_info['img_vehicle'];
-		$data['img_car_user'] = empty($driver_info['img_car_user'])?'':$driver_info['img_car_user'];
-		$data['img_worker'] = empty($driver_info['img_worker'])?'':$driver_info['img_worker'];
+
+		$data['img_cards_face'] = strpos($driver_info['img_cards_face'],'http') !== false?$driver_info['img_cards_face']:'http://ryks.ychlkj.cn/'.$driver_info['img_cards_face'];
+		$data['img_cards_side'] = strpos($driver_info['img_cards_side'],'http') !== false?$driver_info['img_cards_side']:'http://ryks.ychlkj.cn/'.$driver_info['img_cards_side'];
+		$data['img_drivers'] = strpos($driver_info['img_drivers'],'http') !== false?$driver_info['img_drivers']:'http://ryks.ychlkj.cn/'.$driver_info['img_drivers'];
+		$data['img_vehicle'] = strpos($driver_info['img_vehicle'],'http') !== false?$driver_info['img_vehicle']:'http://ryks.ychlkj.cn/'.$driver_info['img_vehicle'];
+		$data['img_car_user'] = strpos($driver_info['img_car_user'],'http') !== false?$driver_info['img_car_user']:'http://ryks.ychlkj.cn/'.$driver_info['img_car_user'];
+		$data['img_worker'] = strpos($driver_info['img_worker'],'http') !== false?$driver_info['img_worker']:'http://ryks.ychlkj.cn/'.$driver_info['img_worker'];
+
 		$this->display("member/driver_examine_details",$data);
 	}
 	/**
@@ -149,13 +156,18 @@ class Member extends CI_Controller
 		$data = array();
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$driver_info = $this->member->getdriverById($id);
+		$data['name'] = empty($driver_info['driving_name'])?'':$driver_info['driving_name'];
+		$data['account'] = empty($driver_info['account'])?'':$driver_info['account'];
+		$data['sex'] = $driver_info['sex'] == 1?'男':'女';
 		$data['driving_cards'] = empty($driver_info['driving_cards'])?'':$driver_info['driving_cards'];
 		$data['driving_times'] = empty($driver_info['driving_times'])?'':$driver_info['driving_times'];
 		$data['driving_car_number'] = empty($driver_info['driving_car_number'])?'':$driver_info['driving_car_number'];
-		$data['driving_img_cards_face'] = empty($driver_info['driving_img_cards_face'])?'':$driver_info['driving_img_cards_face'];
-		$data['driving_img_cards_side'] = empty($driver_info['driving_img_cards_side'])?'':$driver_info['driving_img_cards_side'];
-		$data['driving_img_drivers'] = empty($driver_info['driving_img_drivers'])?'':$driver_info['driving_img_drivers'];
-		$data['driving_img_worker'] = empty($driver_info['driving_img_worker'])?'':$driver_info['driving_img_worker'];
+
+		$data['driving_img_cards_face'] = strpos($driver_info['driving_img_cards_face'],'http') !== false?$driver_info['driving_img_cards_face']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_cards_face'];
+		$data['driving_img_cards_side'] = strpos($driver_info['driving_img_cards_side'],'http') !== false?$driver_info['driving_img_cards_side']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_cards_side'];
+		$data['driving_img_drivers'] = strpos($driver_info['driving_img_drivers'],'http') !== false?$driver_info['driving_img_drivers']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_drivers'];
+		$data['driving_img_worker'] = strpos($driver_info['driving_img_worker'],'http') !== false?$driver_info['driving_img_worker']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_worker'];
+
 		$this->display("member/driver_examine_details1",$data);
 	}
 	/**
@@ -166,15 +178,17 @@ class Member extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-		$allpage = $this->member->getdriverupAllPage1($start,$end);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->member->getdriverupAllPage1($start,$end,$account);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->member->getdriverupAll1($page,$start,$end);
+		$list = $this->member->getdriverupAll1($page,$start,$end,$account);
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
+		$data["account"] = $account;
 		$this->display("member/driver_uplist1", $data);
 	}
 	/**
@@ -289,6 +303,19 @@ class Member extends CI_Controller
 		$data["order_id"] = $order_id;
 		$this->display("member/member_list3", $data);
 	}
+	public function member_edit_audit()
+	{
+		$mid = isset($_GET['id']) ? $_GET['id'] : 0;
+		$utype = isset($_GET['utype']) ? $_GET['utype'] : 1;
+		$data = array();
+
+		$tidlist = $this->member->gettidlist();
+		$data['tidlist'] = $tidlist;
+		$data['utype'] = $utype;
+		$data['mid'] = $mid;
+
+		$this->display("member/member_edit_audit", $data);
+	}
     /**
      * 会员修改页
      */
@@ -325,8 +352,53 @@ class Member extends CI_Controller
             echo json_encode(array('error' => false, 'msg' => "操作失败"));
             return;
         }
-
     }
+	public function member_save_edit_audit()
+	{
+		$param = array();
+		$param['id'] = isset($_POST['mid']) ? $_POST['mid'] : '';
+		$param['md5'] = '4EF82E3603825745124695977A46E8C2';
+		$param['sex'] = isset($_POST['sex']) ? $_POST['sex'] : 1;
+		$param['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+		$param['cards'] = isset($_POST['cards']) ? $_POST['cards'] : '';
+		$param['times'] = isset($_POST['times']) ? $_POST['times'] : '';
+		$param['brand'] = isset($_POST['brand']) ? $_POST['brand'] : '';
+		$param['car_number'] = isset($_POST['car_number']) ? $_POST['car_number'] : '';
+		$param['attribute'] = isset($_POST['attribute']) ? $_POST['attribute'] : '';
+		$param['car_type_id'] = isset($_POST['car_type_id']) ? $_POST['car_type_id'] : '';
+		$param['check_type'] = isset($_POST['utype']) ? $_POST['utype'] : '';
+		$param['img_cards_face'] = isset($_POST['img_cards_face']) ? $_POST['img_cards_face'] : '';
+		$param['img_cards_side'] = isset($_POST['img_cards_side']) ? $_POST['img_cards_side'] : '';
+		$param['img_drivers'] = isset($_POST['img_drivers']) ? $_POST['img_drivers'] : '';
+		$param['img_vehicle'] = isset($_POST['img_vehicle']) ? $_POST['img_vehicle'] : '';
+		$param['img_car_user'] = isset($_POST['img_car_user']) ? $_POST['img_car_user'] : '';
+		$param['img_worker'] = isset($_POST['img_worker']) ? $_POST['img_worker'] : '';
+		$url = "https://ryks.ychlkj.cn/index.php/home/User/probate_updata";
+		if ($this->send_post($url, $param)) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功"));
+			return;
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "操作失败"));
+			return;
+		}
+	}
+	function send_post($url, $param)
+	{
+		if (empty($url) || empty($param)) {
+			return false;
+		}
+		$postUrl = $url;
+		$curlPost = $param;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL,$postUrl);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $curlPost);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		return $response;
+	}
     /**
      * 发送消息页
      */

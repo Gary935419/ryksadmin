@@ -32,6 +32,10 @@
                             <input class="layui-input" placeholder="开始日期" value="<?php echo $start ?>" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="截止日期" value="<?php echo $end ?>" name="end" id="end"></div>
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="account" id="account" value="<?php echo $account ?>"
+								   placeholder="单号、姓名、电话号" autocomplete="off" class="layui-input">
+						</div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                 <i class="layui-icon">&#xe615;</i></button>
@@ -42,9 +46,11 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
+                            <th>支付单号</th>
                             <th>用户姓名</th>
 							<th>用户手机号</th>
+							<th>司机姓名</th>
+							<th>司机手机号</th>
                             <th>订单状态</th>
 							<th>订单类型</th>
                             <th>出发地点</th>
@@ -57,9 +63,11 @@
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $num + 1 ?></td>
+									<td><?= $once['number'] ?></td>
                                     <td><?= $once['name'] ?></td>
 									<td><?= $once['account'] ?></td>
+									<td><?= $once['driver_name'] ?></td>
+									<td><?= $once['driver_account'] ?></td>
 									<?php if ($once['status']==7){ ?>
 										<td>已取消</td>
 									<?php }elseif ($once['order_status']==1){ ?>
@@ -124,7 +132,7 @@
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="7" style="text-align: center;">暂无数据</td>
+                                <td colspan="11" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

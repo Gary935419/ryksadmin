@@ -26,6 +26,33 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form method="post" class="layui-form layui-form-pane" id="tab">
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					司机姓名
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交司机姓名" id="name" name="name" class="layui-textarea"
+							  lay-verify="name"><?php echo $name ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					司机手机号
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交司机手机号" id="account" name="account" class="layui-textarea"
+							  lay-verify="account"><?php echo $account ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					司机性别
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交司机性别" id="sex" name="sex" class="layui-textarea"
+							  lay-verify="sex"><?php echo $sex ?></textarea>
+				</div>
+			</div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
                     身份证号
@@ -85,12 +112,12 @@
 					认证资料图片
                 </label>
                 <div class="layui-input-block">
-					<img src="http://ryks.ychlkj.cn/<?= $img_cards_face ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $img_cards_side ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $img_drivers ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $img_vehicle ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $img_car_user ?>" style="width: 282px;height: 282px;">
-					<img src="http://ryks.ychlkj.cn/<?= $img_worker ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_cards_face ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_cards_side ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_drivers ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_vehicle ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_car_user ?>" style="width: 282px;height: 282px;">
+					<img src="<?= $img_worker ?>" style="width: 282px;height: 282px;">
                 </div>
             </div>
         </form>

@@ -32,6 +32,10 @@
                             <input class="layui-input" placeholder="开始日期" value="<?php echo $start ?>" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="截止日期" value="<?php echo $end ?>" name="end" id="end"></div>
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="account" id="account" value="<?php echo $account ?>"
+								   placeholder="姓名、电话号、身份证" autocomplete="off" class="layui-input">
+						</div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                 <i class="layui-icon">&#xe615;</i></button>
@@ -83,7 +87,12 @@
                                                     onclick="xadmin.open('审核操作','<?= RUN . '/member/driverno_examine1?id=' ?>'+<?= $once['id'] ?>,900,250)">
                                                 <i class="layui-icon">&#xe642;</i>驳回
                                             </button>
-                                        <?php } ?>
+										<?php }else{ ?>
+											<button class="layui-btn layui-btn-normal"
+													onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit_audit?utype=2&&id=' ?>'+<?= $once['id'] ?>,1000,600)">
+												<i class="layui-icon">&#xe642;</i>重新上传信息
+											</button>
+										<?php } ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

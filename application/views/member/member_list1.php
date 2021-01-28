@@ -29,7 +29,7 @@
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/member_list1' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="account" id="account" value="<?php echo $account ?>"
-                                   placeholder="司机电话" autocomplete="off" class="layui-input">
+                                   placeholder="电话、姓名、邀请码" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -56,7 +56,7 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['name'] ?></td>
+                                    <td><?= $once['driving_name'] ?></td>
                                     <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
                                     <td><?= $once['money'] ?>元</td>
 									<td><?= empty($once['invitation_code2_up']) ? '暂无邀请人' : $once['invitation_code2_up'] ?></td>

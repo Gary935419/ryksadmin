@@ -10,9 +10,13 @@ class Member_model extends CI_Model
         $this->load->database();
     }
 	//审核认证count
-	public function getdriverupAllPage($starttime,$end)
+	public function getdriverupAllPage($starttime,$end,$account=array())
 	{
 		$sqlw = " where 1=1 and type = 2 and user_check >= 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (name = " . $account . " or account  = " . $account . " or cards  = " . $account . " or car_number  = " . $account . ")";
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -29,9 +33,13 @@ class Member_model extends CI_Model
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
 	//审核认证count
-	public function getdriverupAll($pg,$starttime,$end)
+	public function getdriverupAll($pg,$starttime,$end,$account=array())
 	{
 		$sqlw = " where 1=1 and type = 2 and user_check >= 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (name = " . $account . " or account  = " . $account . " or cards  = " . $account . " or car_number  = " . $account . ")";
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -79,9 +87,13 @@ class Member_model extends CI_Model
 		return $this->db->query($sql);
 	}
 	//审核认证count
-	public function getdriverupAllPage1($starttime,$end)
+	public function getdriverupAllPage1($starttime,$end,$account=array())
 	{
 		$sqlw = " where 1=1 and type = 2 and driving_check >= 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (driving_name = " . $account . " or account  = " . $account . " or driving_cards  = " . $account . ")";
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -98,9 +110,13 @@ class Member_model extends CI_Model
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
 	//审核认证count
-	public function getdriverupAll1($pg,$starttime,$end)
+	public function getdriverupAll1($pg,$starttime,$end,$account=array())
 	{
 		$sqlw = " where 1=1 and type = 2 and driving_check >= 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (driving_name = " . $account . " or account  = " . $account . " or driving_cards  = " . $account . ")";
+		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
 			$end = strtotime($end)+86400;
@@ -192,7 +208,9 @@ class Member_model extends CI_Model
 		$sqlw = " where type = 2 ";
 		if (!empty($account)) {
 			$sqlw .= " and user_check = 1 ";
-			$sqlw .= " and ( account like '%" . $account . "%' ) ";
+//			$sqlw .= " and ( account like '%" . $account . "%' or name like '%" . $account . "%' or driving_name like '%" . $account . "%' or invitation_code2 like '%" . $account . "%' ) ";
+			$account = $this->db->escape($account);
+			$sqlw .= " and (account = " . $account . " or name  = " . $account . " or driving_name  = " . $account . " or invitation_code2  = " . $account . ")";
 		}else{
 			$sqlw .= " and user_check = 1 or driving_check = 1 ";
 		}
@@ -206,7 +224,9 @@ class Member_model extends CI_Model
 		$sqlw = " where type = 2 ";
 		if (!empty($account)) {
 			$sqlw .= " and user_check = 1 ";
-			$sqlw .= " and ( account like '%" . $account . "%' ) ";
+//			$sqlw .= " and ( account like '%" . $account . "%' or name like '%" . $account . "%' or driving_name like '%" . $account . "%' or invitation_code2 like '%" . $account . "%' ) ";
+			$account = $this->db->escape($account);
+			$sqlw .= " and (account = " . $account . " or name  = " . $account . " or driving_name  = " . $account . " or invitation_code2  = " . $account . ")";
 		}else{
 			$sqlw .= " and user_check = 1 or driving_check = 1 ";
 		}
@@ -231,7 +251,12 @@ class Member_model extends CI_Model
 		$sql = "UPDATE `user` SET credit_points=$credit_points,is_logoff=$is_logoff WHERE id = $mid";
 		return $this->db->query($sql);
 	}
-
+    //类型list
+	public function gettidlist()
+	{
+		$sql = "SELECT * FROM `car_type` order by id desc ";
+		return $this->db->query($sql)->result_array();
+	}
 
 
 

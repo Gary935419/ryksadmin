@@ -29,15 +29,27 @@ class Order extends CI_Controller
         $end = isset($_GET['end']) ? $_GET['end'] : '';
         $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-        $allpage = $this->order->gettaskorderAllPage($start,$end);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+        $allpage = $this->order->gettaskorderAllPage($start,$end,$account);
         $page = $allpage > $page ? $page : $allpage;
         $data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
         $data["page"] = $page;
         $data["allpage"] = $allpage;
-        $list = $this->order->gettaskorderAll($page,$start,$end);
+        $list = $this->order->gettaskorderAll($page,$start,$end,$account);
+        foreach ($list as $k=>$v){
+        	if (empty($v['driver_id'])){
+				$list[$k]['driver_name'] = "暂无接单";
+				$list[$k]['driver_account'] = "暂无接单";
+			}else{
+				$driver_info = $this->order->getdriverById($v['driver_id']);
+				$list[$k]['driver_name'] = $driver_info['name'];
+				$list[$k]['driver_account'] = $driver_info['account'];
+			}
+		}
         $data["list"] = $list;
         $data["start"] = $start;
         $data["end"] = $end;
+		$data["account"] = $account;
         $this->display("order/taskorder_list", $data);
     }
 	/**
@@ -49,16 +61,27 @@ class Order extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-
-		$allpage = $this->order->gettaskorderAllPage1($start,$end,1);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,1,$account);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->order->gettaskorderAll1($page,$start,$end,1);
+		$list = $this->order->gettaskorderAll1($page,$start,$end,1,$account);
+		foreach ($list as $k=>$v){
+			if (empty($v['driver_id'])){
+				$list[$k]['driver_name'] = "暂无接单";
+				$list[$k]['driver_account'] = "暂无接单";
+			}else{
+				$driver_info = $this->order->getdriverById($v['driver_id']);
+				$list[$k]['driver_name'] = $driver_info['name'];
+				$list[$k]['driver_account'] = $driver_info['account'];
+			}
+		}
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
+		$data["account"] = $account;
 		$this->display("order/taskorder_list1", $data);
 	}
 	/**
@@ -70,16 +93,27 @@ class Order extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-
-		$allpage = $this->order->gettaskorderAllPage1($start,$end,2);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,2,$account);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->order->gettaskorderAll1($page,$start,$end,2);
+		$list = $this->order->gettaskorderAll1($page,$start,$end,2,$account);
+		foreach ($list as $k=>$v){
+			if (empty($v['driver_id'])){
+				$list[$k]['driver_name'] = "暂无接单";
+				$list[$k]['driver_account'] = "暂无接单";
+			}else{
+				$driver_info = $this->order->getdriverById($v['driver_id']);
+				$list[$k]['driver_name'] = $driver_info['name'];
+				$list[$k]['driver_account'] = $driver_info['account'];
+			}
+		}
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
+		$data["account"] = $account;
 		$this->display("order/taskorder_list2", $data);
 	}
 	/**
@@ -91,16 +125,27 @@ class Order extends CI_Controller
 		$start = isset($_GET['start']) ? $_GET['start'] : '';
 		$end = isset($_GET['end']) ? $_GET['end'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
-
-		$allpage = $this->order->gettaskorderAllPage1($start,$end,3);
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->order->gettaskorderAllPage1($start,$end,3,$account);
 		$page = $allpage > $page ? $page : $allpage;
 		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
 		$data["page"] = $page;
 		$data["allpage"] = $allpage;
-		$list = $this->order->gettaskorderAll1($page,$start,$end,3);
+		$list = $this->order->gettaskorderAll1($page,$start,$end,3,$account);
+		foreach ($list as $k=>$v){
+			if (empty($v['driver_id'])){
+				$list[$k]['driver_name'] = "暂无接单";
+				$list[$k]['driver_account'] = "暂无接单";
+			}else{
+				$driver_info = $this->order->getdriverById($v['driver_id']);
+				$list[$k]['driver_name'] = $driver_info['name'];
+				$list[$k]['driver_account'] = $driver_info['account'];
+			}
+		}
 		$data["list"] = $list;
 		$data["start"] = $start;
 		$data["end"] = $end;
+		$data["account"] = $account;
 		$this->display("order/taskorder_list3", $data);
 	}
 	/**

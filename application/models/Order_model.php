@@ -63,11 +63,20 @@ class Order_model extends CI_Model
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-
+	public function getdriverById($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `user` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
     //count
-    public function gettaskorderAllPage($starttime,$end)
+    public function gettaskorderAllPage($starttime,$end,$account=array())
     {
-        $sqlw = " where 1=1 and order_status != 1";
+        $sqlw = " where 1=1 and m.order_status != 1";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.number = " . $account . " or me.name  = " . $account . " or me.account  = " . $account . ")";
+		}
         if (!empty($starttime) && !empty($end)) {
             $starttime = strtotime($starttime);
             $end = strtotime($end)+86400;
@@ -79,15 +88,21 @@ class Order_model extends CI_Model
             $end = strtotime($end)+86400;
             $sqlw .= " and m.add_time <= $end ";
         }
+
         $sql = "SELECT count(1) as number FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
 
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
     //list
-    public function gettaskorderAll($pg,$starttime,$end)
+    public function gettaskorderAll($pg,$starttime,$end,$account=array())
     {
-		$sqlw = " where 1=1 and order_status != 1";
+
+		$sqlw = " where 1=1 and m.order_status != 1";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.number = " . $account . " or me.name  = " . $account . " or me.account  = " . $account . ")";
+		}
         if (!empty($starttime) && !empty($end)) {
             $starttime = strtotime($starttime);
             $end = strtotime($end)+86400;
@@ -99,9 +114,11 @@ class Order_model extends CI_Model
             $end = strtotime($end)+86400;
             $sqlw .= " and m.add_time <= $end ";
         }
+
         $start = ($pg - 1) * 10;
         $stop = 10;
         $sql = "SELECT m.*,me.name,me.account FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+
         return $this->db->query($sql)->result_array();
     }
 	public function gettaskorderAllcsv2($starttime,$end)
@@ -182,12 +199,16 @@ class Order_model extends CI_Model
 		return $this->db->query($sql)->row_array();
 	}
     //count
-	public function gettaskorderAllPage1($starttime,$end,$order_type)
+	public function gettaskorderAllPage1($starttime,$end,$order_type,$account=array())
 	{
 		if (empty($order_type)){
-			$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
+			$sqlw = " where 1=1 and m.order_status != 1 and m.status != 7 ";
 		}else{
-			$sqlw = " where 1=1 and order_status != 1 and order_type = " . $order_type;
+			$sqlw = " where 1=1 and m.order_status != 1 and m.order_type = " . $order_type;
+		}
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.number = " . $account . " or me.name  = " . $account . " or me.account  = " . $account . ")";
 		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
@@ -200,18 +221,23 @@ class Order_model extends CI_Model
 			$end = strtotime($end)+86400;
 			$sqlw .= " and m.add_time <= $end ";
 		}
+
 		$sql = "SELECT count(1) as number FROM `order_traffic` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
 	}
 	//list
-	public function gettaskorderAll1($pg,$starttime,$end,$order_type)
+	public function gettaskorderAll1($pg,$starttime,$end,$order_type,$account=array())
 	{
 		if (empty($order_type)){
-			$sqlw = " where 1=1 and order_status != 1 and status != 7 ";
+			$sqlw = " where 1=1 and m.order_status != 1 and m.status != 7 ";
 		}else{
-			$sqlw = " where 1=1 and order_status != 1 and order_type = " . $order_type;
+			$sqlw = " where 1=1 and m.order_status != 1 and m.order_type = " . $order_type;
+		}
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.number = " . $account . " or me.name  = " . $account . " or me.account  = " . $account . ")";
 		}
 		if (!empty($starttime) && !empty($end)) {
 			$starttime = strtotime($starttime);
@@ -224,9 +250,11 @@ class Order_model extends CI_Model
 			$end = strtotime($end)+86400;
 			$sqlw .= " and m.add_time <= $end ";
 		}
+
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 		$sql = "SELECT m.*,me.name,me.account FROM `order_traffic` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+
 		return $this->db->query($sql)->result_array();
 	}
 	//count
