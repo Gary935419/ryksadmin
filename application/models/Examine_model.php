@@ -10,12 +10,13 @@ class Examine_model extends CI_Model
         $this->load->database();
     }
 	//审核提现提交
-	public function examine_new_save($id,$status,$reject)
+	public function examine_new_save($id,$status,$reject,$price)
 	{
 		$id = $this->db->escape($id);
 		$status = $this->db->escape($status);
 		$reject = $this->db->escape($reject);
-		$sql = "UPDATE `postal` SET status=$status,notice=$reject WHERE id = $id";
+		$price = $this->db->escape($price);
+		$sql = "UPDATE `postal` SET money=$price,status=$status,notice=$reject WHERE id = $id";
 		return $this->db->query($sql);
 	}
 	//提现byid

@@ -35,6 +35,15 @@
                               lay-verify="reject"></textarea>
                 </div>
             </div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
+					审核通过金额
+				</label>
+				<div class="layui-input-block">
+                    <textarea id="price" name="price" class="layui-textarea"
+							  lay-verify="price"></textarea>
+				</div>
+			</div>
             <input type="hidden" id="id" name="id" value="<?php echo $id?>">
             <input type="hidden" id="status" name="status" value="2">
             <div class="layui-form-item">
@@ -52,9 +61,14 @@
             form.verify({
                 reject: function (value) {
                     if ($('#reject').val() == "") {
-                        return '审核通过备注。';
+                        return '请录入审核通过备注。';
                     }
                 },
+				price: function (value) {
+					if ($('#price').val() == "") {
+						return '请录入审核通过金额。';
+					}
+				},
             });
 
             $("#tab").validate({

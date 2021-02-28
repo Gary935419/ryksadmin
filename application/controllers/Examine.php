@@ -194,10 +194,10 @@ class Examine extends CI_Controller
 			} else {
 				$v1['status'] = "数组错误";
 			}
-			$PHPSheet->setCellValue('A' . $cell, $v1['account'])
+			$PHPSheet->setCellValue('A' . $cell, $v1['account']."\t")
 				->setCellValue('B' . $cell, $v1['name'])
 				->setCellValue('C' . $cell, $v1['bank_account'])
-				->setCellValue('D' . $cell, $v1['card_number'])
+				->setCellValue('D' . $cell, $v1['card_number']."\t")
 				->setCellValue('E' . $cell, $v1['money'])
 				->setCellValue('F' . $cell, $v1['status'])
 				->setCellValue('G' . $cell, $v1['notice'])
@@ -423,7 +423,7 @@ class Examine extends CI_Controller
         $id = isset($_POST["id"]) ? $_POST["id"] : '';
         $status = isset($_POST["status"]) ? $_POST["status"] : '';
         $reject = isset($_POST["reject"]) ? $_POST["reject"] : '';
-
+		$price = isset($_POST["price"]) ? $_POST["price"] : '';
         $withdrawal_info_state = $this->examine->getwithdrawalByIdstate($id);
         if (!empty($withdrawal_info_state)){
             echo json_encode(array('error' => false, 'msg' => "请勿重复操作"));
@@ -432,18 +432,21 @@ class Examine extends CI_Controller
         $withdrawal_info = $this->examine->getwithdrawalById($id);
         $driver_id = $withdrawal_info['driver_id'];
         if ($status == 2){
-            $member_info = $this->examine->getmemberById($driver_id);
-            $wallet = $member_info['money'];
-            $wrprice = $withdrawal_info['money'];
-            if($member_info['money'] < $withdrawal_info['money']){
-				echo json_encode(array('error' => false, 'msg' => "抱歉!该用户余额不足!"));
+            if($price > $withdrawal_info['money']){
+				echo json_encode(array('error' => false, 'msg' => "抱歉!该用户超过要提现余额!"));
 				return;
 			}
-			$newwallet = floatval($wallet) - floatval($wrprice);
+			//状态修改
+			$result = $this->examine->examine_new_save($id,$status,$reject,$price);
+        }else{
+        	$member_info = $this->examine->getmemberById($driver_id);
+            $wallet = $member_info['money'];
+            $wrprice = $withdrawal_info['money'];
+			$newwallet = floatval($wallet) + floatval($wrprice);
 			$this->examine->member_save_edit($driver_id,$newwallet);
-        }
-        //状态修改
-		$result = $this->examine->examine_new_save($id,$status,$reject);
+			//状态修改
+			$result = $this->examine->examine_new_save($id,$status,$reject,$wrprice);
+		}
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
             return;
