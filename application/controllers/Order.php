@@ -149,6 +149,34 @@ class Order extends CI_Controller
 		$this->display("order/taskorder_list3", $data);
 	}
 	/**
+	 * 充值订单列表页
+	 */
+	public function taskorder_list4()
+	{
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->order->gettaskorderupAllPage1($start,$end,$account);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderupAll1($page,$start,$end,$account);
+		foreach ($list as $k=>$v){
+			if (empty($v['pay_type'])){
+				$list[$k]['pay_type'] = "微信";
+			}else{
+				$list[$k]['pay_type'] = "支付宝";
+			}
+		}
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["account"] = $account;
+		$this->display("order/taskorder_list4", $data);
+	}
+	/**
 	 * 认证审核详情 代驾
 	 */
 	public function driver_examine_details()

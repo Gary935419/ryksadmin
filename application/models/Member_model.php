@@ -63,6 +63,13 @@ class Member_model extends CI_Model
 		$sql = "SELECT * FROM `user` where id=$id ";
 		return $this->db->query($sql)->row_array();
 	}
+	//认证byid
+	public function getapplyById($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `merchants_apply` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 	public function car_info($id)
 	{
 		$id = $this->db->escape($id);
@@ -84,6 +91,26 @@ class Member_model extends CI_Model
 		$driving_check = $this->db->escape($driving_check);
 		$reason = $this->db->escape($reason);
 		$sql = "UPDATE `user` SET driving_check=$driving_check,reason1=$reason WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function examine_new_save_task22($id,$status,$reason)
+	{
+		$id = $this->db->escape($id);
+		$status = $this->db->escape($status);
+		$reason = $this->db->escape($reason);
+		$sql = "UPDATE `merchants_apply` SET status=$status,rejected=$reason WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function apply_info($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `merchants_apply` where id=$id ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function examine_new_save_task2($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `user` SET is_merchants=1 WHERE id = $id";
 		return $this->db->query($sql);
 	}
 	//审核认证count
@@ -131,6 +158,53 @@ class Member_model extends CI_Model
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 		$sql = "SELECT * FROM `user` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	//审核认证count
+	public function getapplyAllPage($starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (tabChangeNameValue = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime >= $starttime and addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime <= $end ";
+		}
+		$sql = "SELECT count(1) as number FROM `merchants_apply` " . $sqlw;
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//审核认证count
+	public function getapplyAll($pg,$starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (tabChangeNameValue = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime >= $starttime and addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and addtime <= $end ";
+		}
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sql = "SELECT * FROM `merchants_apply` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
 	//获取报备数量 跑腿
@@ -258,7 +332,13 @@ class Member_model extends CI_Model
 		return $this->db->query($sql)->result_array();
 	}
 
-
+    //图片list
+	public function getapplyimglist($mid)
+	{
+		$mid = $this->db->escape($mid);
+		$sql = "SELECT * FROM `merchants_img` where mid = $mid order by id desc ";
+		return $this->db->query($sql)->result_array();
+	}
 
 
 

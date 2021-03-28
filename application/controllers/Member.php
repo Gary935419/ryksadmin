@@ -108,6 +108,26 @@ class Member extends CI_Controller
 			return;
 		}
 	}
+	public function examine_new_save_task2()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$status = isset($_POST["status"]) ? $_POST["status"] : '3';
+		$reason = isset($_POST["reason"]) ? $_POST["reason"] : '';
+		$apply_info = $this->member->apply_info($id);
+		$this->member->examine_new_save_task22($id,$status,$reason);
+		$result = $this->member->examine_new_save_task2($apply_info['user_id']);
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+			return;
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+			return;
+		}
+	}
 	/**
 	 * 认证审核通过操作页  跑腿
 	 */
@@ -149,6 +169,26 @@ class Member extends CI_Controller
 		$this->display("member/driverno_examine1", $data);
 	}
 	/**
+	 * 认证审核通过操作页  商户
+	 */
+	public function driver_examine2()
+	{
+		$oid = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data = array();
+		$data['id'] = $oid;
+		$this->display("member/driver_examine2", $data);
+	}
+	/**
+	 * 认证审核通过操作页  商户
+	 */
+	public function driverno_examine2()
+	{
+		$oid = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data = array();
+		$data['id'] = $oid;
+		$this->display("member/driverno_examine2", $data);
+	}
+	/**
 	 * 认证审核详情 代驾
 	 */
 	public function driver_examine_details1()
@@ -171,6 +211,30 @@ class Member extends CI_Controller
 		$this->display("member/driver_examine_details1",$data);
 	}
 	/**
+	 * 商户审核详情
+	 */
+	public function driver_examine_details2()
+	{
+		$data = array();
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$driver_info = $this->member->getapplyById($id);
+		$data['tabChangeContentValue'] = empty($driver_info['tabChangeContentValue'])?'':$driver_info['tabChangeContentValue'];
+		$data['tabChangePnameValue'] = empty($driver_info['tabChangePnameValue'])?'':$driver_info['tabChangePnameValue'];
+		$data['tabChangePtelValue'] = empty($driver_info['tabChangePtelValue'])?'':$driver_info['tabChangePtelValue'];
+		$data['tabChangePname1Value'] = empty($driver_info['tabChangePname1Value'])?'':$driver_info['tabChangePname1Value'];
+		$data['tabChangePtel1Value'] = empty($driver_info['tabChangePtel1Value'])?'':$driver_info['tabChangePtel1Value'];
+		$data['tabChangePcardValue'] = empty($driver_info['tabChangePcardValue'])?'':$driver_info['tabChangePcardValue'];
+		$data['tabChangeNumber1Value'] = empty($driver_info['tabChangeNumber1Value'])?'':$driver_info['tabChangeNumber1Value'];
+
+		$imgs = $this->member->getapplyimglist($id);
+		foreach ($imgs as $k=>$v){
+			$imgs[$k]['path_server'] = strpos($v['path_server'],'http') !== false?$v['path_server']:'http://ryks.ychlkj.cn/'.$v['path_server'];
+		}
+		$data['imgs'] = $imgs;
+
+		$this->display("member/driver_examine_details2",$data);
+	}
+	/**
 	 * 认证审核  代驾
 	 */
 	public function driver_uplist1()
@@ -190,6 +254,27 @@ class Member extends CI_Controller
 		$data["end"] = $end;
 		$data["account"] = $account;
 		$this->display("member/driver_uplist1", $data);
+	}
+	/**
+	 * 商户审核
+	 */
+	public function driver_uplist2()
+	{
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->member->getapplyAllPage($start,$end,$account);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->member->getapplyAll($page,$start,$end,$account);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["account"] = $account;
+		$this->display("member/driver_uplist2", $data);
 	}
 	/**
 	 * 报备一览  跑腿

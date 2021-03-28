@@ -258,6 +258,57 @@ class Order_model extends CI_Model
 		return $this->db->query($sql)->result_array();
 	}
 	//count
+	public function gettaskorderupAllPage1($starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 and m.status = 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.paynumber = " . $account . " or me.account  = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.addtime >= $starttime and m.addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.addtime <= $end ";
+		}
+
+		$sql = "SELECT count(1) as number FROM `topup` m  LEFT JOIN `user` me ON me.id = m.uid " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//list
+	public function gettaskorderupAll1($pg,$starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 and m.status = 1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.paynumber = " . $account . " or me.account  = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.addtime >= $starttime and m.addtime <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.addtime >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.addtime <= $end ";
+		}
+
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sql = "SELECT m.*,me.name,me.account FROM `topup` m  LEFT JOIN `user` me ON me.id = m.uid " . $sqlw . " order by m.addtime desc LIMIT $start, $stop";
+
+		return $this->db->query($sql)->result_array();
+	}
+	//count
 	public function gettaskorderAllPage2($starttime,$end)
 	{
 		$sqlw = " where 1=1 and order_status != 1 and status != 7 ";

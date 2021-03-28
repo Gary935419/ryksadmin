@@ -115,6 +115,12 @@
 							<cite>认证审核（代驾）</cite>
 						</a>
 					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist2' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>商户审核</cite>
+						</a>
+					</li>
                 </ul>
             </li>
 			<?php } ?>
@@ -185,6 +191,12 @@
 						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list3' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
 							<cite>代买订单</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list4' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>充值订单</cite>
 						</a>
 					</li>
                 </ul>
