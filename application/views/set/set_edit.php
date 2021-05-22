@@ -191,6 +191,17 @@
 						   autocomplete="off" value="<?php echo $price19 ?>" class="layui-input">
 				</div>
 			</div>
+
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>公告
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<textarea placeholder="暂无提交公告" id="content1" name="content1" class="layui-textarea"
+							  lay-verify="content1"><?php echo $content1 ?></textarea>
+				</div>
+			</div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>

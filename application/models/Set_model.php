@@ -56,6 +56,12 @@ class Set_model extends CI_Model
 		$sql = "UPDATE `car_price_setting` SET price11 = $price13 , price9 = $price14 , price10 = $price15 , price8 = $price16 , km1 = $price17 , kg1 = $price18 , km2 = $price19 WHERE sid=4";
 		return $this->db->query($sql);
 	}
+	public function set_save_edit4($content1)
+	{
+		$content1 = $this->db->escape($content1);
+		$sql = "UPDATE `car_price_setting` SET content1 = $content1 WHERE sid=1";
+		return $this->db->query($sql);
+	}
     //广告count
     public function getadvertisementAllPage($aname)
     {

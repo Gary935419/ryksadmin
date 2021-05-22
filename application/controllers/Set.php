@@ -31,6 +31,7 @@ class Set extends CI_Controller
         $data['price1'] = $set_info1['price1'];
 		$data['price2'] = $set_info1['price2'];
 		$data['price3'] = $set_info1['price6'];
+		$data['content1'] = $set_info1['content1'];
 
 		$data['price4'] = $set_info2['price1'];
 		$data['price5'] = $set_info2['price2'];
@@ -87,7 +88,8 @@ class Set extends CI_Controller
 		$this->set->set_save_edit1($price4,$price5,$price6,$price7,$price8,$price9);
 		$this->set->set_save_edit2($price10,$price11,$price12);
 		$this->set->set_save_edit3($price13,$price14,$price15,$price16,$price17,$price18,$price19);
-
+		$content1 = isset($_POST["content1"]) ? $_POST["content1"] : '';
+		$this->set->set_save_edit4($content1);
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		return;
     }
