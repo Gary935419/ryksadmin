@@ -206,7 +206,8 @@
                 <label class="layui-form-label" style="width: 30%;">
                 </label>
                 <div class="layui-input-inline" style="width: 300px;">
-                    <span class="x-red">※</span>请确认输入的数据是否正确。
+                    <span class="x-red">※</span>请确认输入的数据是否正确。<br>
+					<span class="x-red">※</span>请确认每一项是否全部录入。
                 </div>
             </div>
             <div class="layui-form-item">
