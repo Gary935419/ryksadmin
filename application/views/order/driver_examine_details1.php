@@ -221,9 +221,9 @@
 						物品照片
 					</label>
 					<div class="layui-input-block">
-						<img src="http://ryks.ychlkj.cn/<?php echo $img1 ?>" style="width: 282px;height: 282px;">
-						<img src="http://ryks.ychlkj.cn/<?php echo $img2 ?>" style="width: 282px;height: 282px;">
-						<img src="http://ryks.ychlkj.cn/<?php echo $img3 ?>" style="width: 282px;height: 282px;">
+						<img src="https://ryks.dltqwy.com/<?php echo $img1 ?>" style="width: 282px;height: 282px;">
+						<img src="https://ryks.dltqwy.com/<?php echo $img2 ?>" style="width: 282px;height: 282px;">
+						<img src="https://ryks.dltqwy.com/<?php echo $img3 ?>" style="width: 282px;height: 282px;">
 					</div>
 				</div>
 			<?php } ?>

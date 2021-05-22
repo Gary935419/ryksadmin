@@ -58,12 +58,12 @@ class Member extends CI_Controller
 		$data['times'] = empty($driver_info['times'])?'':$driver_info['times'];
 		$data['car_number'] = empty($driver_info['car_number'])?'':$driver_info['car_number'];
 
-		$data['img_cards_face'] = strpos($driver_info['img_cards_face'],'http') !== false?$driver_info['img_cards_face']:'http://ryks.ychlkj.cn/'.$driver_info['img_cards_face'];
-		$data['img_cards_side'] = strpos($driver_info['img_cards_side'],'http') !== false?$driver_info['img_cards_side']:'http://ryks.ychlkj.cn/'.$driver_info['img_cards_side'];
-		$data['img_drivers'] = strpos($driver_info['img_drivers'],'http') !== false?$driver_info['img_drivers']:'http://ryks.ychlkj.cn/'.$driver_info['img_drivers'];
-		$data['img_vehicle'] = strpos($driver_info['img_vehicle'],'http') !== false?$driver_info['img_vehicle']:'http://ryks.ychlkj.cn/'.$driver_info['img_vehicle'];
-		$data['img_car_user'] = strpos($driver_info['img_car_user'],'http') !== false?$driver_info['img_car_user']:'http://ryks.ychlkj.cn/'.$driver_info['img_car_user'];
-		$data['img_worker'] = strpos($driver_info['img_worker'],'http') !== false?$driver_info['img_worker']:'http://ryks.ychlkj.cn/'.$driver_info['img_worker'];
+		$data['img_cards_face'] = strpos($driver_info['img_cards_face'],'http') !== false?$driver_info['img_cards_face']:'https://ryks.dltqwy.com/'.$driver_info['img_cards_face'];
+		$data['img_cards_side'] = strpos($driver_info['img_cards_side'],'http') !== false?$driver_info['img_cards_side']:'https://ryks.dltqwy.com/'.$driver_info['img_cards_side'];
+		$data['img_drivers'] = strpos($driver_info['img_drivers'],'http') !== false?$driver_info['img_drivers']:'https://ryks.dltqwy.com/'.$driver_info['img_drivers'];
+		$data['img_vehicle'] = strpos($driver_info['img_vehicle'],'http') !== false?$driver_info['img_vehicle']:'https://ryks.dltqwy.com/'.$driver_info['img_vehicle'];
+		$data['img_car_user'] = strpos($driver_info['img_car_user'],'http') !== false?$driver_info['img_car_user']:'https://ryks.dltqwy.com/'.$driver_info['img_car_user'];
+		$data['img_worker'] = strpos($driver_info['img_worker'],'http') !== false?$driver_info['img_worker']:'https://ryks.dltqwy.com/'.$driver_info['img_worker'];
 
 		$this->display("member/driver_examine_details",$data);
 	}
@@ -203,10 +203,10 @@ class Member extends CI_Controller
 		$data['driving_times'] = empty($driver_info['driving_times'])?'':$driver_info['driving_times'];
 		$data['driving_car_number'] = empty($driver_info['driving_car_number'])?'':$driver_info['driving_car_number'];
 
-		$data['driving_img_cards_face'] = strpos($driver_info['driving_img_cards_face'],'http') !== false?$driver_info['driving_img_cards_face']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_cards_face'];
-		$data['driving_img_cards_side'] = strpos($driver_info['driving_img_cards_side'],'http') !== false?$driver_info['driving_img_cards_side']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_cards_side'];
-		$data['driving_img_drivers'] = strpos($driver_info['driving_img_drivers'],'http') !== false?$driver_info['driving_img_drivers']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_drivers'];
-		$data['driving_img_worker'] = strpos($driver_info['driving_img_worker'],'http') !== false?$driver_info['driving_img_worker']:'http://ryks.ychlkj.cn/'.$driver_info['driving_img_worker'];
+		$data['driving_img_cards_face'] = strpos($driver_info['driving_img_cards_face'],'http') !== false?$driver_info['driving_img_cards_face']:'https://ryks.dltqwy.com/'.$driver_info['driving_img_cards_face'];
+		$data['driving_img_cards_side'] = strpos($driver_info['driving_img_cards_side'],'http') !== false?$driver_info['driving_img_cards_side']:'https://ryks.dltqwy.com/'.$driver_info['driving_img_cards_side'];
+		$data['driving_img_drivers'] = strpos($driver_info['driving_img_drivers'],'http') !== false?$driver_info['driving_img_drivers']:'https://ryks.dltqwy.com/'.$driver_info['driving_img_drivers'];
+		$data['driving_img_worker'] = strpos($driver_info['driving_img_worker'],'http') !== false?$driver_info['driving_img_worker']:'https://ryks.dltqwy.com/'.$driver_info['driving_img_worker'];
 
 		$this->display("member/driver_examine_details1",$data);
 	}
@@ -228,7 +228,7 @@ class Member extends CI_Controller
 
 		$imgs = $this->member->getapplyimglist($id);
 		foreach ($imgs as $k=>$v){
-			$imgs[$k]['path_server'] = strpos($v['path_server'],'http') !== false?$v['path_server']:'http://ryks.ychlkj.cn/'.$v['path_server'];
+			$imgs[$k]['path_server'] = strpos($v['path_server'],'http') !== false?$v['path_server']:'https://ryks.dltqwy.com/'.$v['path_server'];
 		}
 		$data['imgs'] = $imgs;
 
@@ -458,7 +458,7 @@ class Member extends CI_Controller
 		$param['img_vehicle'] = isset($_POST['img_vehicle']) ? $_POST['img_vehicle'] : '';
 		$param['img_car_user'] = isset($_POST['img_car_user']) ? $_POST['img_car_user'] : '';
 		$param['img_worker'] = isset($_POST['img_worker']) ? $_POST['img_worker'] : '';
-		$url = "https://ryks.ychlkj.cn/index.php/home/User/probate_updata";
+		$url = "https://ryks.dltqwy.com/index.php/home/User/probate_updata";
 		if ($this->send_post($url, $param)) {
 			echo json_encode(array('success' => true, 'msg' => "操作成功"));
 			return;

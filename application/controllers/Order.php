@@ -250,7 +250,7 @@ class Order extends CI_Controller
 		$param['md5'] = '4EF82E3603825745124695977A46E8C2';
 		$param['taker_type_id'] = $type;
 		$param['waiting_id'] = $order_id;
-		$url = "https://ryks.ychlkj.cn/index.php/home/UserCall/order_send";
+		$url = "https://ryks.dltqwy.com/index.php/home/UserCall/order_send";
 		print_r($this->send_post($url, $param));die;
 		if ($this->send_post($url, $param)) {
 			echo json_encode(array('success' => true, 'msg' => "派单成功"));
