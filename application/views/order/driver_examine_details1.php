@@ -145,6 +145,15 @@
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
+					订单评价星数
+				</label>
+				<div class="layui-input-block">
+                    <textarea placeholder="暂无提交订单评价星数" id="star" name="star" class="layui-textarea"
+							  lay-verify="star"><?php echo $star ?></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label for="desc" class="layui-form-label">
 					出发地址
 				</label>
 				<div class="layui-input-block">

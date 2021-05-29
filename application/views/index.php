@@ -159,6 +159,12 @@
 							<cite>推荐金</cite>
 						</a>
 					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/set/set_edit_new' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>优惠券设置</cite>
+						</a>
+					</li>
                 </ul>
             </li>
 			<?php } ?>

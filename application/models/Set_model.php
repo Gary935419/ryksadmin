@@ -16,7 +16,11 @@ class Set_model extends CI_Model
         $sql = "SELECT * FROM `car_price_setting` where sid=$id ";
         return $this->db->query($sql)->row_array();
     }
-
+	public function set_edit_new()
+	{
+		$sql = "SELECT * FROM `couponset` where id=1 ";
+		return $this->db->query($sql)->row_array();
+	}
     public function set_save_edit($price1,$price2,$price3)
     {
 		$price1 = $this->db->escape($price1);
@@ -25,6 +29,14 @@ class Set_model extends CI_Model
         $sql = "UPDATE `car_price_setting` SET price1 = $price1 , price2 = $price2 , price6 = $price3 WHERE sid=1";
         return $this->db->query($sql);
     }
+	public function set_save_edit_new($price,$days)
+	{
+		$price = $this->db->escape($price);
+		$days = $this->db->escape($days);
+
+		$sql = "UPDATE `couponset` SET price = $price , days = $days WHERE id=1";
+		return $this->db->query($sql);
+	}
 	public function set_save_edit1($price4,$price5,$price6,$price7,$price8,$price9)
 	{
 		$price4 = $this->db->escape($price4);

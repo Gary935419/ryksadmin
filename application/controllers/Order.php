@@ -195,6 +195,8 @@ class Order extends CI_Controller
 		$data['distribution_km'] = empty($driver_info['distribution_km'])?'':$driver_info['distribution_km'];
 		$data['tip_price'] = empty($driver_info['tip_price'])?'':$driver_info['tip_price'];
 		$data['evaluate'] = empty($driver_info['evaluate'])?'':$driver_info['evaluate'];
+		$data['star'] = empty($driver_info['star'])?'':$driver_info['star'];
+		$data['delay_price'] = empty($driver_info['delay_price'])?'':$driver_info['delay_price'];
 		$data['address1'] = empty($driver_info['address1'])?'':$driver_info['address1'];
 		$data['address2'] = empty($driver_info['address2'])?'':$driver_info['address2'];
 		$data['cost_price'] = empty($driver_info['cost_price'])?'':$driver_info['cost_price'];
@@ -223,6 +225,7 @@ class Order extends CI_Controller
 		$data['tip_price'] = empty($driver_info['tip_price'])?'':$driver_info['tip_price'];
 		$data['protect_price'] = empty($driver_info['protect_price'])?'':$driver_info['protect_price'];
 		$data['evaluate'] = empty($driver_info['evaluate'])?'':$driver_info['evaluate'];
+		$data['star'] = empty($driver_info['star'])?'':$driver_info['star'];
 		$data['address1'] = empty($driver_info['address1'])?'':$driver_info['address1'];
 		$data['address2'] = empty($driver_info['address2'])?'':$driver_info['address2'];
 		$data['name'] = empty($driver_info['name'])?'':$driver_info['name'];

@@ -93,6 +93,35 @@ class Set extends CI_Controller
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 		return;
     }
+	/**
+	 * 设置修改页
+	 */
+	public function set_edit_new()
+	{
+		$set_info1 = $this->set->set_edit_new();
+
+		$data['price'] = $set_info1['price'];
+		$data['days'] = $set_info1['days'];
+
+		$this->display("set/set_edit_new", $data);
+	}
+	/**
+	 * 设置修改提交
+	 */
+	public function set_save_edit_new()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$price = isset($_POST["price"]) ? $_POST["price"] : '';
+		$days = isset($_POST["days"]) ? $_POST["days"] : '';
+
+		$this->set->set_save_edit_new($price,$days);
+
+		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+		return;
+	}
     /**
      * 广告列表页
      */
