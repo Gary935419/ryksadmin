@@ -184,7 +184,7 @@
 			</div>
 			<div class="layui-form-item">
 				<label for="L_pass" class="layui-form-label" style="width: 30%;">
-					<span class="x-red">*</span>顺路送和代买每天最大接单量（单位：个）
+					<span class="x-red">*</span>顺路送和代买每天总最大接单量（单位：次）
 				</label>
 				<div class="layui-input-inline" style="width: 300px;">
 					<input type="number" id="price19" name="price19" lay-verify="price19"
