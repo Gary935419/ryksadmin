@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>提现记录(司机)</cite></a>
+              <cite>提现申请(App)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -46,7 +46,8 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-							<th>司机电话</th>
+							<th>申请类型</th>
+							<th>联系电话</th>
 							<th>真实姓名</th>
 							<th>开户行</th>
 							<th>银行卡号</th>
@@ -60,6 +61,7 @@
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
 								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+									<td><?= $once['user_type'] == 1 ? '司机' : '用户' ?></td>
 									<td><?= $once['account'] ?></td>
 									<td><?= $once['name'] ?></td>
 									<td><?= $once['bank_account'] ?></td>

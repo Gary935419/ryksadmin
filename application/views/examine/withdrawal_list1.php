@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>提现记录(用户)</cite></a>
+              <cite>提现记录(小程序)</cite></a>
           </span>
 </div>
 <div class="layui-fluid">

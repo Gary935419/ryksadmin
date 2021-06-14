@@ -218,13 +218,13 @@
 						<li>
 							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现记录(司机)</cite>
+								<cite>提现申请(App)</cite>
 							</a>
 						</li>
 						<li>
 							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list1' ?>')">
 								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现记录(用户)</cite>
+								<cite>提现记录(小程序)</cite>
 							</a>
 						</li>
 						<li>
