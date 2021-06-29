@@ -375,7 +375,16 @@ class Member_model extends CI_Model
 
         return $this->db->query($sql)->result_array();
     }
-
+	public function send_coupon_go($user_id,$money,$type,$add_time,$end_time)
+	{
+		$user_id = $this->db->escape($user_id);
+		$money = $this->db->escape($money);
+		$type = $this->db->escape($type);
+		$add_time = $this->db->escape($add_time);
+		$end_time = $this->db->escape($end_time);
+		$sql = "INSERT INTO `coupon` (user_id,money,type,add_time,end_time) VALUES ($user_id,$money,$type,$add_time,$end_time);";
+		return $this->db->query($sql);
+	}
     //会員消息保存
     public function member_new_save($mid,$ncontent, $add_time, $if_flag)
     {

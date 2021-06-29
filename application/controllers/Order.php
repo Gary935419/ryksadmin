@@ -177,6 +177,27 @@ class Order extends CI_Controller
 		$this->display("order/taskorder_list4", $data);
 	}
 	/**
+	 * 发票订单列表页
+	 */
+	public function invoice_list()
+	{
+		$start = isset($_GET['start']) ? $_GET['start'] : '';
+		$end = isset($_GET['end']) ? $_GET['end'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$account = isset($_GET['account']) ? $_GET['account'] : '';
+		$allpage = $this->order->gettaskorderupAllPage123($start,$end,$account);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->order->gettaskorderupAll123($page,$start,$end,$account);
+		$data["list"] = $list;
+		$data["start"] = $start;
+		$data["end"] = $end;
+		$data["account"] = $account;
+		$this->display("order/invoice_list", $data);
+	}
+	/**
 	 * 认证审核详情 代驾
 	 */
 	public function driver_examine_details()

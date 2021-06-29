@@ -239,6 +239,12 @@
 								<cite>账单详情(代驾)</cite>
 							</a>
 						</li>
+						<li>
+							<a onclick="changeSrc('<?= RUN . '/order/invoice_list' ?>')">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>发票管理</cite>
+							</a>
+						</li>
 					</ul>
             </li>
 			<?php } ?>

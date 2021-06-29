@@ -77,6 +77,10 @@
                                                 onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
                                             <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
+										<button class="layui-btn layui-btn-normal"
+												onclick="xadmin.open('发优惠券','<?= RUN . '/member/send_coupon?id=' ?>'+<?= $once['id'] ?>,900,500)">
+											<i class="layui-icon">&#xe642;</i>发优惠券
+										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

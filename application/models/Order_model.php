@@ -308,6 +308,60 @@ class Order_model extends CI_Model
 
 		return $this->db->query($sql)->result_array();
 	}
+
+	//count
+	public function gettaskorderupAllPage123($starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.tabChangePnameValue = " . $account . " or m.tabChangePtelValue  = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+
+		$sql = "SELECT count(1) as number FROM `order_invoice` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw;
+
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//list
+	public function gettaskorderupAll123($pg,$starttime,$end,$account=array())
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($account)) {
+			$account = $this->db->escape($account);
+			$sqlw .= " and (m.tabChangePnameValue = " . $account . " or m.tabChangePtelValue  = " . $account . ")";
+		}
+		if (!empty($starttime) && !empty($end)) {
+			$starttime = strtotime($starttime);
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
+		} elseif (!empty($starttime) && empty($end)) {
+			$starttime = strtotime($starttime);
+			$sqlw .= " and m.add_time >= $starttime ";
+		} elseif (empty($starttime) && !empty($end)) {
+			$end = strtotime($end)+86400;
+			$sqlw .= " and m.add_time <= $end ";
+		}
+
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sql = "SELECT m.*,me.name,me.account FROM `order_invoice` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc LIMIT $start, $stop";
+
+		return $this->db->query($sql)->result_array();
+	}
+
+
 	//count
 	public function gettaskorderAllPage2($starttime,$end)
 	{

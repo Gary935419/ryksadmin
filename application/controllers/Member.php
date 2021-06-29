@@ -16,6 +16,7 @@ class Member extends CI_Controller
             header("Location:" . RUN . '/login/logout');
         }
         $this->load->model('Member_model', 'member');
+		$this->load->model('Set_model', 'set');
         header("Content-type:text/html;charset=utf-8");
     }
 	/**
@@ -417,6 +418,46 @@ class Member extends CI_Controller
 
         $this->display("member/member_edit", $data);
     }
+	/**
+	 * 会员修改页
+	 */
+	public function send_coupon()
+	{
+		$mid = isset($_GET['id']) ? $_GET['id'] : 0;
+		$data = array();
+		$data['mid'] = $mid;
+		$this->display("member/send_coupon", $data);
+	}
+	/**
+	 * 会员发放优惠券
+	 */
+	public function send_coupon_go()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法发送优惠券"));
+			return;
+		}
+		$mid = isset($_POST["mid"]) ? $_POST["mid"] : '';
+		$nums = isset($_POST["nums"]) ? $_POST["nums"] : 0;
+
+		$set_info1 = $this->set->set_edit_new();
+		$data['price'] = $set_info1['price'];
+		$data['days'] = floatval($set_info1['days']) * 86400;
+
+		$coupon = [
+			'user_id' => $mid,
+			'money' => $data['price'],
+			'type' => 1,
+			'add_time' => time(),
+			'end_time' => time() + $data['days']
+		];
+		for ($i=1; $i<=$nums; $i++)
+		{
+			$this->member->send_coupon_go($coupon['user_id'],$coupon['money'],$coupon['type'],$coupon['add_time'],$coupon['end_time']);
+		}
+		echo json_encode(array('success' => true, 'msg' => "发放成功。"));
+		return;
+	}
     /**
      * 会员修改提交
      */
