@@ -1,0 +1,187 @@
+/* CSS Document */
+@media (max-width: 1600px) and  (min-width: 1360px) {
+	.login_section {
+		width: 29%;
+	}
+	.logo {
+		width: 130px;
+	}
+	.left_info img {
+		width: 100px;
+		height: 100px;
+	}
+	.left_info {
+		margin: 40px 0 30px 0;
+	}
+	.left_name {
+		font-size: 20px;
+	}
+	.left_en {
+		font-size: 16px;
+		margin-top: 15px;
+	}
+	.left_item span {
+		font-size: 18px;
+		margin-left: 15px;
+	}
+	.left_item {
+		height: 50px;
+		margin-bottom: 10px;
+	}
+	.left_item span.left_num {
+		top: 6px;
+		left: 20%;
+	}
+	.left {
+		width: 200px;
+	}
+	.header {
+		padding-left: 200px;
+	}
+	.content {
+		padding-left: 200px;
+	}
+	.task_week_day {
+		width: 12%;
+	}
+	.task_right_caption {
+		width: 20%;
+	}
+	.task_right_box {
+		width: 80%;
+	}
+	.health_left_area {
+		width: 79%;
+	}
+	.health_left .myclient_top {
+		padding: 0 20px;
+	}
+	.health_left_link {
+		padding: 13px 20px;
+	}
+	.health_left_name {
+		width: 48%;
+	}
+	.task_left {
+		padding: 30px 20px 50px 20px;
+	}
+	.task_right_section {
+		padding: 20px;
+	}
+	.task_title {
+		padding: 0 20px;
+	}
+	.myclient_top_search{
+		padding: 7px 10px;
+		width: 70%;
+	}
+	.myclient_top_block select {
+		width: 90px;
+	}
+	.myclient_top_add {
+		margin-left: 10px;
+	}
+	.task_right_info1 .task_right_caption {
+		width: 21%;
+	}
+	.task_right_choose {
+		width: 100%;
+	}
+	.myclient_block1_box:nth-child(odd) {
+		float: left;
+	}
+	.session_reply_section {
+		padding: 0 !important;
+	}
+	.session_more_area {
+		padding: 0 !important;
+	}
+	.sessionper_model_name {
+		font-size: 14px;
+	}
+	.sesearch {
+		width: 65%;
+	}
+	.myleft {
+		width: 20%;
+	}
+	.myright {
+		width: 80%;
+	}
+	.myknowledge_item {
+		width: 30%;
+	}
+	.mynotice_kehu_area {
+		width: 84%;
+	}
+	.mynotice_know_area {
+		width: 32%;
+		margin-left: 2%;
+	}
+	.mynotice_know_area input{
+		width: 20px;
+		height: 20px;
+		appearance: none;
+		position: relative;
+		outline: 0;
+		margin: 0;
+	}
+	.mynotice_know_area input:before{
+		content: '';
+		width: 20px;
+		height: 20px;
+		border: 1px solid #7d7d7d;
+		display: inline-block;
+		border-radius: 50%;
+		vertical-align: middle;
+		outline: 0;
+		appearance: none;
+	}
+	.mynotice_know_area input:checked:before{
+		content: '';
+		width: 20px;
+		height: 20px;
+		border: 1px solid #2180b6;
+		background:#2180b6;
+		display: inline-block;
+		border-radius: 50%;
+		vertical-align: middle;
+		outline: 0;
+		appearance: none;
+	}
+	.mynotice_know_area input:checked:after{
+		content: '';
+		width: 13px;
+		height:8px;
+		border: 2px solid white;
+		border-top: transparent;
+		border-right: transparent;
+		text-align: center;
+		display: block;
+		position: absolute;
+		top: 4px;
+		left:4px;
+		vertical-align: middle;
+		transform: rotate(-45deg);
+		outline: 0;
+		appearance: none;
+	}
+	.mynotice_know_box span {
+		margin-bottom: 10px;
+	}
+	.login_title {
+		margin-bottom: 30px;
+	}
+	.login_box {
+		margin-bottom: 20px;
+	}
+	.health_service_text {
+		font-size: 16px;
+	}
+	.health_shen_item {
+		width: 14%;
+	}
+	.myevaluate_text {
+		width: 10%;
+	}
+}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"

@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -28,79 +28,79 @@
         <form method="post" class="layui-form layui-form-pane" id="tab">
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					店铺地址
+					内容1
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交店铺地址" id="tabChangeContentValue" name="tabChangeContentValue" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangeContentValue" name="tabChangeContentValue" class="layui-textarea"
 							  lay-verify="tabChangeContentValue"><?php echo $tabChangeContentValue ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					联系人姓名
+					内容2
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交联系人姓名" id="tabChangePnameValue" name="tabChangePnameValue" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangePnameValue" name="tabChangePnameValue" class="layui-textarea"
 							  lay-verify="tabChangePnameValue"><?php echo $tabChangePnameValue ?></textarea>
 				</div>
 			</div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-					联系人电话
+					内容3
                 </label>
                 <div class="layui-input-block">
-                    <textarea placeholder="暂无提交联系人电话" id="tabChangePtelValue" name="tabChangePtelValue" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangePtelValue" name="tabChangePtelValue" class="layui-textarea"
                               lay-verify="tabChangePtelValue"><?php echo $tabChangePtelValue ?></textarea>
                 </div>
             </div>
             <div class="layui-form-item layui-form-text">
                 <label for="desc" class="layui-form-label">
-					负责人姓名
+					内容四
                 </label>
                 <div class="layui-input-block">
-                    <textarea placeholder="暂无提交负责人姓名" id="tabChangePname1Value" name="tabChangePname1Value" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangePname1Value" name="tabChangePname1Value" class="layui-textarea"
                               lay-verify="tabChangePname1Value"><?= $tabChangePname1Value ?></textarea>
                 </div>
             </div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					负责人电话
+					内容5
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交负责人电话" id="tabChangePtel1Value" name="tabChangePtel1Value" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangePtel1Value" name="tabChangePtel1Value" class="layui-textarea"
 							  lay-verify="tabChangePtel1Value"><?= $tabChangePtel1Value ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					负责人身份证号
+					内容6
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交负责人身份证号" id="tabChangePcardValue" name="tabChangePcardValue" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangePcardValue" name="tabChangePcardValue" class="layui-textarea"
 							  lay-verify="tabChangePcardValue"><?= $tabChangePcardValue ?></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label for="desc" class="layui-form-label">
-					邀请码（选填）
+					内容7
 				</label>
 				<div class="layui-input-block">
-                    <textarea placeholder="暂无提交邀请码（选填）" id="tabChangeNumber1Value" name="tabChangeNumber1Value" class="layui-textarea"
+                    <textarea placeholder="内容7" id="tabChangeNumber1Value" name="tabChangeNumber1Value" class="layui-textarea"
 							  lay-verify="tabChangeNumber1Value"><?= $tabChangeNumber1Value ?></textarea>
 				</div>
 			</div>
-            <div class="layui-form-item layui-form-text">
-                <label for="desc" class="layui-form-label">
-					认证资料图片
-                </label>
-                <div class="layui-input-block">
-					<?php if (isset($imgs) && !empty($imgs)) { ?>
-						<?php foreach ($imgs as $num => $once): ?>
-					         <img src="<?= $once['path_server'] ?>" style="width: 282px;height: 282px;">
-						<?php endforeach; ?>
-					<?php } ?>
-                </div>
-            </div>
+<!--            <div class="layui-form-item layui-form-text">-->
+<!--                <label for="desc" class="layui-form-label">-->
+<!--					资料图片-->
+<!--                </label>-->
+<!--                <div class="layui-input-block">-->
+<!--					--><?php //if (isset($imgs) && !empty($imgs)) { ?>
+<!--						--><?php //foreach ($imgs as $num => $once): ?>
+<!--					         <img src="--><?//= $once['path_server'] ?><!--" style="width: 282px;height: 282px;">-->
+<!--						--><?php //endforeach; ?>
+<!--					--><?php //} ?>
+<!--                </div>-->
+<!--            </div>-->
         </form>
     </div>
 </div>

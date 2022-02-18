@@ -41,7 +41,7 @@ class Upload extends CI_Controller
         if (file_exists("./static/uploads/".$fileName)) {
             $src="/static/uploads/".$fileName;
         }
-        echo json_encode(array('code' => 200,'src' => "http://ryksht.ychlkj.cn".$src, 'msg' => "上传成功"));
+        echo json_encode(array('code' => 200,'src' => "http://ryksa.dltqwy.com".$src, 'msg' => "上传成功"));
         return;
     }
     /**

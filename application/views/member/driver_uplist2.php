@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -19,7 +19,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>商户审核</cite></a>
+              <cite>ERP系统Demo审核页面</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -34,7 +34,7 @@
                             <input class="layui-input" placeholder="截止日期" value="<?php echo $end ?>" name="end" id="end"></div>
 						<div class="layui-inline layui-show-xs-block">
 							<input type="text" name="account" id="account" value="<?php echo $account ?>"
-								   placeholder="商户名称" autocomplete="off" class="layui-input">
+								   placeholder="名称" autocomplete="off" class="layui-input">
 						</div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
@@ -46,9 +46,9 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>商户名称</th>
-                            <th>经营类型</th>
-                            <th>审核状态</th>
+                            <th>名称</th>
+                            <th>类型</th>
+                            <th>状态</th>
                             <th>申请详情</th>
                             <th>原因</th>
                             <th>申请时间</th>

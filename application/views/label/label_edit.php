@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -20,16 +20,34 @@
 <div class="layui-fluid" style="padding-top: 66px;">
     <div class="layui-row">
         <form method="post" class="layui-form" action="" name="basic_validate" id="tab">
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>标签名称
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <input type="text" id="lname" name="lname" lay-verify="lname"
-                           autocomplete="off" value="<?php echo $lname ?>" class="layui-input">
-                </div>
-            </div>
-            <input type="hidden" name="lid" id="lid" value="<?php echo $lid ?>">
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>公司名称
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="text" id="lname" name="lname" value="<?php echo $lname ?>" lay-verify="lname"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>公司联系人
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="text" id="lpname" name="lpname" value="<?php echo $lpname ?>" lay-verify="lpname"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 30%;">
+					<span class="x-red">*</span>公司联系人电话
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="text" id="ltel" name="ltel" value="<?php echo $ltel ?>" lay-verify="ltel"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+            <input type="hidden" name="id" id="id" value="<?php echo $id ?>">
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>
@@ -54,11 +72,21 @@
                 layer = layui.layer;
             //自定义验证规则
             form.verify({
-                lname: function (value) {
-                    if ($('#lname').val() == "") {
-                        return '请输入标签名称。';
-                    }
-                },
+				lname: function (value) {
+					if ($('#lname').val() == "") {
+						return '请输入公司名称。';
+					}
+				},
+				lpname: function (value) {
+					if ($('#lpname').val() == "") {
+						return '请输入公司联系人。';
+					}
+				},
+				ltel: function (value) {
+					if ($('#lname').val() == "") {
+						return '请输入公司联系人电话。';
+					}
+				},
             });
 
             $("#tab").validate({

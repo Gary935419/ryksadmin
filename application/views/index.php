@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -21,7 +21,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="<?= RUN . '/admin/index' ?>"> 我的管理后台-如邮快送 </a>
+        <a href="<?= RUN . '/admin/index' ?>"> 我的管理后台-ERP </a>
     </div>
 
     <div class="left_open">
@@ -50,242 +50,188 @@
 <div class="left-nav">
     <div style="color: green" id="side-nav">
         <ul id="nav">
-			<?php if ($role_status1 == 1){ ?>
+
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="管理员管理">&#xe726;</i>
-                    <cite>管理员管理</cite>
+                    <i class="iconfont left-nav-li" lay-tips="员工管理">&#xe726;</i>
+                    <cite>员工管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
                         <a onclick="changeSrc('<?= RUN . '/users/users_list' ?>')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>管理员列表</cite>
+                            <cite>员工列表</cite>
                         </a>
                     </li>
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/role/role_list' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>角色列表</cite>
+							<cite>权限列表</cite>
 						</a>
 					</li>
                 </ul>
             </li>
-			<?php } ?>
-			<?php if ($role_status2 == 1){ ?>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="用户管理">&#xe6b8;</i>
-                    <cite>用户管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/member/member_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>
-                        </a>
-                    </li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/member_list1' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>司机列表</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/complaint_list' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>报备一览（跑腿）</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/complaint_list1' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>报备一览（代驾）</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>认证审核（跑腿）</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist1' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>认证审核（代驾）</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/member/driver_uplist2' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>商户审核</cite>
-						</a>
-					</li>
-                </ul>
-            </li>
-			<?php } ?>
-			<?php if ($role_status3 == 1){ ?>
+
 			<li>
 				<a href="javascript:;">
-					<i class="iconfont left-nav-li" lay-tips="监控管理">&#xe6b5;</i>
-					<cite>监控管理</cite>
+					<i class="iconfont left-nav-li" lay-tips="项目管理">&#xe6b5;</i>
+					<cite>项目管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/taskclass/monitoring' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_add_new' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>实时监控</cite>
+							<cite>项目添加</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>项目列表</cite>
 						</a>
 					</li>
 				</ul>
 			</li>
-			<?php } ?>
-			<?php if ($role_status4 == 1){ ?>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="推广管理">&#xe6b5;</i>
-                    <cite>推广管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/taskclass/taskclass_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>优惠券</cite>
-                        </a>
-                    </li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="原辅料管理">&#xe6b5;</i>
+					<cite>原辅料管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/taskclass/taskclass_list1' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_yuan' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>推荐金</cite>
+							<cite>原辅料信息列表</cite>
 						</a>
 					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="裁断报告书管理">&#xe6b5;</i>
+					<cite>裁断报告书管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_cai' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>指示数量管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduan' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>裁断数量管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduanzhuangxiang' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>装箱管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduanshutongji' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>裁断书统计管理</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="报价单管理">&#xe6b5;</i>
+					<cite>报价单管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=111' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算报价单管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=222' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>预算报价单审核</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=333' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算报价单管理</cite>
+						</a>
+					</li>
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_bao?id=444' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>决算报价单审核</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="生产计划管理">&#xe6b5;</i>
+					<cite>生产计划管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<?php if (isset($zulist) && !empty($zulist)) { ?>
+						<?php foreach ($zulist as $k => $v) : ?>
+							<li>
+								<a onclick="changeSrc('<?= RUN . '/goods/goods_list_shengchannew?zuname=' ?>'+'<?= $v['lname'] ?>')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite><?= $v['lname'] ?>生产计划</cite>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					<?php } ?>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="样品制作管理">&#xe6b5;</i>
+					<cite>样品制作管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<?php if (isset($zigongsilist) && !empty($zigongsilist)) { ?>
+						<?php foreach ($zigongsilist as $k => $v) : ?>
+							<li>
+								<a onclick="changeSrc('<?= RUN . '/label/yangpin_list?id=' ?>'+'<?= $v['id'] ?>')">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite><?= $v['lname'] ?></cite>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					<?php } ?>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="设定管理">&#xe6b5;</i>
+					<cite>设定管理</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/set/set_edit_new' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>优惠券设置</cite>
-						</a>
-					</li>
-                </ul>
-            </li>
-			<?php } ?>
-			<?php if ($role_status5 == 1){ ?>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="订单管理">&#xe6b5;</i>
-                    <cite>订单管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="changeSrc('<?= RUN . '/order/taskorder_list' ?>')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>代驾订单</cite>
-                        </a>
-                    </li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list1' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>专车订单</cite>
+							<cite>系统设定</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list2' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/label/label_list' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>顺路订单</cite>
+							<cite>子公司管理</cite>
 						</a>
 					</li>
 					<li>
-						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list3' ?>')">
+						<a onclick="changeSrc('<?= RUN . '/label/group_list' ?>')">
 							<i class="iconfont">&#xe6a7;</i>
-							<cite>代买订单</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/order/taskorder_list4' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>充值订单</cite>
-						</a>
-					</li>
-                </ul>
-            </li>
-			<?php } ?>
-			<?php if ($role_status6 == 1){ ?>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="财务管理">&#xe705;</i>
-                    <cite>财务管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-					<ul class="sub-menu">
-						<li>
-							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list' ?>')">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现申请(App)</cite>
-							</a>
-						</li>
-						<li>
-							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list1' ?>')">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>提现记录(小程序)</cite>
-							</a>
-						</li>
-						<li>
-							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list2' ?>')">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>账单详情(跑腿)</cite>
-							</a>
-						</li>
-						<li>
-							<a onclick="changeSrc('<?= RUN . '/examine/withdrawal_list3' ?>')">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>账单详情(代驾)</cite>
-							</a>
-						</li>
-						<li>
-							<a onclick="changeSrc('<?= RUN . '/order/invoice_list' ?>')">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>发票管理</cite>
-							</a>
-						</li>
-					</ul>
-            </li>
-			<?php } ?>
-			<?php if ($role_status7 == 1){ ?>
-			<li>
-				<a href="javascript:;">
-					<i class="iconfont left-nav-li" lay-tips="消息管理">&#xe6b5;</i>
-					<cite>消息管理</cite>
-					<i class="iconfont nav_right">&#xe697;</i></a>
-				<ul class="sub-menu">
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/notice/notice_list' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>消息列表(司机)</cite>
-						</a>
-					</li>
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/notice/notice_list1' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>消息列表(用户)</cite>
+							<cite>组管理</cite>
 						</a>
 					</li>
 				</ul>
 			</li>
-			<?php } ?>
-			<?php if ($role_status8 == 1){ ?>
-			<li>
-				<a href="javascript:;">
-					<i class="iconfont left-nav-li" lay-tips="设置管理">&#xe6ae;</i>
-					<cite>设置管理</cite>
-					<i class="iconfont nav_right">&#xe697;</i></a>
-				<ul class="sub-menu">
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/set/set_edit' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>计费以及保价设置</cite>
-						</a>
-					</li>
-				</ul>
-			</li>
-			<?php } ?>
         </ul>
     </div>
 </div>

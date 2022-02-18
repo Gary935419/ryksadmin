@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -18,37 +18,38 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>司机管理</cite></a>
+              <cite>ERP系统Demo对比页面</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/member_list1' ?>">
-                        <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="account" id="account" value="<?php echo $account ?>"
-                                   placeholder="电话、姓名、邀请码" autocomplete="off" class="layui-input">
-                        </div>
-                        <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
-                                        class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
-                </div>
+				<div class="layui-card-body ">
+					<form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/driver_uplist2' ?>">
+						<div class="layui-input-inline layui-show-xs-block">
+							<input class="layui-input" placeholder="开始日期" value="<?php echo $account ?>" name="start" id="start"></div>
+						<div class="layui-input-inline layui-show-xs-block">
+							<input class="layui-input" placeholder="截止日期" value="<?php echo $account ?>" name="end" id="end"></div>
+						<div class="layui-inline layui-show-xs-block">
+							<input type="text" name="account" id="account" value="<?php echo $account ?>"
+								   placeholder="名称" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-input-inline layui-show-xs-block">
+							<button class="layui-btn" lay-submit="" lay-filter="sreach">
+								<i class="layui-icon">&#xe615;</i></button>
+						</div>
+					</form>
+				</div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>司机昵称</th>
-                            <th>司机电话</th>
-                            <th>司机余额</th>
-							<th>推荐码</th>
-                            <th>司机信誉分</th>
-							<th>司机状态</th>
-                            <th>注册时间</th>
+                            <th>决算ID</th>
+                            <th>预算ID</th>
+							<th>决算名称</th>
+							<th>预算名称</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -56,24 +57,14 @@
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['driving_name'] ?></td>
-                                    <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
-                                    <td><?= $once['money'] ?>元</td>
-									<td><?= empty($once['invitation_code2_up']) ? '暂无邀请人' : $once['invitation_code2_up'] ?></td>
-                                    <td><?= $once['credit_points'] ?>分</td>
-<!--                                    <td>--><?//= $once['integral'] ?><!--积分</td>-->
-<!--                                    <td>--><?//= $once['cityname'] ?><!--</td>-->
-									<?php if ($once['is_logoff'] == 1) { ?>
-										<td style="color: red">锁定</td>
-									<?php } else { ?>
-										<td style="color: green">开启</td>
-									<?php } ?>
-<!--                                    <td>--><?//= empty($once['member_id']) ? '暂无推荐人' : $once['member_id'] ?><!--</td>-->
-                                    <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
+                                    <td>J123456789</td>
+									<td>Y987654321</td>
+									<td>Name123456789</td>
+									<td>Name987654321</td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
-                                            <i class="layui-icon">&#xe642;</i>编辑
+                                                onclick="xadmin.open('开始对比','#‘,900,500)">
+                                            <i class="layui-icon">&#xe642;</i>开始对比
                                         </button>
                                     </td>
                                 </tr>

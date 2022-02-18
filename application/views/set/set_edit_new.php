@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -22,22 +22,13 @@
         <form method="post" class="layui-form" action="" name="basic_validate" id="tab">
             <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>优惠券金额
+                    <span class="x-red">*</span>系统汇率
                 </label>
                 <div class="layui-input-inline" style="width: 300px;">
                     <input type="number" id="price" name="price" lay-verify="price"
                            autocomplete="off" value="<?php echo $price ?>" class="layui-input">
                 </div>
             </div>
-			<div class="layui-form-item">
-				<label for="L_pass" class="layui-form-label" style="width: 30%;">
-					<span class="x-red">*</span>优惠券有效天数
-				</label>
-				<div class="layui-input-inline" style="width: 300px;">
-					<input type="number" id="days" name="days" lay-verify="days"
-						   autocomplete="off" value="<?php echo $days ?>" class="layui-input">
-				</div>
-			</div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>

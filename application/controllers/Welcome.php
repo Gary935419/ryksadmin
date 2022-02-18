@@ -36,6 +36,9 @@ class Welcome extends CI_Controller
 		$data["ordercount4"] = $this->order->getOrder4Count();
 		$data["ordercount5"] = $this->order->getOrder5Count();
 		$data["ordercount6"] = $this->order->getOrder6Count();
+
+		$data["ordercount11"] = count($this->order->getOrder11Count());
+		$data["ordercount22"] = count($this->order->getOrder22Count());
         $this->load->view('welcome_message',$data);
     }
 }

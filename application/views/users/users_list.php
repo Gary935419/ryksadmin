@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -19,7 +19,7 @@
           <span class="layui-breadcrumb">
 <!--            <a href="--><? //= RUN . '/admin/index' ?><!--">最初のページ</a>-->
             <a>
-              <cite>管理员管理</cite></a>
+              <cite>员工管理</cite></a>
           </span>
     <!--          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新">-->
     <!--            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>-->
@@ -32,7 +32,7 @@
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/users/users_list' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="user_name" id="user_name" value="<?php echo $user_name1 ?>"
-                                   placeholder="管理员账号" autocomplete="off" class="layui-input">
+                                   placeholder="账号" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -40,9 +40,14 @@
                         </div>
                     </form>
                 </div>
+				<a href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+					<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 120px;">
+						<i class="iconfont">&#xe74a;</i>  数据导出
+					</button>
+				</a>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('添加','<?= RUN . '/users/users_add' ?>',900,500)"><i
-                            class="layui-icon"></i>添加
+                        onclick="xadmin.open('员工添加','<?= RUN . '/users/users_add' ?>',900,500)"><i
+                            class="layui-icon"></i>员工添加
                 </button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -50,7 +55,7 @@
                         <tr>
                             <th style="width: 10%">序号</th>
                             <th style="width: 20%">账号</th>
-                            <th style="width: 20%">角色</th>
+                            <th style="width: 20%">权限</th>
                             <th style="width: 10%">状态</th>
                             <th style="width: 20%">操作</th>
                         </thead>

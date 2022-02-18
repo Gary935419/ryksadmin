@@ -9,59 +9,71 @@ class Order_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
-	//专车送 count
+
 	public function getOrder1Count()
 	{
-		$sqlw = " where order_status > 1 and order_type = 1 ";
-		$sql = "SELECT count(1) as number FROM `order_traffic` " . $sqlw;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `erp_xiangmuhetong` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-	//顺风送 count
+
 	public function getOrder2Count()
 	{
-		$sqlw = " where order_status > 1 and order_type = 2 ";
-		$sql = "SELECT count(1) as number FROM `order_traffic` " . $sqlw;
+		$sqlw = " where 1=1 and htype!=1";
+		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-	//代买 count
+
 	public function getOrder3Count()
 	{
-		$sqlw = " where order_status > 1 and order_type = 3 ";
-		$sql = "SELECT count(1) as number FROM `order_traffic` " . $sqlw;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `erp_zigongsi` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-	//代驾 count
+
 	public function getOrder4Count()
 	{
-		$sqlw = " where order_status > 1 ";
-		$sql = "SELECT count(1) as number FROM `order_town` " . $sqlw;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `admin_user` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-	//跑腿 未支付 count
+
 	public function getOrder5Count()
 	{
-		$sqlw = " where order_status = 1 ";
-		$sql = "SELECT count(1) as number FROM `order_traffic` " . $sqlw;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `erp_yangmingmingxi` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
 	}
-	//代驾 未支付 count
+
 	public function getOrder6Count()
 	{
-		$sqlw = " where order_status = 1 ";
-		$sql = "SELECT count(1) as number FROM `order_town` " . $sqlw;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `erp_zubie` " . $sqlw;
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
+	}
+	public function getOrder11Count()
+	{
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT * FROM `erp_baojiaxiangmu` " . $sqlw . " group by kid";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getOrder22Count()
+	{
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT * FROM `erp_baojiaxiangmujue` " . $sqlw . " group by kid";
+		return $this->db->query($sql)->result_array();
 	}
 	public function getdriverById($id)
 	{
@@ -138,22 +150,15 @@ class Order_model extends CI_Model
 		$sql = "SELECT m.*,me.name,me.account FROM `order_town` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc ";
 		return $this->db->query($sql)->result_array();
 	}
-	public function gettaskorderAllcsv1($starttime,$end)
+	public function getmemberinfoAllcsv1($user_name)
 	{
-		$sqlw = " where 1=1 and order_status != 1";
-		if (!empty($starttime) && !empty($end)) {
-			$starttime = strtotime($starttime);
-			$end = strtotime($end)+86400;
-			$sqlw .= " and m.add_time >= $starttime and m.add_time <= $end ";
-		} elseif (!empty($starttime) && empty($end)) {
-			$starttime = strtotime($starttime);
-			$sqlw .= " and m.add_time >= $starttime ";
-		} elseif (empty($starttime) && !empty($end)) {
-			$end = strtotime($end)+86400;
-			$sqlw .= " and m.add_time <= $end ";
+		$sqlw = " where 1=1 ";
+		if (!empty($user_name)) {
+			$sqlw .= " and ( u.username like '%" . $user_name . "%' ) ";
 		}
-		$sql = "SELECT m.*,me.name,me.account FROM `order_traffic` m  LEFT JOIN `user` me ON me.id = m.user_id " . $sqlw . " order by m.add_time desc ";
+		$sql = "SELECT u.*,r.rname as rname FROM `admin_user` u left join `role` r on u.rid=r.rid " . $sqlw . " order by u.id desc";
 		return $this->db->query($sql)->result_array();
+
 	}
 	public function gettaskorderAllcsv3($starttime,$end)
 	{

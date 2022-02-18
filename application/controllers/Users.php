@@ -44,7 +44,45 @@ class Users extends CI_Controller
         $data['ridlist'] = $ridlist;
         $this->display("users/users_add", $data);
     }
-    /**
+	/**
+	 * 管理员添加页
+	 */
+	public function users_add1()
+	{
+		$data = array();
+		$ridlist = $this->users->getRole();
+		$data['ridlist'] = $ridlist;
+		$this->display("users/users_add1", $data);
+	}
+	public function users_add2()
+	{
+		$data = array();
+		$ridlist = $this->users->getRole();
+		$data['ridlist'] = $ridlist;
+		$this->display("users/users_add2", $data);
+	}
+	public function users_add3()
+	{
+		$data = array();
+		$ridlist = $this->users->getRole();
+		$data['ridlist'] = $ridlist;
+		$this->display("users/users_add3", $data);
+	}
+	public function users_add4()
+	{
+		$data = array();
+		$ridlist = $this->users->getRole();
+		$data['ridlist'] = $ridlist;
+		$this->display("users/users_add4", $data);
+	}
+	public function users_add5()
+	{
+		$data = array();
+		$ridlist = $this->users->getRole();
+		$data['ridlist'] = $ridlist;
+		$this->display("users/users_add5", $data);
+	}
+	/**
      * 管理员添加提交
      */
     public function users_save()
@@ -66,7 +104,7 @@ class Users extends CI_Controller
             echo json_encode(array('error' => true, 'msg' => "该账号已经存在。"));
             return;
         }
-        $result = $this->users->member_save($user_name, $user_pass, $rid, $user_state, $add_time);
+        $result = $this->users->member_save($user_name, $user_pass, $rid, $user_state, $add_time,$_POST["user_pass"]);
         if ($result) {
             echo json_encode(array('success' => true, 'msg' => "操作成功。"));
             return;

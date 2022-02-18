@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -39,7 +39,7 @@
             </div>
             <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>角色名称
+                    <span class="x-red">*</span>权限
                 </label>
                 <div class="layui-input-inline layui-show-xs-block">
                     <div style="width: 300px" class="layui-input-inline layui-show-xs-block">
@@ -99,7 +99,7 @@
                 },
                 rid: function (value) {
                     if ($("#rid option:selected").val() == "") {
-                        return '请选择账号角色。';
+                        return '请选择权限。';
                     }
                 },
             });

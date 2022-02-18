@@ -74,17 +74,16 @@
 	 * @return {[type]}        [description]
 	 */
 	Xadmin.prototype.open = function (title,url,w,h,full) {
-		if (title == null || title == '') {
-	        var title=false;
-	    };
+		// var index1 = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+		// parent.layer.close(index1); //再执行关闭
 	    if (url == null || url == '') {
 	        var url="404.html";
 	    };
 	    if (w == null || w == '') {
-	        var w=($(window).width()*0.9);
+	        var w=$(window).width();
 	    };
 	    if (h == null || h == '') {
-	        var h=($(window).height() - 50);
+	        var h=$(window).height();
 	    };
 	    var index = layer.open({
 	        type: 2,
@@ -100,7 +99,7 @@
             }
 	    });
 	    if(full){
-	       layer.full(index); 
+	       layer.full(index);
 	    }
 	}
 	/**

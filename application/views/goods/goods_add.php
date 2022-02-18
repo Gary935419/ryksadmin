@@ -2,111 +2,178 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
-    <link rel="stylesheet" href="<?= STA ?>/css/font.css">
-    <link rel="stylesheet" href="<?= STA ?>/css/xadmin.css">
-    <script type="text/javascript" src="<?= STA ?>/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
-    <script type="text/javascript" src="<?= STA ?>/js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" src="<?= STA ?>/js/jquery.validate.js"></script>
-    <script type="text/javascript" src="<?= STA ?>/js/upload/jquery_form.js"></script>
+		<link rel="stylesheet" href="<?= STA ?>/css/font.css">
+		<link rel="stylesheet" href="<?= STA ?>/css/xadmin.css">
+		<script type="text/javascript" src="<?= STA ?>/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="<?= STA ?>/js/xadmin.js"></script>
+		<script type="text/javascript" src="<?= STA ?>/js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="<?= STA ?>/js/jquery.validate.js"></script>
+		<script type="text/javascript" src="<?= STA ?>/js/upload/jquery_form.js"></script>
 </head>
 <body>
 <div class="layui-fluid" style="padding-top: 66px;">
     <div class="layui-row">
         <form method="post" class="layui-form" action="" name="basic_validate" id="tab">
             <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家名称
+                <label for="L_pass" class="layui-form-label" style="width: 20%;">
+                    <span class="x-red">*</span>合同编号
                 </label>
                 <div class="layui-input-inline" style="width: 300px;">
-                    <input type="text" id="gname" name="gname" lay-verify="gname"
+                    <input type="text" id="bianhao" name="bianhao" lay-verify="bianhao"
                            autocomplete="off" class="layui-input">
                 </div>
+				<label for="L_pass" class="layui-form-label" style="width: 10%;">
+					<span class="x-red">*</span>甲方名称
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input type="text" id="mingcheng" name="mingcheng" lay-verify="mingcheng"
+						   autocomplete="off" class="layui-input">
+				</div>
             </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家类型
-                </label>
-                <div class="layui-input-inline layui-show-xs-block">
-                    <div style="width: 300px" class="layui-input-inline layui-show-xs-block">
-                        <select name="tid" id="tid" lay-verify="tid">
-                            <?php if (isset($tidlist) && !empty($tidlist)) { ?>
-                                <option value="">请选择</option>
-                                <?php foreach ($tidlist as $k => $v) : ?>
-                                    <option value="<?= $v['tid'] ?>"><?= $v['tname'] ?></option>
-                                <?php endforeach; ?>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家排序
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <input type="number" id="gsort" name="gsort" lay-verify="gsort"
-                           autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>状态
-                </label>
-                <div class="layui-input-inline" style="width: 500px;">
-                    <input type="radio" name="status" lay-skin="primary" title="已推荐" value="1" checked>
-                    <input type="radio" name="status" lay-skin="primary" title="未推荐" value="0">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家列表图
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <button type="button" class="layui-btn" id="upload1">上传图片</button>
-                    <div class="layui-upload-list">
-                        <input type="hidden" name="gimg" id="gimg" lay-verify="gimg" autocomplete="off"
-                               class="layui-input">
-                        <img class="layui-upload-img" style="width: 100px;height: 100px;display: none;" id="gimgimg" name="gimgimg">
-                        <p id="demoText"></p>
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>详情Banner图
-                </label>
-                <div class="layui-input-inline" style="width: 300px;">
-                    <button type="button" class="layui-btn" id="uploads">上传图片</button>
-                    <div class="layui-upload-list" id="imgnew">
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>签订时间
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input id="qianding" name="qianding" lay-verify="qianding"
+						   autocomplete="off" class="layui-input">
+				</div>
+				<label for="L_pass" class="layui-form-label" style="width: 10%;">
+					<span class="x-red">*</span>交货时间
+				</label>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input id="jiaohuoqi" name="jiaohuoqi" lay-verify="jiaohuoqi"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>项目负责人
+				</label>
+				<div class="layui-input-inline" style="width: 66%;">
+					<?php if (isset($tidlist) && !empty($tidlist)) { ?>
+						<?php foreach ($tidlist as $k => $v) : ?>
+							<input type="checkbox" name="menu[]" value="<?= $v['id'] ?>" lay-skin="primary" lay-filter="father"
+								   lay-verify="check" title="<?= $v['username'] ?>">
+						<?php endforeach; ?>
+					<?php } ?>
+				</div>
+			</div>
 
-                    </div>
-                    <div id="newinp">
-
-                    </div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家标题
-                </label>
-                <div class="layui-input-inline" style="width: 400px;">
-                    <textarea id="gtitle" name="gtitle" placeholder="请输入内容" lay-verify="gtitle" class="layui-textarea"></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label" style="width: 30%;">
-                    <span class="x-red">*</span>商家简介
-                </label>
-                <div class="layui-input-inline" style="width: 610px;">
-                    <textarea id="gcontent" name="gcontent" placeholder="请输入内容" lay-verify="gcontent" class="layui-textarea"></textarea>
-                </div>
-            </div>
+			<div class="layui-form-item" id="div1">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd1" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(2,1)"></i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div2" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd2" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(3,2)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(2,1)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val2" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div3" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd3" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(4,3)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(3,2)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val3" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div4" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd4" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(5,4)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(4,3)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val4" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div5" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd5" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(6,5)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(5,4)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val5" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div6" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd6" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(7,6)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(6,5)">&#xe6fe;</i>
+				<div class="layui-input-inline" id="val6" style="width: 300px;">
+					<input name="kuanhao[]" id="val6" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div7" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd7" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(8,7)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(7,6)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val7" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div8" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd8" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(9,8)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(8,7)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val8" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div9" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd9" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(10,9)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(9,8)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val9" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" id="div10" style="display: none;">
+				<label for="L_pass" class="layui-form-label" style="width: 20%;">
+					<span class="x-red">*</span>合同款号
+				</label>
+				<i class="layui-icon" id="divadd10" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return addnow(11,10)"></i>
+				<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;" onclick="return dellete(10,9)">&#xe6fe;</i>
+				<div class="layui-input-inline" style="width: 300px;">
+					<input name="kuanhao[]" id="val10" lay-verify="kuanhao"
+						   autocomplete="off" class="layui-input">
+				</div>
+			</div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 30%;">
                 </label>
@@ -124,70 +191,28 @@
         </form>
     </div>
 </div>
-
 <script>
-    layui.use('upload', function(){
-        var $ = layui.jquery
-            ,upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#upload1'
-            ,url: '<?= RUN . '/upload/pushFIle' ?>'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#gimgimg').attr('src', result); //图片链接（base64）
-                    var img = document.getElementById("gimgimg");
-                    img.style.display="block";
-                });
-            }
-            ,done: function(res){
-                if(res.code == 200){
-                    $('#gimg').val(res.src); //图片链接（base64）
-                    return layer.msg('上传成功');
-                }else {
-                    return layer.msg('上传失败');
-                }
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload();
-                });
-            }
-        });
-        //多图片上传
-        upload.render({
-            elem: '#uploads'
-            ,url: '<?= RUN . '/upload/pushFIle' ?>'
-            ,multiple: true
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                var timestamp = (new Date()).valueOf();
-                obj.preview(function(index, file, result){
-                    $('#imgnew').append('<img id="avaterimg'+ timestamp +'" style="width:100px;height:100px;" src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img"><p id="avaterimgp'+ timestamp +'" style="margin-top: -70px;margin-left: -43px;" class="layui-btn layui-btn-xs layui-btn-danger demo-delete" onclick="jusp('+ timestamp +')">删除</p>')
-                });
-            }
-            ,done: function(res){
-                //上传完毕
-                if(res.code == 200){
-                    var timestamp = (new Date()).valueOf();
-                    $('#newinp').append('<input type="hidden" name="avater[]" id="avater'+ timestamp +'" value="'+ res.src +'">')
-                    return layer.msg('上传成功');
-                }else {
-                    return layer.msg('上传失败');
-                }
-            }
-        });
-    });
-    function jusp(index) {
-        $("#avater"+index).remove();
-        $("#avaterimg"+index).remove();
-        $("#avaterimgp"+index).remove();
-    }
+	function addnow(id,idd){
+		$("#div"+id).show();
+		$("#divadd"+idd).hide();
+	}
+	function dellete(id,idd){
+		$("#div"+id).hide();
+		$("#val"+id).val("");
+		$("#divadd"+idd).show();
+	}
+</script>
+<script>layui.use(['laydate', 'form'],
+			function() {
+				var laydate = layui.laydate;
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#qianding' //指定元素
+				});
+				laydate.render({
+					elem: '#jiaohuoqi' //指定元素
+				});
+			});
 </script>
 <script>
     layui.use(['form','layedit', 'layer'],
@@ -201,38 +226,49 @@
                     type: 'post',
                 }
             });
-            var editIndex1 = layedit.build('gcontent', {
-                height: 300,
-            });
+            // var editIndex1 = layedit.build('gcontent', {
+            //     height: 300,
+            // });
             //自定义验证规则
             form.verify({
-                gname: function (value) {
-                    if ($('#gname').val() == "") {
-                        return '请输入商家名称。';
+				bianhao: function (value) {
+                    if ($('#bianhao').val() == "") {
+                        return '请输入合同编号。';
                     }
                 },
-                gtitle: function (value) {
-                    if ($('#gtitle').val() == "") {
-                        return '请输入商家标题。';
+				mingcheng: function (value) {
+                    if ($('#mingcheng').val() == "") {
+                        return '请输入甲方名称。';
                     }
                 },
-                tid: function (value) {
-                    if ($("#tid option:selected").val() == "") {
-                        return '请选择商家类型。';
+                // tid: function (value) {
+                //     if ($("#tid option:selected").val() == "") {
+                //         return '请选择商家类型。';
+                //     }
+                // },
+				qianding: function (value) {
+                    if ($('#qianding').val() == "") {
+                        return '请输入签订时间。';
                     }
                 },
-                gimg: function (value) {
-                    if ($('#gimg').val() == "") {
-                        return '请上传商家列表图。';
-                    }
-                },
-                gcontent: function(value) {
-                    // 将富文本编辑器的值同步到之前的textarea中
-                    layedit.sync(editIndex1);
-                    if ($('#gcontent').val() == "") {
-                        return '请输入商家简介。';
-                    }
-                },
+				jiaohuoqi: function (value) {
+					if ($('#jiaohuoqi').val() == "") {
+						return '请输入交货时间。';
+					}
+				},
+				check: function () {
+					var checked = $("input[type='checkbox']:checked").length;
+					if (checked < 1) {
+						return '请勾选负责人。';
+					}
+				}
+                // gcontent: function(value) {
+                //     // 将富文本编辑器的值同步到之前的textarea中
+                //     layedit.sync(editIndex1);
+                //     if ($('#gcontent').val() == "") {
+                //         return '请输入商家简介。';
+                //     }
+                // },
             });
 
             $("#tab").validate({

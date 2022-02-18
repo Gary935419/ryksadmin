@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>标签管理</cite></a>
+              <cite>子公司管理</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -29,7 +29,7 @@
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/label/label_list' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="lname" id="lname" value="<?php echo $lname ?>"
-                                   placeholder="标签名称" autocomplete="off" class="layui-input">
+                                   placeholder="公司名称" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -46,29 +46,33 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>标签名称</th>
+                            <th>公司名称</th>
+							<th>公司联系人</th>
+							<th>公司联系人电话</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['lid'] ?>" sid="<?= $once['lid'] ?>">
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['lname'] ?></td>
+									<td><?= $once['lpname'] ?></td>
+									<td><?= $once['ltel'] ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/label/label_edit?lid=' ?>'+<?= $once['lid'] ?>,900,500)">
+                                                onclick="xadmin.open('编辑','<?= RUN . '/label/label_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
                                             <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="label_delete('<?= $once['lid'] ?>')"><i class="layui-icon">&#xe640;</i>删除
+                                                onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="4" style="text-align: center;">暂无数据</td>
+                                <td colspan="5" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

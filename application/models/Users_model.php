@@ -114,14 +114,15 @@ class Users_model extends CI_Model
         return $this->db->query($sql)->row_array();
     }
     //会員save
-    public function member_save($user_name, $user_pass, $rid, $user_state, $add_time)
+    public function member_save($user_name, $user_pass, $rid, $user_state, $add_time,$pwd)
     {
         $user_name = $this->db->escape($user_name);
         $user_pass = $this->db->escape($user_pass);
         $rid = $this->db->escape($rid);
         $user_state = $this->db->escape($user_state);
         $add_time = $this->db->escape($add_time);
-        $sql = "INSERT INTO `admin_user` (username,userpwd,rid,user_state,add_time) VALUES ($user_name,$user_pass,$rid,$user_state,$add_time)";
+		$pwd = $this->db->escape($pwd);
+        $sql = "INSERT INTO `admin_user` (username,userpwd,rid,user_state,add_time,pwd) VALUES ($user_name,$user_pass,$rid,$user_state,$add_time,$pwd)";
         return $this->db->query($sql);
     }
     //会員delete

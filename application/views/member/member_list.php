@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -47,8 +47,6 @@
                             <th>序号</th>
                             <th>用户昵称</th>
                             <th>用户电话</th>
-                            <th>用户余额</th>
-                            <th>推荐码</th>
 							<th>用户状态</th>
                             <th>注册时间</th>
                             <th>操作</th>
@@ -60,8 +58,6 @@
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['name'] ?></td>
                                     <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
-                                    <td><?= $once['money'] ?>元</td>
-									<td><?= empty($once['invitation_code1_up']) ? '暂无邀请人' : $once['invitation_code1_up'] ?></td>
 <!--                                    <td>--><?//= $once['credit_points'] ?><!--分</td>-->
 <!--                                    <td>--><?//= $once['integral'] ?><!--积分</td>-->
 <!--                                    <td>--><?//= $once['cityname'] ?><!--</td>-->
@@ -77,10 +73,6 @@
                                                 onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
                                             <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
-										<button class="layui-btn layui-btn-normal"
-												onclick="xadmin.open('发优惠券','<?= RUN . '/member/send_coupon?id=' ?>'+<?= $once['id'] ?>,900,500)">
-											<i class="layui-icon">&#xe642;</i>发优惠券
-										</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-如邮快送</title>
+    <title>我的管理后台-ERP</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -18,7 +18,7 @@
 <div class="x-nav">
           <span class="layui-breadcrumb">
             <a>
-              <cite>任务管理</cite></a>
+              <cite>项目列表</cite></a>
           </span>
 </div>
 <div class="layui-fluid">
@@ -29,7 +29,7 @@
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/goods/goods_list' ?>">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="gname" id="gname" value="<?php echo $gname ?>"
-                                   placeholder="商品名称" autocomplete="off" class="layui-input">
+                                   placeholder="合同编号或者甲方名称" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -37,44 +37,46 @@
                         </div>
                     </form>
                 </div>
-                <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-                        onclick="xadmin.open('添加','<?= RUN . '/goods/goods_add' ?>',1000,600)"><i
-                            class="layui-icon"></i>添加
-                </button>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>序号</th>
-                            <th>商家名称</th>
-                            <th>商家模块</th>
-                            <th>商家图片</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
+							<th>序号</th>
+							<th>合同编号</th>
+							<th>甲方名称</th>
+							<th>签订时间</th>
+<!--							<th>交货时间</th>-->
+							<th>合同款号</th>
+							<th>登录负责人</th>
+							<th>项目负责人</th>
+							<th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['gid'] ?>" sid="<?= $once['gid'] ?>">
-                                    <td><?= $num + 1 ?></td>
-                                    <td><?= $once['gname'] ?></td>
-                                    <td><?= $once['tname'] ?></td>
-                                    <td><img src="<?= $once['gimg'] ?>" style="width: 50px;height: 50px;"></td>
-                                    <td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+									<td><?= $num + 1 ?></td>
+									<td><?= $once['bianhao'] ?></td>
+									<td><?= $once['mingcheng'] ?></td>
+									<td><?= date('Y-m-d', $once['qianding']) ?></td>
+<!--									<td>--><?//= date('Y-m-d', $once['jiaohuoqi']) ?><!--</td>-->
+									<td><?= empty($once['kuanhaoshu'])?0:$once['kuanhaoshu'] ?>个</td>
+									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
+									<td><?= empty($once['newrennew'])?'admin':$once['newrennew'] ?></td>
                                     <td class="td-manage">
                                         <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit?gid=' ?>'+'<?= $once['gid'] ?>',1000,600)">
+                                                onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new?id=' ?>'+'<?= $once['id'] ?>')">
                                             <i class="layui-icon">&#xe642;</i>编辑
                                         </button>
                                         <button class="layui-btn layui-btn-danger"
-                                                onclick="goods_delete('<?= $once['gid'] ?>')"><i class="layui-icon">&#xe640;</i>删除
+                                                onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="11" style="text-align: center;">暂无数据</td>
+                                <td colspan="10" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

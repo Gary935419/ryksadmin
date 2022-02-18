@@ -18,54 +18,78 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-body ">
-					<blockquote class="layui-elem-quote">欢迎登录后台管理系统
+					<blockquote class="layui-elem-quote">欢迎您登录ERP后台管理系统
 					</blockquote>
 				</div>
 			</div>
 		</div>
 		<div class="layui-col-md12">
 			<div class="layui-card">
+				<div class="layui-card-header">审核统计</div>
+				<div class="layui-card-body ">
+					<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+						<li class="layui-col-md6">
+							<a href="javascript:;" class="x-admin-backlog-body">
+								<h3>预算报价单待审核数量（单位：个）</h3>
+								<p>
+									<cite><?php echo $ordercount11 ?></cite></p>
+							</a>
+						</li>
+						<li class="layui-col-md6">
+							<a href="javascript:;" class="x-admin-backlog-body">
+								<h3>决算报价单待审核数量（单位：个）</h3>
+								<p>
+									<cite><?php echo $ordercount22 ?></cite></p>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-col-md12">
+			<div class="layui-card">
 				<div class="layui-card-header">数据统计</div>
 				<div class="layui-card-body ">
 					<ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
-						<li class="layui-col-md2 layui-col-xs6">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>专车送总订单量（单位：个）</h3>
+								<h3>项目数量（单位：个）</h3>
 								<p>
 									<cite><?php echo $ordercount1 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs6">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>顺风送总订单量（单位：个）</h3>
+								<h3>生产计划数量（单位：个）</h3>
 								<p>
 									<cite><?php echo $ordercount2 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs6">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>代买总订单量（单位：个）</h3>
-								<p>
-									<cite><?php echo $ordercount3 ?></cite></p>
-							</a>
-						</li>
-						<li class="layui-col-md2 layui-col-xs6">
-							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>代驾总订单量（单位：个）</h3>
+								<h3>员工数量（单位：个）</h3>
 								<p>
 									<cite><?php echo $ordercount4 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs6">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>跑腿未支付订单量（单位：个）</h3>
+								<h3>样品数量（单位：个）</h3>
 								<p>
 									<cite><?php echo $ordercount5 ?></cite></p>
 							</a>
 						</li>
-						<li class="layui-col-md2 layui-col-xs6">
+						<li class="layui-col-md2">
 							<a href="javascript:;" class="x-admin-backlog-body">
-								<h3>代驾未支付订单量（单位：个）</h3>
+								<h3>子公司数量（单位：个）</h3>
+								<p>
+									<cite><?php echo $ordercount3 ?></cite></p>
+							</a>
+						</li>
+						<li class="layui-col-md2">
+							<a href="javascript:;" class="x-admin-backlog-body">
+								<h3>组数量（单位：个）</h3>
 								<p>
 									<cite><?php echo $ordercount6 ?></cite></p>
 							</a>
@@ -74,6 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		</div>
+
 		<div class="layui-col-md12">
 			<div class="layui-card">
 				<div class="layui-card-header">开发团队</div>
@@ -81,29 +106,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<table class="layui-table">
 						<tbody>
 						<tr>
-							<th>版权所有</th>
-							<td>爱度网络信息科技（大连）有限公司</td>
-						</tr>
-						<tr>
-							<th>联系地址</th>
-							<td>大连市甘井子区姚胜街14号1-1-5</td>
-						</tr>
-						<tr>
 							<th>开发者</th>
-							<td>Gary(zhaoyeu_gary@163.com)</td></tr>
+							<td>Gary(zhaoyue_gary@163.com)</td></tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
-		<div class="layui-col-md12">
-			<div class="layui-card">
-				<div class="layui-card-header">企业Logo</div>
-				<div class="layui-card-body ">
-					<img src="http://ryksht.ychlkj.cn/static/images/icon-about_us.png">
-				</div>
-			</div>
-		</div>
+<!--		<div class="layui-col-md12">-->
+<!--			<div class="layui-card">-->
+<!--				<div class="layui-card-header">企业Logo</div>-->
+<!--				<div class="layui-card-body ">-->
+<!--					<img src="http://ryksht.ychlkj.cn/static/images/icon-about_us.png">-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
 	</div>
 </div>
 </div>
