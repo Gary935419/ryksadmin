@@ -460,13 +460,13 @@ class Role_model extends CI_Model
 	public function getgoodsAllNewid($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id where u.id=$id";
+		$sql = "SELECT u.*,r.bianhao,r.qianding FROM `erp_xiangmukuanhao` u left join `erp_xiangmuhetong` r on u.xid=r.id where u.kuanhao=$id";
 		return $this->db->query($sql)->row_array();
 	}
 	public function gettidlistguige($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_yuanfuliaoguige` where kid = $id ";
+		$sql = "SELECT * FROM `erp_yuanfuliaoguige` where kuanhao = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistguige_cai($id)
@@ -490,7 +490,7 @@ class Role_model extends CI_Model
 	public function gettidlistpinming($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where kid = $id ";
+		$sql = "SELECT * FROM `erp_yuanfuliaopinghengbian` where kuanhao = $id ";
 		return $this->db->query($sql)->result_array();
 	}
 
@@ -1076,7 +1076,7 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_saveerp_yuanfuliaopinggheng($xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$daoliaori,$beizhu,$buzu,$hetonghao,$kuanhao,$riqi,$excelwendang,$add_time)
+	public function role_saveerp_yuanfuliaopinggheng($xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$buzu,$beizhu,$daoliaori,$hetonghao,$kuanhao,$riqi,$excelwendang,$add_time)
 	{
 		$xianghao = $this->db->escape($xianghao);
 		$pinming = $this->db->escape($pinming);
@@ -1106,7 +1106,7 @@ class Role_model extends CI_Model
 		$add_time = $this->db->escape($add_time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
 
-		$sql = "INSERT INTO `erp_yuanfuliaopinghengbian` (newren,addtime,xianghao,pinming,pinfan,sehao,guige,danwei,tidanshu,qingdianshu,yangzhishi,shiji,sunhao,jianshu,sunhaoyongliang,zhishiyongliang,shijiyongliang,shengyu,daoliaori,beizhu,buzu,hetonghao,kuanhao,riqi,excelwendang) VALUES ($user_name,$add_time,$xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$daoliaori,$beizhu,$buzu,$hetonghao,$kuanhao,$riqi,$excelwendang)";
+		$sql = "INSERT INTO `erp_yuanfuliaopinghengbian` (newren,addtime,xianghao,pinming,pinfan,sehao,guige,danwei,tidanshu,qingdianshu,yangzhishi,shiji,sunhao,jianshu,sunhaoyongliang,zhishiyongliang,shijiyongliang,shengyu,buzu,beizhu,daoliaori,hetonghao,kuanhao,riqi,excelwendang) VALUES ($user_name,$add_time,$xianghao,$pinming,$pinfan,$sehao,$guige,$danwei,$tidanshu,$qingdianshu,$yangzhishi,$shiji,$sunhao,$jianshu,$sunhaoyongliang,$zhishiyongliang,$shijiyongliang,$shengyu,$buzu,$beizhu,$daoliaori,$hetonghao,$kuanhao,$riqi,$excelwendang)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;

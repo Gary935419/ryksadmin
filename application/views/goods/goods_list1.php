@@ -51,11 +51,6 @@
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
 									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
-<!--									--><?php //if (empty($once['openflg']) || empty($once['openflg1'])){ ?>
-<!--										<td style="color: red;">未添加</td>-->
-<!--									--><?php //}else{ ?>
-<!--										<td style="color: green;">已添加</td>-->
-<!--									--><?php //} ?>
 									<td class="td-manage">
 										<?php if ($once['excelwendang'] == "#"){ ?>
 											<button class="layui-btn layui-btn-normal"
@@ -92,6 +87,42 @@
 
 										<?php } ?>
 									</td>
+								</tr>
+								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+									<?php if ($once['excelwendang'] != "#"){ ?>
+										<td colspan="10" style="text-align: center;">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/paibanka_csv?id='.$once['kuanhao'] ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版排版卡下载
+												</button>
+											</a>
+											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版裁断ok
+												</button>
+											</a>
+											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版车间色卡下载
+												</button>
+											</a>
+											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版完成下载
+												</button>
+											</a>
+											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版特种下载
+												</button>
+											</a>
+											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+												<button class="layui-btn layui-card-header">
+													<i class="iconfont">&#xe74a;</i>  竖版手缝下载
+												</button>
+											</a>
+										</td>
+									<?php } ?>
 								</tr>
 							<?php endforeach; ?>
 						<?php } else { ?>

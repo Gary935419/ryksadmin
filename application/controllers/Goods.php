@@ -6253,7 +6253,7 @@ class Goods extends CI_Controller
 				$columns1 = $items->getCellIterator();       //列
 				$row_arr1 = array();
 				//确定从哪一行开始读取
-				if($rows1 > 13){
+				if($rows1 > 15){
 					break;
 				}
 				//逐列读取
@@ -6265,8 +6265,9 @@ class Goods extends CI_Controller
 				$res_arr1[] = $row_arr1;
 			}
 		}
+
 		$arrnew = array();
-		for ($i=13; $i<23; $i++){
+		for ($i=13; $i<25; $i++){
 			$numk = $i - 13;
 			if (!empty($res_arr1[2][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
@@ -6275,8 +6276,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 10;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 12;
 			if (!empty($res_arr1[3][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[3][12];
@@ -6284,8 +6285,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 20;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 24;
 			if (!empty($res_arr1[4][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[4][12];
@@ -6293,8 +6294,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 30;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 36;
 			if (!empty($res_arr1[5][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[5][12];
@@ -6302,8 +6303,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 40;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 48;
 			if (!empty($res_arr1[6][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[6][12];
@@ -6311,8 +6312,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 50;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 60;
 			if (!empty($res_arr1[7][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[7][12];
@@ -6320,8 +6321,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 60;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 72;
 			if (!empty($res_arr1[8][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[8][12];
@@ -6329,8 +6330,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 70;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 84;
 			if (!empty($res_arr1[9][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[9][12];
@@ -6338,8 +6339,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 80;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 96;
 			if (!empty($res_arr1[10][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[10][12];
@@ -6347,8 +6348,8 @@ class Goods extends CI_Controller
 			}
 		}
 
-		for ($i=13; $i<23; $i++){
-			$numk = $i - 13 + 90;
+		for ($i=13; $i<25; $i++){
+			$numk = $i - 13 + 108;
 			if (!empty($res_arr1[11][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[11][12];
@@ -6371,7 +6372,7 @@ class Goods extends CI_Controller
 				$columns = $items->getCellIterator();       //列
 				$row_arr = array();
 				//确定从哪一行开始读取
-				if($rows < 13){
+				if($rows < 15){
 					continue;
 				}
 				//逐列读取
@@ -6383,8 +6384,7 @@ class Goods extends CI_Controller
 				$res_arr[] = $row_arr;
 			}
 		}
-		
-		for ($i=0; $i<=66; $i++)
+		for ($i=0; $i<=1000; $i++)
 		{
 			$add_time = time();
 			if ($i >= 3){
@@ -6396,7 +6396,7 @@ class Goods extends CI_Controller
 				$riqi = strtotime($res_arr[0][10]);
 				$zhishiyongliang = floatval($res_arr[$i][8]) * floatval($res_arr[$i][11]);
 				$shijiyongliang = floatval($res_arr[$i][9]) * floatval($res_arr[$i][12]);
-				$shengyu = floatval($res_arr[$i][6]) - floatval($zhishiyongliang);
+				$shengyu = floatval($res_arr[$i][6]) - floatval($shijiyongliang);
 				$this->role->role_saveerp_yuanfuliaopinggheng(
 					$res_arr[$i][0],$res_arr[$i][1],$res_arr[$i][2],$res_arr[$i][3],$res_arr[$i][4],$res_arr[$i][5]
 					,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
@@ -6414,5 +6414,150 @@ class Goods extends CI_Controller
 			}
 		}
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+
+	/**
+	 * 竖版排版卡下载导出
+	 */
+	public function paibanka_csv()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list = $this->role->getgoodsAllNewid($id);
+		$list1 = $this->role->gettidlistguige($id);
+		$list2 = $this->role->gettidlistpinming($id);
+
+		$inputFileName = "./static/uploads/paibanka.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'D3','合同号:'.$list['bianhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'F3','款号:'.$list['kuanhao']);
+//		$objPHPExcel->getActiveSheet()->setCellValue( 'K13',date('Y-m-d',$list['qianding']));
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['guige'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['shuzhi'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+		$arr1 = array();
+		$rowold = -1;
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			$rowold = $rowold + 1;
+			$row = $rowold + 7;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'N'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['guigeold'] = $val['guige'];
+					$arr1[$key]['shuzihold'] = $val['shuzhi'];
+				}
+			}
+		}
+		$zimu = 'O';
+		$rowold1 = -1;
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'O5',$vvv);
+				$zimu = 'O';
+			}
+			if ($rowold1 == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'P5',$vvv);
+				$zimu = 'P';
+			}
+			if ($rowold1 == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Q5',$vvv);
+				$zimu = 'Q';
+			}
+			if ($rowold1 == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'R5',$vvv);
+				$zimu = 'R';
+			}
+			if ($rowold1 == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'S5',$vvv);
+				$zimu = 'S';
+			}
+			if ($rowold1 == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'T5',$vvv);
+				$zimu = 'T';
+			}
+			if ($rowold1 == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'U5',$vvv);
+				$zimu = 'U';
+			}
+//			if ($rowold1 == 7){
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'U1',$vvv);
+//				$zimu = 'U';
+//			}
+//			if ($rowold1 == 8){
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'V1',$vvv);
+//				$zimu = 'V';
+//			}
+//			if ($rowold1 == 9){
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'W1',$vvv);
+//				$zimu = 'W';
+//			}
+			foreach ($arr1 as $keyy=>$vall){
+				if ($vall['guigeold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
+				}
+			}
+		}
+
+		$rownew = 7;
+		$rowoldnew1 = -1;
+		foreach ($list2 as $kp=>$vp){
+			if (empty($vp['pinming'])){
+				continue;
+			}
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['sehao']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['guige']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['sunhao']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['jianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('M'.$row11,$vp['sunhaoyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('N'.$row11,$vp['zhishiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('O'.$row11,$vp['shijiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '竖版排版卡下载表' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
 	}
 }
