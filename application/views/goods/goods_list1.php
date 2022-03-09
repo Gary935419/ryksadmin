@@ -96,12 +96,12 @@
 													<i class="iconfont">&#xe74a;</i>  竖版排版卡下载
 												</button>
 											</a>
-											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/caiduan_csv?id='.$once['kuanhao'] ?>">
 												<button class="layui-btn layui-card-header">
-													<i class="iconfont">&#xe74a;</i>  竖版裁断ok
+													<i class="iconfont">&#xe74a;</i>  竖版裁断卡下载
 												</button>
 											</a>
-											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/chejanseka_csv?id='.$once['kuanhao'] ?>">
 												<button class="layui-btn layui-card-header">
 													<i class="iconfont">&#xe74a;</i>  竖版车间色卡下载
 												</button>

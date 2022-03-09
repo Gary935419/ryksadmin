@@ -6502,18 +6502,26 @@ class Goods extends CI_Controller
 				$objPHPExcel->getActiveSheet()->setCellValue( 'U5',$vvv);
 				$zimu = 'U';
 			}
-//			if ($rowold1 == 7){
-//				$objPHPExcel->getActiveSheet()->setCellValue( 'U1',$vvv);
-//				$zimu = 'U';
-//			}
-//			if ($rowold1 == 8){
-//				$objPHPExcel->getActiveSheet()->setCellValue( 'V1',$vvv);
-//				$zimu = 'V';
-//			}
-//			if ($rowold1 == 9){
-//				$objPHPExcel->getActiveSheet()->setCellValue( 'W1',$vvv);
-//				$zimu = 'W';
-//			}
+			if ($rowold1 == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'V5',$vvv);
+				$zimu = 'V';
+			}
+			if ($rowold1 == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'W5',$vvv);
+				$zimu = 'W';
+			}
+			if ($rowold1 == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'X5',$vvv);
+				$zimu = 'X';
+			}
+			if ($rowold1 == 10){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Y5',$vvv);
+				$zimu = 'Y';
+			}
+			if ($rowold1 == 11){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Z5',$vvv);
+				$zimu = 'Z';
+			}
 			foreach ($arr1 as $keyy=>$vall){
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
@@ -6549,6 +6557,310 @@ class Goods extends CI_Controller
 
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '竖版排版卡下载表' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 竖版裁断ok下载导出
+	 */
+	public function caiduan_csv()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list = $this->role->getgoodsAllNewid($id);
+		$list1 = $this->role->gettidlistguige($id);
+		$list2 = $this->role->gettidlistpinming($id);
+
+		$inputFileName = "./static/uploads/caiduanok.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'K2','合同号:'.$list['bianhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'P2','款号:'.$list['kuanhao']);
+//		$objPHPExcel->getActiveSheet()->setCellValue( 'K13',date('Y-m-d',$list['qianding']));
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['guige'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['shuzhi'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+		$arr1 = array();
+		$rowold = -1;
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			$rowold = $rowold + 1;
+			$row = $rowold + 5;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'P'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['guigeold'] = $val['guige'];
+					$arr1[$key]['shuzihold'] = $val['shuzhi'];
+				}
+			}
+		}
+		$zimu = 'O';
+		$rowold1 = -1;
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'R3',$vvv);
+				$zimu = 'R';
+			}
+			if ($rowold1 == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'S3',$vvv);
+				$zimu = 'S';
+			}
+			if ($rowold1 == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'T3',$vvv);
+				$zimu = 'T';
+			}
+			if ($rowold1 == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'U3',$vvv);
+				$zimu = 'U';
+			}
+			if ($rowold1 == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'V3',$vvv);
+				$zimu = 'V';
+			}
+			if ($rowold1 == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'W3',$vvv);
+				$zimu = 'W';
+			}
+			if ($rowold1 == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'X3',$vvv);
+				$zimu = 'X';
+			}
+			if ($rowold1 == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Y3',$vvv);
+				$zimu = 'Y';
+			}
+			if ($rowold1 == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Z3',$vvv);
+				$zimu = 'Z';
+			}
+			if ($rowold1 == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'AA3',$vvv);
+				$zimu = 'AA';
+			}
+			if ($rowold1 == 10){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'AB3',$vvv);
+				$zimu = 'AB';
+			}
+			if ($rowold1 == 11){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'AC3',$vvv);
+				$zimu = 'AC';
+			}
+			foreach ($arr1 as $keyy=>$vall){
+				if ($vall['guigeold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
+				}
+			}
+		}
+
+		$rownew = 19;
+		$rowoldnew1 = -1;
+		foreach ($list2 as $kp=>$vp){
+			if (empty($vp['pinming'])){
+				continue;
+			}
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['sehao']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['guige']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['sunhao']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['jianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('M'.$row11,$vp['sunhaoyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('N'.$row11,$vp['zhishiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('O'.$row11,$vp['shijiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '竖版裁断下载表' . date('Ymd_His');
+		// 生成2007excel格式的xlsx文件
+		$IOFactory = new IOFactory();
+		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');
+		header('Content-Type: text/html;charset=utf-8');
+		header('Content-Type: xlsx');
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="' . $fileName . '.xls"');
+		header('Cache-Control: max-age=0');
+		$PHPWriter->save("php://output");
+		exit;
+	}
+
+	/**
+	 * 竖版车间色卡下载导出
+	 */
+	public function chejanseka_csv()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+
+		$list = $this->role->getgoodsAllNewid($id);
+		$list1 = $this->role->gettidlistguige($id);
+		$list2 = $this->role->gettidlistpinming($id);
+
+		$inputFileName = "./static/uploads/chejianseka.xls";
+		date_default_timezone_set('PRC');
+		// 读取excel文件
+		try {
+			$IOFactory = new IOFactory();
+			$inputFileType = $IOFactory->identify($inputFileName);
+			$objReader = $IOFactory->createReader($inputFileType);
+			$objPHPExcel = $objReader->load($inputFileName);
+
+		} catch(\Exception $e) {
+			die('加载文件发生错误："'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+		}
+
+		//对应的列都附上数据和编号
+		$objPHPExcel->getActiveSheet()->setCellValue( 'E3','合同号:'.$list['bianhao']);
+		$objPHPExcel->getActiveSheet()->setCellValue( 'H3','款号:'.$list['kuanhao']);
+//		$objPHPExcel->getActiveSheet()->setCellValue( 'K13',date('Y-m-d',$list['qianding']));
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		$SHUZHI_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['guige'];
+			$SEHAO_ARR[] = $v['sehao'];
+			$SHUZHI_ARR[] = $v['shuzhi'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+		$arr1 = array();
+		$rowold = -1;
+		foreach ($SEHAO_ARR as $kk=>$vv){
+			$rowold = $rowold + 1;
+			$row = $rowold + 6;
+			$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$row,$vv);
+			foreach ($list1 as $key=>$val){
+				if ($vv == $val['sehao']){
+					$arr1[$key]['lin'] = $row;
+					$arr1[$key]['guigeold'] = $val['guige'];
+					$arr1[$key]['shuzihold'] = $val['shuzhi'];
+				}
+			}
+		}
+		$zimu = 'O';
+		$rowold1 = -1;
+		foreach ($GUIGE_ARR as $kkk=>$vvv){
+			$rowold1 = $rowold1 + 1;
+			if ($rowold1 == 0){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'H4',$vvv);
+				$zimu = 'H';
+			}
+			if ($rowold1 == 1){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'I4',$vvv);
+				$zimu = 'I';
+			}
+			if ($rowold1 == 2){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'J4',$vvv);
+				$zimu = 'J';
+			}
+			if ($rowold1 == 3){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'K4',$vvv);
+				$zimu = 'K';
+			}
+			if ($rowold1 == 4){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'L4',$vvv);
+				$zimu = 'L';
+			}
+			if ($rowold1 == 5){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'M4',$vvv);
+				$zimu = 'M';
+			}
+			if ($rowold1 == 6){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'N4',$vvv);
+				$zimu = 'N';
+			}
+			if ($rowold1 == 7){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'O4',$vvv);
+				$zimu = 'O';
+			}
+			if ($rowold1 == 8){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'P4',$vvv);
+				$zimu = 'P';
+			}
+			if ($rowold1 == 9){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
+				$zimu = 'Q';
+			}
+			if ($rowold1 == 10){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
+				$zimu = 'R';
+			}
+			if ($rowold1 == 11){
+				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
+				$zimu = 'S';
+			}
+			foreach ($arr1 as $keyy=>$vall){
+				if ($vall['guigeold'] == $vvv){
+					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
+				}
+			}
+		}
+
+		$rownew = 19;
+		$rowoldnew1 = -1;
+		foreach ($list2 as $kp=>$vp){
+			if (empty($vp['pinming'])){
+				continue;
+			}
+			$rowoldnew1 = $rowoldnew1 + 1;
+			$row11 = $rownew + $rowoldnew1;
+			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
+			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['sehao']);
+			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['guige']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['sunhao']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['jianshu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('M'.$row11,$vp['sunhaoyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('N'.$row11,$vp['zhishiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('O'.$row11,$vp['shijiyongliang']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
+//			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
+		}
+
+		ob_end_clean();//清除缓存区，解决乱码问题
+		$fileName = '竖版车间色卡下载' . date('Ymd_His');
 		// 生成2007excel格式的xlsx文件
 		$IOFactory = new IOFactory();
 		$PHPWriter = $IOFactory->createWriter($objPHPExcel, 'Excel5');

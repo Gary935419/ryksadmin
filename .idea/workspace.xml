@@ -4,8 +4,10 @@
     <list default="true" id="358b86d0-c90c-4aed-a45f-6f000ffa08be" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Role_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Role_model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/goods/goods_list1.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_list1.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/caiduanok.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/caiduanok.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/chejianseka.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/chejianseka.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/paibanka.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/paibanka.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645191577255</updated>
       <workItem from="1645191581354" duration="6724000" />
-      <workItem from="1646744737925" duration="7820000" />
+      <workItem from="1646744737925" duration="12920000" />
     </task>
     <servers />
   </component>
