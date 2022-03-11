@@ -106,17 +106,17 @@
 													<i class="iconfont">&#xe74a;</i>  竖版车间色卡下载
 												</button>
 											</a>
-											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/wanchengka_csv?id='.$once['kuanhao'] ?>">
 												<button class="layui-btn layui-card-header">
 													<i class="iconfont">&#xe74a;</i>  竖版完成下载
 												</button>
 											</a>
-											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/tezhongka_csv?id='.$once['kuanhao'] ?>">
 												<button class="layui-btn layui-card-header">
 													<i class="iconfont">&#xe74a;</i>  竖版特种下载
 												</button>
 											</a>
-											<a style="margin-left: 10px;" href="<?= RUN. '/examine/examine_csv1?start='.(isset($start)?$start:"")."&end=".(isset($end)?$end:"")."&user_name=".(isset($user_name1)?$user_name1:"") ?>">
+											<a style="margin-left: 10px;" href="<?= RUN. '/goods/shoufengka_csv?id='.$once['kuanhao'] ?>">
 												<button class="layui-btn layui-card-header">
 													<i class="iconfont">&#xe74a;</i>  竖版手缝下载
 												</button>
