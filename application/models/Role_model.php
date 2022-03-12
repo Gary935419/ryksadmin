@@ -610,7 +610,7 @@ class Role_model extends CI_Model
 		$rid=$this->db->insert_id();
 		return $rid;
 	}
-	public function role_save_yangpin($zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)
+	public function role_save_yangpin($hao1,$hao2,$hao3,$hao4,$hao5,$hao6,$hao7,$hao8,$hao9,$hao10,$hao11,$hao12,$hao13,$hao14,$hao15,$hao16,$hao17,$hao18,$hao19,$hao20,$hao21,$hao22,$hao23,$hao24,$hao25,$hao26,$hao27,$hao28,$hao29,$hao30,$hao31,$zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)
 	{
 		$zid = $this->db->escape($zid);
 		$dandangzhe = $this->db->escape($dandangzhe);
@@ -625,7 +625,38 @@ class Role_model extends CI_Model
 		$zhizuozhe = $this->db->escape($zhizuozhe);
 		$time = $this->db->escape($time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		$sql = "INSERT INTO `erp_yangmingmingxi` (newren,zid,dandangzhe,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($user_name,$zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
+		$hao1 = $this->db->escape($hao1);
+		$hao2 = $this->db->escape($hao2);
+		$hao3 = $this->db->escape($hao3);
+		$hao4 = $this->db->escape($hao4);
+		$hao5 = $this->db->escape($hao5);
+		$hao6 = $this->db->escape($hao6);
+		$hao7 = $this->db->escape($hao7);
+		$hao8 = $this->db->escape($hao8);
+		$hao9 = $this->db->escape($hao9);
+		$hao10 = $this->db->escape($hao10);
+		$hao11 = $this->db->escape($hao11);
+		$hao12 = $this->db->escape($hao12);
+		$hao13 = $this->db->escape($hao13);
+		$hao14 = $this->db->escape($hao14);
+		$hao15 = $this->db->escape($hao15);
+		$hao16 = $this->db->escape($hao16);
+		$hao17 = $this->db->escape($hao17);
+		$hao18 = $this->db->escape($hao18);
+		$hao19 = $this->db->escape($hao19);
+		$hao20 = $this->db->escape($hao20);
+		$hao21 = $this->db->escape($hao21);
+		$hao22 = $this->db->escape($hao22);
+		$hao23 = $this->db->escape($hao23);
+		$hao24 = $this->db->escape($hao24);
+		$hao25 = $this->db->escape($hao25);
+		$hao26 = $this->db->escape($hao26);
+		$hao27 = $this->db->escape($hao27);
+		$hao28 = $this->db->escape($hao28);
+		$hao29 = $this->db->escape($hao29);
+		$hao30 = $this->db->escape($hao30);
+		$hao31 = $this->db->escape($hao31);
+		$sql = "INSERT INTO `erp_yangmingmingxi` (hao1,hao2,hao3,hao4,hao5,hao6,hao7,hao8,hao9,hao10,hao11,hao12,hao13,hao14,hao15,hao16,hao17,hao18,hao19,hao20,hao21,hao22,hao23,hao24,hao25,hao26,hao27,hao28,hao29,hao30,hao31,newren,zid,dandangzhe,kuhumingcheng,kuanhao,kuanshi,yangpinxingzhi,shuliang,yangpindanjia,shoudaoriqi,fachuriqi,zhizuozhe,addtime) VALUES ($hao1,$hao2,$hao3,$hao4,$hao5,$hao6,$hao7,$hao8,$hao9,$hao10,$hao11,$hao12,$hao13,$hao14,$hao15,$hao16,$hao17,$hao18,$hao19,$hao20,$hao21,$hao22,$hao23,$hao24,$hao25,$hao26,$hao27,$hao28,$hao29,$hao30,$hao31,$user_name,$zid,$dandangzhe,$kuhumingcheng,$kuanhao,$kuanshi,$yangpinxingzhi,$shuliang,$yangpindanjia,$shoudaoriqi,$fachuriqi,$zhizuozhe,$time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;

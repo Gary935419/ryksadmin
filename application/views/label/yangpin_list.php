@@ -51,8 +51,8 @@
                         onclick="xadmin.open('添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
                             class="layui-icon"></i>添加
                 </button>
-                <div class="layui-card-body ">
-                    <table class="layui-table layui-form">
+				<div class="layui-card-body" style="overflow-x: auto; overflow-y: auto; width:93%;">
+					<table class="layui-table layui-form" style="text-align:center">
                         <thead>
                         <tr>
                             <th>客户名称</th>
@@ -67,6 +67,37 @@
 							<th>发出日期</th>
 							<th>制作者</th>
 							<th>创建日期</th>
+							<th>1号</th>
+							<th>2号</th>
+							<th>3号</th>
+							<th>4号</th>
+							<th>5号</th>
+							<th>6号</th>
+							<th>7号</th>
+							<th>8号</th>
+							<th>9号</th>
+							<th>10号</th>
+							<th>11号</th>
+							<th>12号</th>
+							<th>13号</th>
+							<th>14号</th>
+							<th>15号</th>
+							<th>16号</th>
+							<th>17号</th>
+							<th>18号</th>
+							<th>19号</th>
+							<th>20号</th>
+							<th>21号</th>
+							<th>22号</th>
+							<th>23号</th>
+							<th>24号</th>
+							<th>25号</th>
+							<th>26号</th>
+							<th>27号</th>
+							<th>28号</th>
+							<th>29号</th>
+							<th>30号</th>
+							<th>31号</th>
                             <th>操作</th>
                         </thead>
                         <tbody>
@@ -85,11 +116,38 @@
 									<td><?= date('Y-m-d', $once['fachuriqi']) ?></td>
 									<td><?= $once['zhizuozhe'] ?></td>
 									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+									<td><?= $once['hao1'] ?></td>
+									<td><?= $once['hao2'] ?></td>
+									<td><?= $once['hao3'] ?></td>
+									<td><?= $once['hao4'] ?></td>
+									<td><?= $once['hao5'] ?></td>
+									<td><?= $once['hao6'] ?></td>
+									<td><?= $once['hao7'] ?></td>
+									<td><?= $once['hao8'] ?></td>
+									<td><?= $once['hao9'] ?></td>
+									<td><?= $once['hao10'] ?></td>
+									<td><?= $once['hao11'] ?></td>
+									<td><?= $once['hao12'] ?></td>
+									<td><?= $once['hao13'] ?></td>
+									<td><?= $once['hao14'] ?></td>
+									<td><?= $once['hao15'] ?></td>
+									<td><?= $once['hao16'] ?></td>
+									<td><?= $once['hao17'] ?></td>
+									<td><?= $once['hao18'] ?></td>
+									<td><?= $once['hao19'] ?></td>
+									<td><?= $once['hao20'] ?></td>
+									<td><?= $once['hao21'] ?></td>
+									<td><?= $once['hao22'] ?></td>
+									<td><?= $once['hao23'] ?></td>
+									<td><?= $once['hao24'] ?></td>
+									<td><?= $once['hao25'] ?></td>
+									<td><?= $once['hao26'] ?></td>
+									<td><?= $once['hao27'] ?></td>
+									<td><?= $once['hao28'] ?></td>
+									<td><?= $once['hao29'] ?></td>
+									<td><?= $once['hao30'] ?></td>
+									<td><?= $once['hao31'] ?></td>
                                     <td class="td-manage">
-                                        <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/label/yangpin_edit?id=' ?>'+<?= $once['id'] ?>)">
-                                            <i class="layui-icon">&#xe642;</i>编辑
-                                        </button>
                                         <button class="layui-btn layui-btn-danger"
                                                 onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
@@ -98,7 +156,7 @@
                             <?php endforeach; ?>
                         <?php } else { ?>
                             <tr>
-                                <td colspan="21" style="text-align: center;">暂无数据</td>
+                                <td colspan="52" style="text-align: center;">暂无数据</td>
                             </tr>
                         <?php } ?>
                         </tbody>

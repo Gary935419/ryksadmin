@@ -26,7 +26,6 @@
 						<table class="layui-table layui-form">
 							<thead>
 							<tr>
-								<th>操作</th>
 								<th>客户名称</th>
 								<th>担当者</th>
 								<th>款号</th>
@@ -41,10 +40,6 @@
 							</thead>
 							<tbody>
 							<tr id="div1">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd1" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(2,1)"></i>
-								</td>
 								<td><input name="kuhumingcheng[]" id="val1" autocomplete="off" class="layui-input"></td>
 								<td><input name="dandangzhe[]" id="val11" autocomplete="off" class="layui-input"></td>
 								<td><input name="kuanhao[]" id="val111" autocomplete="off" class="layui-input"></td>
@@ -56,167 +51,91 @@
 								<td><input name="fachuriqi[]" id="val111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="zhizuozhe[]" id="val1111111111" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr id="div2" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd2" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(3,2)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(2,1)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val2" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val22" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val222" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val2222" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val22222" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val2222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val22222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val222222222" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val2222222222" autocomplete="off" class="layui-input"></td>
+							</tbody>
+							<thead>
+							<tr>
+								<th>1号</th>
+								<th>2号</th>
+								<th>3号</th>
+								<th>4号</th>
+								<th>5号</th>
+								<th>6号</th>
+								<th>7号</th>
+								<th>8号</th>
+								<th>9号</th>
+								<th>10号</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr id="div1">
+								<td><input name="hao1" id="val1" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao2" id="val11" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao3" id="val111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao4" id="val1111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao5" id="val11111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao6" id="val111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao7" id="val1111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao8" id="val111121111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao9" id="val1111211111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao10" id="val1111111111" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr id="div3" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd3" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(4,3)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(3,2)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val3" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val33" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val333" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val3333" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val33333" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val3333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val33333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val333333333" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val3333333333" autocomplete="off" class="layui-input"></td>
+							</tbody>
+							<thead>
+							<tr>
+								<th>11号</th>
+								<th>12号</th>
+								<th>13号</th>
+								<th>14号</th>
+								<th>15号</th>
+								<th>16号</th>
+								<th>17号</th>
+								<th>18号</th>
+								<th>19号</th>
+								<th>20号</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr id="div1">
+								<td><input name="hao11" id="val1" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao12" id="val11" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao13" id="val111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao14" id="val1111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao15" id="val11111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao16" id="val111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao17" id="val1111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao18" id="val111121111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao19" id="val1111211111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao20" id="val1111111111" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<tr id="div4" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd4" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(5,4)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(4,3)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val4" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val44" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val444" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val4444" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val44444" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val4444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val44444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val444444444" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val4444444444" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div5" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd5" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(6,5)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(5,4)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val5" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val55" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val555" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val5555" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val55555" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val555555" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val5555555" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val55555555" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val555555555"  autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val5555555555" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div6" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd6" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(7,6)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(6,5)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val6" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val66" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val666" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val6666" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val66666" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val6666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val66666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val666666666" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val6666666666" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div7" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd7" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(8,7)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(7,6)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val7" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val77" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val777" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val7777" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val77777" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val7777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val77777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val777777777" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val7777777777" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div8" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd8" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(9,8)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(8,7)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val8" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val88" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val888" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val8888" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val88888" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val8888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val88888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val888888888" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val8888888888" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div9" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd9" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(10,9)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(9,8)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val9" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val99" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val999" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val9999" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val99999" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val9999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val99999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val999999999" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val9999999999" autocomplete="off" class="layui-input"></td>
-							</tr>
-							<tr id="div10" style="display: none;">
-								<td style="min-width: 80px;">
-									<i class="layui-icon" id="divadd10" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return addnow(11,10)"></i>
-									<i class="iconfont" style="cursor: pointer;font-size: 25px;margin-left: 10px;"
-									   onclick="return dellete(10,9)">&#xe6fe;</i>
-								</td>
-								<td><input name="kuhumingcheng[]" id="val10" autocomplete="off" class="layui-input"></td>
-								<td><input name="dandangzhe[]" id="val1010" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanhao[]" id="val101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="kuanshi[]" id="val10101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpinxingzhi[]" id="val1010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="shuliang[]" id="val101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="yangpindanjia[]" id="val10101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="shoudaoriqi[]" id="val1010101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="fachuriqi[]" id="val101010101010101010" autocomplete="off" class="layui-input"></td>
-								<td><input name="zhizuozhe[]" id="val10101010101010101010" autocomplete="off" class="layui-input"></td>
+							</tbody>
+							<thead>
+							<tr>
+								<th>21号</th>
+								<th>22号</th>
+								<th>23号</th>
+								<th>24号</th>
+								<th>25号</th>
+								<th>26号</th>
+								<th>27号</th>
+								<th>28号</th>
+								<th>29号</th>
+								<th>30号</th>
+								<th>31号</th>
+							<tr>
+							</thead>
+							<tbody>
+							<tr id="div1">
+								<td><input name="hao21" id="val1" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao22" id="val11" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao23" id="val111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao24" id="val1111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao25" id="val11111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao26" id="val111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao27" id="val1111111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao28" id="val111112111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao29" id="val1111121111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao30" id="val11111121111" autocomplete="off" class="layui-input"></td>
+								<td><input name="hao31" id="val1111111111" autocomplete="off" class="layui-input"></td>
 							</tr>
 							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
 							</tbody>
@@ -244,70 +163,70 @@
 				laydate.render({
 					elem: '#val111111111' //指定元素
 				});
-				laydate.render({
-					elem: '#val22222222' //指定元素
-				});
-				laydate.render({
-					elem: '#val222222222' //指定元素
-				});
-				laydate.render({
-					elem: '#val33333333' //指定元素
-				});
-				laydate.render({
-					elem: '#val333333333' //指定元素
-				});
-				laydate.render({
-					elem: '#val44444444' //指定元素
-				});
-				laydate.render({
-					elem: '#val444444444' //指定元素
-				});
-				laydate.render({
-					elem: '#val55555555' //指定元素
-				});
-				laydate.render({
-					elem: '#val555555555' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val66666666' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val666666666' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val77777777' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val777777777' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val88888888' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val888888888' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val99999999' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val999999999' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val1010101010101010' //指定元素
-				});
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#val101010101010101010' //指定元素
-				});
+				// laydate.render({
+				// 	elem: '#val22222222' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val222222222' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val33333333' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val333333333' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val44444444' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val444444444' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val55555555' //指定元素
+				// });
+				// laydate.render({
+				// 	elem: '#val555555555' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val66666666' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val666666666' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val77777777' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val777777777' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val88888888' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val888888888' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val99999999' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val999999999' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val1010101010101010' //指定元素
+				// });
+				// //执行一个laydate实例
+				// laydate.render({
+				// 	elem: '#val101010101010101010' //指定元素
+				// });
 			});
 </script>
 <script>

@@ -4,10 +4,86 @@
     <list default="true" id="358b86d0-c90c-4aed-a45f-6f000ffa08be" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/goods/goods_list1.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_list1.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/uploads/caiduanok.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/caiduanok.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/uploads/chejianseka.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/chejianseka.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/uploads/paibanka.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/paibanka.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Role_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Role_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/label/yangpin_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/label/yangpin_add.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/label/yangpin_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/label/yangpin_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444196503e.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644420494dO.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644421039Wy.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644421921QP.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444238126r.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644424231Lc.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644424283JG.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444244962v.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644424680ZS.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444247142B.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444251644n.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644425196yA.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644425346mg.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444253984Q.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644455389Wk.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644455828Tp.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644455841y3.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644455867Xe.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644455989Uw.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16444591979C.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/164446087462.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644738012TR.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644739636rK.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644739651My.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644740917jz.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/164474130268.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644741750mQ.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644745427WI.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644753139ck.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644753183mt.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644753266NH.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644756799Id.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/164475686346.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644756920Dk.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644757055V7.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16447572683b.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16447573004r.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/164475747158.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644761154tj.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16447616458A.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644761934bI.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16447669381c.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644767175aV.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644767232q6.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644767469Eq.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644768702YB.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644769259b7.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644769638Vu.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644769696NU.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644770585yj.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644813466nu.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644813779yS.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/164484173021.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644843096hi.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644846231yz.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644846587w7.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644846733RM.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644846982AI.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644847250zk.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644850756v4.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644850786k2.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644851205Nc.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1644851460W9.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645062642X3.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645084817a4.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645085034Z3.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645085945My.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16450860830C.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645086114c8.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/16450861943c.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645086749Rq.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645087162FP.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645087426gh.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645087621i0.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645088177OM.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/1645088264Cv.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/uploads/yangpin.xls" beforeDir="false" afterPath="$PROJECT_DIR$/static/uploads/yangpin.xls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +121,8 @@
       <option name="presentableId" value="Default" />
       <updated>1645191577255</updated>
       <workItem from="1645191581354" duration="6724000" />
-      <workItem from="1646744737925" duration="12920000" />
+      <workItem from="1646744737925" duration="20921000" />
+      <workItem from="1647054141333" duration="2785000" />
     </task>
     <servers />
   </component>

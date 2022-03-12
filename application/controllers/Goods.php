@@ -3216,12 +3216,42 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "请添加制作者!"));
 			return;
 		}
-
+		$hao1 = isset($_POST["hao1"]) ? $_POST["hao1"] : '';
+		$hao2 = isset($_POST["hao2"]) ? $_POST["hao2"] : '';
+		$hao3 = isset($_POST["hao3"]) ? $_POST["hao3"] : '';
+		$hao4 = isset($_POST["hao4"]) ? $_POST["hao4"] : '';
+		$hao5 = isset($_POST["hao5"]) ? $_POST["hao5"] : '';
+		$hao6 = isset($_POST["hao6"]) ? $_POST["hao6"] : '';
+		$hao7 = isset($_POST["hao7"]) ? $_POST["hao7"] : '';
+		$hao8 = isset($_POST["hao8"]) ? $_POST["hao8"] : '';
+		$hao9 = isset($_POST["hao9"]) ? $_POST["hao9"] : '';
+		$hao10 = isset($_POST["hao10"]) ? $_POST["hao10"] : '';
+		$hao11 = isset($_POST["hao11"]) ? $_POST["hao11"] : '';
+		$hao12 = isset($_POST["hao12"]) ? $_POST["hao12"] : '';
+		$hao13 = isset($_POST["hao13"]) ? $_POST["hao13"] : '';
+		$hao14 = isset($_POST["hao14"]) ? $_POST["hao14"] : '';
+		$hao15 = isset($_POST["hao15"]) ? $_POST["hao15"] : '';
+		$hao16 = isset($_POST["hao16"]) ? $_POST["hao16"] : '';
+		$hao17 = isset($_POST["hao17"]) ? $_POST["hao17"] : '';
+		$hao18 = isset($_POST["hao18"]) ? $_POST["hao18"] : '';
+		$hao19 = isset($_POST["hao19"]) ? $_POST["hao19"] : '';
+		$hao20 = isset($_POST["hao20"]) ? $_POST["hao20"] : '';
+		$hao21 = isset($_POST["hao21"]) ? $_POST["hao21"] : '';
+		$hao22 = isset($_POST["hao22"]) ? $_POST["hao22"] : '';
+		$hao23 = isset($_POST["hao23"]) ? $_POST["hao23"] : '';
+		$hao24 = isset($_POST["hao24"]) ? $_POST["hao24"] : '';
+		$hao25 = isset($_POST["hao25"]) ? $_POST["hao25"] : '';
+		$hao26 = isset($_POST["hao26"]) ? $_POST["hao26"] : '';
+		$hao27 = isset($_POST["hao27"]) ? $_POST["hao27"] : '';
+		$hao28 = isset($_POST["hao28"]) ? $_POST["hao28"] : '';
+		$hao29 = isset($_POST["hao29"]) ? $_POST["hao29"] : '';
+		$hao30 = isset($_POST["hao30"]) ? $_POST["hao30"] : '';
+		$hao31 = isset($_POST["hao31"]) ? $_POST["hao31"] : '';
 		foreach ($kuhumingcheng as $k => $v) {
 			if (empty($v) || empty($dandangzhe[$k]) || empty($kuanhao[$k]) || empty($kuanshi[$k]) || empty($yangpinxingzhi[$k]) || empty($shuliang[$k]) || empty($yangpindanjia[$k]) || empty($shoudaoriqi[$k]) || empty($fachuriqi[$k]) || empty($zhizuozhe[$k])) {
 				continue;
 			}
-			$this->role->role_save_yangpin($zid,$v,$dandangzhe[$k],$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],strtotime($shoudaoriqi[$k]),strtotime($fachuriqi[$k]),$zhizuozhe[$k],time());
+			$this->role->role_save_yangpin($hao1,$hao2,$hao3,$hao4,$hao5,$hao6,$hao7,$hao8,$hao9,$hao10,$hao11,$hao12,$hao13,$hao14,$hao15,$hao16,$hao17,$hao18,$hao19,$hao20,$hao21,$hao22,$hao23,$hao24,$hao25,$hao26,$hao27,$hao28,$hao29,$hao30,$hao31,$zid,$v,$dandangzhe[$k],$kuanhao[$k],$kuanshi[$k],$yangpinxingzhi[$k],$shuliang[$k],$yangpindanjia[$k],strtotime($shoudaoriqi[$k]),strtotime($fachuriqi[$k]),$zhizuozhe[$k],time());
 		}
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
@@ -5464,6 +5494,37 @@ class Goods extends CI_Controller
 			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,date('Y-m-d',$vp['shoudaoriqi']));
 			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,date('Y-m-d',$vp['fachuriqi']));
 			$objPHPExcel->getActiveSheet()->setCellValue('K'.$row11,$vp['zhizuozhe']);
+			$objPHPExcel->getActiveSheet()->setCellValue('L'.$row11,$vp['hao1']);
+			$objPHPExcel->getActiveSheet()->setCellValue('M'.$row11,$vp['hao2']);
+			$objPHPExcel->getActiveSheet()->setCellValue('N'.$row11,$vp['hao3']);
+			$objPHPExcel->getActiveSheet()->setCellValue('O'.$row11,$vp['hao4']);
+			$objPHPExcel->getActiveSheet()->setCellValue('P'.$row11,$vp['hao5']);
+			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['hao6']);
+			$objPHPExcel->getActiveSheet()->setCellValue('R'.$row11,$vp['hao7']);
+			$objPHPExcel->getActiveSheet()->setCellValue('S'.$row11,$vp['hao8']);
+			$objPHPExcel->getActiveSheet()->setCellValue('T'.$row11,$vp['hao9']);
+			$objPHPExcel->getActiveSheet()->setCellValue('U'.$row11,$vp['hao10']);
+			$objPHPExcel->getActiveSheet()->setCellValue('V'.$row11,$vp['hao11']);
+			$objPHPExcel->getActiveSheet()->setCellValue('W'.$row11,$vp['hao12']);
+			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['hao13']);
+			$objPHPExcel->getActiveSheet()->setCellValue('Y'.$row11,$vp['hao14']);
+			$objPHPExcel->getActiveSheet()->setCellValue('Z'.$row11,$vp['hao15']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AA'.$row11,$vp['hao16']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AB'.$row11,$vp['hao17']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AC'.$row11,$vp['hao18']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AD'.$row11,$vp['hao19']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AE'.$row11,$vp['hao20']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AF'.$row11,$vp['hao21']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AG'.$row11,$vp['hao22']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AH'.$row11,$vp['hao23']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AI'.$row11,$vp['hao24']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AJ'.$row11,$vp['hao25']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AK'.$row11,$vp['hao26']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AL'.$row11,$vp['hao27']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AM'.$row11,$vp['hao28']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AN'.$row11,$vp['hao29']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AO'.$row11,$vp['hao30']);
+			$objPHPExcel->getActiveSheet()->setCellValue('AP'.$row11,$vp['hao31']);
 		}
 
 		ob_end_clean();//清除缓存区，解决乱码问题
