@@ -55,99 +55,99 @@
 					<table class="layui-table layui-form" style="text-align:center">
                         <thead>
                         <tr>
-                            <th>客户名称</th>
-                            <th>担当者</th>
-							<th>项目负责人</th>
-							<th>款号</th>
-							<th>款式</th>
-							<th>样品性质</th>
-							<th>数量</th>
-							<th>样品单价</th>
-							<th>收到日期</th>
-							<th>发出日期</th>
-							<th>制作者</th>
-							<th>创建日期</th>
-							<th>1号</th>
-							<th>2号</th>
-							<th>3号</th>
-							<th>4号</th>
-							<th>5号</th>
-							<th>6号</th>
-							<th>7号</th>
-							<th>8号</th>
-							<th>9号</th>
-							<th>10号</th>
-							<th>11号</th>
-							<th>12号</th>
-							<th>13号</th>
-							<th>14号</th>
-							<th>15号</th>
-							<th>16号</th>
-							<th>17号</th>
-							<th>18号</th>
-							<th>19号</th>
-							<th>20号</th>
-							<th>21号</th>
-							<th>22号</th>
-							<th>23号</th>
-							<th>24号</th>
-							<th>25号</th>
-							<th>26号</th>
-							<th>27号</th>
-							<th>28号</th>
-							<th>29号</th>
-							<th>30号</th>
-							<th>31号</th>
-                            <th>操作</th>
+                            <th style="min-width: 120px">客户名称</th>
+                            <th style="min-width: 120px">担当者</th>
+							<th style="min-width: 120px">项目负责人</th>
+							<th style="min-width: 120px">款号</th>
+							<th style="min-width: 120px">款式</th>
+							<th style="min-width: 120px">样品性质</th>
+							<th style="min-width: 120px">数量</th>
+							<th style="min-width: 120px">样品单价</th>
+							<th style="min-width: 120px">收到日期</th>
+							<th style="min-width: 120px">发出日期</th>
+							<th style="min-width: 120px">制作者</th>
+							<th style="min-width: 120px">创建日期</th>
+							<th style="min-width: 120px">1号</th>
+							<th style="min-width: 120px">2号</th>
+							<th style="min-width: 120px">3号</th>
+							<th style="min-width: 120px">4号</th>
+							<th style="min-width: 120px">5号</th>
+							<th style="min-width: 120px">6号</th>
+							<th style="min-width: 120px">7号</th>
+							<th style="min-width: 120px">8号</th>
+							<th style="min-width: 120px">9号</th>
+							<th style="min-width: 120px">10号</th>
+							<th style="min-width: 120px">11号</th>
+							<th style="min-width: 120px">12号</th>
+							<th style="min-width: 120px">13号</th>
+							<th style="min-width: 120px">14号</th>
+							<th style="min-width: 120px">15号</th>
+							<th style="min-width: 120px">16号</th>
+							<th style="min-width: 120px">17号</th>
+							<th style="min-width: 120px">18号</th>
+							<th style="min-width: 120px">19号</th>
+							<th style="min-width: 120px">20号</th>
+							<th style="min-width: 120px">21号</th>
+							<th style="min-width: 120px">22号</th>
+							<th style="min-width: 120px">23号</th>
+							<th style="min-width: 120px">24号</th>
+							<th style="min-width: 120px">25号</th>
+							<th style="min-width: 120px">26号</th>
+							<th style="min-width: 120px">27号</th>
+							<th style="min-width: 120px">28号</th>
+							<th style="min-width: 120px">29号</th>
+							<th style="min-width: 120px">30号</th>
+							<th style="min-width: 120px">31号</th>
+                            <th style="min-width: 120px">操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
                                 <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
-                                    <td><?= $once['kuhumingcheng'] ?></td>
-									<td><?= $once['dandangzhe'] ?></td>
-									<td><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
-									<td><?= $once['kuanhao'] ?></td>
-									<td><?= $once['kuanshi'] ?></td>
-									<td><?= $once['yangpinxingzhi'] ?></td>
-									<td><?= $once['shuliang'] ?></td>
-									<td><?= $once['yangpindanjia'] ?></td>
-									<td><?= date('Y-m-d', $once['shoudaoriqi']) ?></td>
-									<td><?= date('Y-m-d', $once['fachuriqi']) ?></td>
-									<td><?= $once['zhizuozhe'] ?></td>
-									<td><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
-									<td><?= $once['hao1'] ?></td>
-									<td><?= $once['hao2'] ?></td>
-									<td><?= $once['hao3'] ?></td>
-									<td><?= $once['hao4'] ?></td>
-									<td><?= $once['hao5'] ?></td>
-									<td><?= $once['hao6'] ?></td>
-									<td><?= $once['hao7'] ?></td>
-									<td><?= $once['hao8'] ?></td>
-									<td><?= $once['hao9'] ?></td>
-									<td><?= $once['hao10'] ?></td>
-									<td><?= $once['hao11'] ?></td>
-									<td><?= $once['hao12'] ?></td>
-									<td><?= $once['hao13'] ?></td>
-									<td><?= $once['hao14'] ?></td>
-									<td><?= $once['hao15'] ?></td>
-									<td><?= $once['hao16'] ?></td>
-									<td><?= $once['hao17'] ?></td>
-									<td><?= $once['hao18'] ?></td>
-									<td><?= $once['hao19'] ?></td>
-									<td><?= $once['hao20'] ?></td>
-									<td><?= $once['hao21'] ?></td>
-									<td><?= $once['hao22'] ?></td>
-									<td><?= $once['hao23'] ?></td>
-									<td><?= $once['hao24'] ?></td>
-									<td><?= $once['hao25'] ?></td>
-									<td><?= $once['hao26'] ?></td>
-									<td><?= $once['hao27'] ?></td>
-									<td><?= $once['hao28'] ?></td>
-									<td><?= $once['hao29'] ?></td>
-									<td><?= $once['hao30'] ?></td>
-									<td><?= $once['hao31'] ?></td>
-                                    <td class="td-manage">
+                                    <td style="min-width: 120px"><?= $once['kuhumingcheng'] ?></td>
+									<td style="min-width: 120px"><?= $once['dandangzhe'] ?></td>
+									<td style="min-width: 120px"><?= empty($once['newren'])?'admin':$once['newren'] ?></td>
+									<td style="min-width: 120px"><?= $once['kuanhao'] ?></td>
+									<td style="min-width: 120px"><?= $once['kuanshi'] ?></td>
+									<td style="min-width: 120px"><?= $once['yangpinxingzhi'] ?></td>
+									<td style="min-width: 120px"><?= $once['shuliang'] ?></td>
+									<td style="min-width: 120px"><?= $once['yangpindanjia'] ?></td>
+									<td style="min-width: 120px"><?= date('Y-m-d', $once['shoudaoriqi']) ?></td>
+									<td style="min-width: 120px"><?= date('Y-m-d', $once['fachuriqi']) ?></td>
+									<td style="min-width: 120px"><?= $once['zhizuozhe'] ?></td>
+									<td style="min-width: 120px"><?= date('Y-m-d H:i:s', $once['addtime']) ?></td>
+									<td style="min-width: 120px"><?= $once['hao1'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao2'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao3'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao4'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao5'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao6'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao7'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao8'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao9'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao10'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao11'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao12'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao13'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao14'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao15'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao16'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao17'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao18'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao19'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao20'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao21'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao22'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao23'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao24'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao25'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao26'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao27'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao28'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao29'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao30'] ?></td>
+									<td style="min-width: 120px"><?= $once['hao31'] ?></td>
+                                    <td style="min-width: 120px" class="td-manage">
                                         <button class="layui-btn layui-btn-danger"
                                                 onclick="label_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
                                         </button>
