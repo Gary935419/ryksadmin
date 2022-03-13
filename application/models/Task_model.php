@@ -9,7 +9,12 @@ class Task_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
-    
+	public function goodsdetails($gid)
+	{
+		$gid = $this->db->escape($gid);
+		$sql = "SELECT * FROM `goods` where gid=$gid ";
+		return $this->db->query($sql)->row_array();
+	}
     public function gettidlist()
     {
         $sql = "SELECT * FROM `admin_user` order by id desc ";

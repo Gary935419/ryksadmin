@@ -6094,6 +6094,33 @@ class Goods extends CI_Controller
 		$data['zuname'] = $zuname;
 		$this->display("goods/goods_add_new_shengchan_excel", $data);
 	}
+	public function goods_add_new_excel_baojiadan()
+	{
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : '';
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data['id'] = $id;
+		$data['btype'] = $btype;
+		$this->display("goods/goods_add_new_excel_baojiadan", $data);
+	}
+	public function goods_save_jihua_excel_baojia()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$btype = isset($_POST["btype"]) ? $_POST["btype"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		if ($btype == 1){
+			$this->role->role_save1_jihua_baojiayu($id,$excelwendang);
+		}else{
+			$this->role->role_save1_jihua_baojiajue($id,$excelwendang);
+		}
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
 	public function goods_save_jihua_excel()
 	{
 		if (empty($_SESSION['user_name'])) {
@@ -7388,5 +7415,126 @@ class Goods extends CI_Controller
 		header('Cache-Control: max-age=0');
 		$PHPWriter->save("php://output");
 		exit;
+	}
+
+	public function goods_list_zi()
+	{
+
+		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->goods->getgoodsAllPage($gname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->goods->getgoodsAllNew($page, $gname);
+
+		$data["gname"] = $gname;
+
+		$data["list"] = $list;
+		$this->display("goods/goods_list_zi", $data);
+	}
+
+	public function goods_add_zi()
+	{
+		$this->display("goods/goods_add_zi");
+	}
+
+	public function goods_save_zi()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$tid = isset($_POST["tid"]) ? $_POST["tid"] : '';
+		$gname = isset($_POST["gname"]) ? $_POST["gname"] : '';
+		$gtitle = isset($_POST["gtitle"]) ? $_POST["gtitle"] : '';
+		$gsort = isset($_POST["gsort"]) ? $_POST["gsort"] : '';
+		$gimg = isset($_POST["gimg"]) ? $_POST["gimg"] : '';
+		$starttime = isset($_POST["starttime"]) ? $_POST["starttime"] : '';
+		$avater = isset($_POST["avater"]) ? $_POST["avater"] : '';
+		$gcontent = isset($_POST["gcontent"]) ? $_POST["gcontent"] : '';
+		$addtime = time();
+		$status = isset($_POST["status"]) ? $_POST["status"] : '0';
+		$goods_info = $this->goods->getgoodsByname($gname);
+		if (!empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "该名称已经存在。"));
+			return;
+		}
+		$gid = $this->goods->goods_save($gname, $starttime,$tid, $gsort,$gimg,$gcontent,$addtime,$status,$starttime);
+
+		if ($gid) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+			return;
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+			return;
+		}
+	}
+
+	public function goods_delete_zi()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->goods->goods_delete($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+			return;
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+			return;
+		}
+	}
+
+	public function goods_edit_zi()
+	{
+		$gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
+		$goods_info = $this->goods->getgoodsById($gid);
+		if (empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "数据错误"));
+			return;
+		}
+
+		$data = array();
+		$data['gname'] = $goods_info['gname'];
+		$data['starttime'] = $goods_info['gtitle'];
+		$data['gcontent'] = $goods_info['gcontent'];
+		$data['gimg'] = $goods_info['gimg'];
+		$data['gsort'] = $goods_info['gsort'];
+		$data['status'] = $goods_info['status'];
+		$data['gid'] = $gid;
+		$data['tid'] = $goods_info['tid'];
+		$this->display("goods/goods_edit_zi", $data);
+	}
+
+	public function goods_save_edit_zi()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
+			return;
+		}
+		$gid = isset($_POST["gid"]) ? $_POST["gid"] : '';
+		$gname = isset($_POST["gname"]) ? $_POST["gname"] : '';
+		$gtitle = isset($_POST["gtitle"]) ? $_POST["gtitle"] : '';
+		$tid = isset($_POST["tid"]) ? $_POST["tid"] : '';
+		$starttime = isset($_POST["starttime"]) ? $_POST["starttime"] : '';
+		$gsort = isset($_POST["gsort"]) ? $_POST["gsort"] : '';
+		$gimg = isset($_POST["gimg"]) ? $_POST["gimg"] : '';
+		$avater = isset($_POST["avater"]) ? $_POST["avater"] : '';
+		$gcontent = isset($_POST["gcontent"]) ? $_POST["gcontent"] : '';
+		$status = isset($_POST["status"]) ? $_POST["status"] : '0';
+		$goods_info = $this->goods->getgoodsById2($gname,$gid);
+		if (!empty($goods_info)) {
+			echo json_encode(array('error' => true, 'msg' => "该名称已经存在。"));
+			return;
+		}
+
+		$result = $this->goods->goods_save_edit($gid, $gname, $starttime, $tid, $gsort, $gimg, $gcontent,$status,$starttime);
+
+		if ($result) {
+			echo json_encode(array('success' => true, 'msg' => "操作成功。"));
+			return;
+		} else {
+			echo json_encode(array('error' => false, 'msg' => "操作失败"));
+			return;
+		}
 	}
 }

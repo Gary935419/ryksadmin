@@ -21,6 +21,31 @@ class Goods_model extends CI_Model
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
+	public function getbaojiadanAll($pg,$gname)
+	{
+		$sqlw = " where 1=1 ";
+		if (!empty($gname)) {
+			$sqlw .= " and ( bianhao like '%" . $gname . "%' ) ";
+			$start = ($pg - 1) * 1000;
+			$stop = 1000;
+		}else{
+			$start = ($pg - 1) * 2;
+			$stop = 2;
+		}
+
+		$sql = "SELECT * FROM `erp_xiangmuhetong` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getbaojiadankuanhaoAll($pg,$xid)
+	{
+		$sqlw = " where 1=1 and xid=$xid ";
+
+			$start = ($pg - 1) * 2;
+			$stop = 2;
+
+		$sql = "SELECT * FROM `erp_xiangmukuanhao` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
     //商品list
     public function getgoodsAllNew($pg,$gname)
     {

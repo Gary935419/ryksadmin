@@ -9,6 +9,13 @@ class Member_model extends CI_Model
         $this->date = time();
         $this->load->database();
     }
+	//获取资讯列表
+	public function getindexnewlist()
+	{
+		$sqlw = " where 1=1";
+		$sql = "SELECT * FROM `goods` " . $sqlw . " order by gtitle desc";
+		return $this->db->query($sql)->result_array();
+	}
 	//审核认证count
 	public function getdriverupAllPage($starttime,$end,$account=array())
 	{

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 全局常量设置
  */
 $_swap = preg_replace(sprintf('/\/%s\/?/', 'index.php'), '', $_SERVER['SCRIPT_NAME']);
-define("ROOT", "http://{$_SERVER['HTTP_HOST']}$_swap"); // 网站根目录
+define("ROOT", "https://{$_SERVER['HTTP_HOST']}$_swap"); // 网站根目录
 define("STA", ROOT. "/static"); // 静态目录
 define("RUN", ROOT ."/index.php");
 define("STR", ROOT. "/"); // 静态目录

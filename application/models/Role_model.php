@@ -1218,4 +1218,19 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_yuanfuliaopinghengbian where kuanhao=$kuanhao ";
 		return $this->db->query($sql);
 	}
+
+	public function role_save1_jihua_baojiayu($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET yusuanurl=$excelwendang WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function role_save1_jihua_baojiajue($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET juesuanurl=$excelwendang WHERE id = $id";
+		return $this->db->query($sql);
+	}
 }

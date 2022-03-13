@@ -110,6 +110,10 @@
 														<i class="iconfont">&#xe74a;</i>  导出
 													</button>
 												</a>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('上传导出表','<?= RUN . '/goods/goods_add_new_excel_baojiadan?btype=1&id=' ?>'+'<?= $once['id'] ?>',900,500)">
+													<i class="iconfont">&#xe74a;</i>  上传
+												</button>
 											<?php }else{ ?>
 										    <?php if ($once['openflg1']<1){ ?>
 										    <a style="margin-left: 10px;" href="#">
@@ -170,6 +174,10 @@
 														<i class="iconfont">&#xe74a;</i>  导出
 													</button>
 												</a>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('上传导出表','<?= RUN . '/goods/goods_add_new_excel_baojiadan?btype=2&id=' ?>'+'<?= $once['id'] ?>',900,500)">
+													<i class="iconfont">&#xe74a;</i>  上传
+												</button>
 											<?php }else{ ?>
 												<?php if ($once['openflg1']<1){ ?>
 										            <a style="margin-left: 10px;" href="#">
