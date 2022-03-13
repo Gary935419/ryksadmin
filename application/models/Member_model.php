@@ -320,7 +320,7 @@ class Member_model extends CI_Model
 	public function getmemberById($mid)
 	{
 		$mid = $this->db->escape($mid);
-		$sql = "SELECT * FROM `user` where id = $mid ";
+		$sql = "SELECT * FROM `member` where mid = $mid ";
 		return $this->db->query($sql)->row_array();
 	}
     //会員内容修改提交
