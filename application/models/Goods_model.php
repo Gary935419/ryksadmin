@@ -29,8 +29,8 @@ class Goods_model extends CI_Model
 			$start = ($pg - 1) * 1000;
 			$stop = 1000;
 		}else{
-			$start = ($pg - 1) * 2;
-			$stop = 2;
+			$start = ($pg - 1) * 20;
+			$stop = 20;
 		}
 
 		$sql = "SELECT * FROM `erp_xiangmuhetong` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
@@ -40,8 +40,8 @@ class Goods_model extends CI_Model
 	{
 		$sqlw = " where 1=1 and xid=$xid ";
 
-			$start = ($pg - 1) * 2;
-			$stop = 2;
+			$start = ($pg - 1) * 20;
+			$stop = 20;
 
 		$sql = "SELECT * FROM `erp_xiangmukuanhao` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
