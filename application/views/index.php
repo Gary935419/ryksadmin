@@ -94,6 +94,20 @@
 			</li>
 			<li>
 				<a href="javascript:;">
+					<i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b5;</i>
+					<cite>小程序会员</cite>
+					<i class="iconfont nav_right">&#xe697;</i></a>
+				<ul class="sub-menu">
+					<li>
+						<a onclick="changeSrc('<?= RUN . '/member/member_list' ?>')">
+							<i class="iconfont">&#xe6a7;</i>
+							<cite>微信会员信息</cite>
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="javascript:;">
 					<i class="iconfont left-nav-li" lay-tips="原辅料管理">&#xe6b5;</i>
 					<cite>原辅料管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>

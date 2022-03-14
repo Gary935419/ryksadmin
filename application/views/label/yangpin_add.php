@@ -36,6 +36,7 @@
 								<th>收到日期</th>
 								<th>发出日期</th>
 								<th>制作者</th>
+								<th></th>
 							<tr>
 							</thead>
 							<tbody>
@@ -50,6 +51,7 @@
 								<td><input name="shoudaoriqi[]" id="val11111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="fachuriqi[]" id="val111111111" autocomplete="off" class="layui-input"></td>
 								<td><input name="zhizuozhe[]" id="val1111111111" autocomplete="off" class="layui-input"></td>
+								<td><input autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 							<thead>
@@ -64,6 +66,7 @@
 								<th>8号</th>
 								<th>9号</th>
 								<th>10号</th>
+								<th></th>
 							<tr>
 							</thead>
 							<tbody>
@@ -78,6 +81,7 @@
 								<td><input name="hao8" id="val111121111" autocomplete="off" class="layui-input"></td>
 								<td><input name="hao9" id="val1111211111" autocomplete="off" class="layui-input"></td>
 								<td><input name="hao10" id="val1111111111" autocomplete="off" class="layui-input"></td>
+								<td><input autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 							<thead>
@@ -92,6 +96,7 @@
 								<th>18号</th>
 								<th>19号</th>
 								<th>20号</th>
+								<th></th>
 							<tr>
 							</thead>
 							<tbody>
@@ -106,6 +111,7 @@
 								<td><input name="hao18" id="val111121111" autocomplete="off" class="layui-input"></td>
 								<td><input name="hao19" id="val1111211111" autocomplete="off" class="layui-input"></td>
 								<td><input name="hao20" id="val1111111111" autocomplete="off" class="layui-input"></td>
+								<td><input autocomplete="off" class="layui-input"></td>
 							</tr>
 							</tbody>
 							<thead>

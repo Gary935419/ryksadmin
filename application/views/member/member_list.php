@@ -2,7 +2,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>我的管理后台-ERP</title>
+    <title>我的管理后台-天桥伟业</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -19,7 +19,7 @@
           <span class="layui-breadcrumb">
 <!--            <a href="--><? //= RUN . '/admin/index' ?><!--">最初のページ</a>-->
             <a>
-              <cite>用户管理</cite></a>
+              <cite>会员管理</cite></a>
           </span>
     <!--          <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="ページを更新">-->
     <!--            <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>-->
@@ -31,8 +31,8 @@
                 <div class="layui-card-body ">
                     <form class="layui-form layui-col-space5" method="get" action="<?= RUN, '/member/member_list' ?>">
                         <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="account" id="account" value="<?php echo $account ?>"
-                                   placeholder="用户电话" autocomplete="off" class="layui-input">
+                            <input type="text" name="nickname" id="nickname" value="<?php echo $nickname ?>"
+                                   placeholder="会员昵称" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach"><i
@@ -45,35 +45,22 @@
                         <thead>
                         <tr>
                             <th>序号</th>
-                            <th>用户昵称</th>
-                            <th>用户电话</th>
-							<th>用户状态</th>
+                            <th>会员昵称</th>
+                            <th>会员头像</th>
+<!--                            <th>会员电话</th>-->
+<!--                            <th>会员性别</th>-->
                             <th>注册时间</th>
-                            <th>操作</th>
                         </thead>
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+                                <tr id="p<?= $once['mid'] ?>" sid="<?= $once['mid'] ?>">
                                     <td><?= $num + 1 ?></td>
-                                    <td><?= $once['name'] ?></td>
-                                    <td><?= empty($once['account']) ? '暂无数据' : $once['account'] ?></td>
-<!--                                    <td>--><?//= $once['credit_points'] ?><!--分</td>-->
-<!--                                    <td>--><?//= $once['integral'] ?><!--积分</td>-->
-<!--                                    <td>--><?//= $once['cityname'] ?><!--</td>-->
-                                    <?php if ($once['is_logoff'] == 1) { ?>
-                                        <td style="color: red">锁定</td>
-                                    <?php } else { ?>
-                                        <td style="color: green">开启</td>
-                                    <?php } ?>
-<!--                                    <td>--><?//= empty($once['member_id']) ? '暂无推荐人' : $once['member_id'] ?><!--</td>-->
+                                    <td><?= $once['nickname'] ?></td>
+                                    <td><img src="<?= $once['avater'] ?>" style="width: 50px;height: 50px;"></td>
+<!--                                    <td>--><?//= empty($once['mobile']) ? '暂无数据' : $once['mobile'] ?><!--</td>-->
+<!--                                    <td>--><?//= $once['sex'] == 1 ? '男' : '女' ?><!--</td>-->
                                     <td><?= date('Y-m-d H:i:s', $once['add_time']) ?></td>
-                                    <td class="td-manage">
-                                        <button class="layui-btn layui-btn-normal"
-                                                onclick="xadmin.open('编辑','<?= RUN . '/member/member_edit?id=' ?>'+<?= $once['id'] ?>,900,500)">
-                                            <i class="layui-icon">&#xe642;</i>编辑
-                                        </button>
-                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php } else { ?>

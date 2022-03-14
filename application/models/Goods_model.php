@@ -36,6 +36,49 @@ class Goods_model extends CI_Model
 		$sql = "SELECT * FROM `erp_xiangmuhetong` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
+	public function getbanAll($pg)
+	{
+		$sqlw = " where 1=1 ";
+		$start = ($pg - 1) * 200;
+		$stop = 200;
+
+		$sql = "SELECT * FROM `erp_zubie` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getgongsiAll($pg)
+	{
+		$sqlw = " where 1=1 ";
+		$start = ($pg - 1) * 200;
+		$stop = 200;
+
+		$sql = "SELECT * FROM `erp_zigongsi` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
+	public function getshengchanjihuaAll($pg,$jihuariqi,$zuname)
+	{
+		$jihuariqi = $this->db->escape($jihuariqi);
+		$zuname = $this->db->escape($zuname);
+		$sqlw = " where 1=1 and jihuariqi=$jihuariqi and zuname=$zuname ";
+		$start = ($pg - 1) * 1;
+		$stop = 1;
+
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+
+		return $this->db->query($sql)->result_array();
+	}
+
+	public function getyangpinAll($pg,$zid)
+	{
+		$zid = $this->db->escape($zid);
+		$sqlw = " where 1=1 and zid=$zid ";
+		$start = ($pg - 1) * 1;
+		$stop = 1;
+
+		$sql = "SELECT * FROM `erp_yangmingmingxi` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+
+		return $this->db->query($sql)->result_array();
+	}
+
 	public function getbaojiadankuanhaoAll($pg,$xid)
 	{
 		$sqlw = " where 1=1 and xid=$xid ";

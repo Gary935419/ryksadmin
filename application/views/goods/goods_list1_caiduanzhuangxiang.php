@@ -77,12 +77,21 @@
 														<i class="iconfont">&#xe74a;</i>  导出
 													</button>
 												</a>
+												<a style="margin-left: 10px;" href="#">
+													<button class="layui-btn layui-btn-normal" style="background-color: #C2C2C2;">
+														<i class="iconfont">&#xe74a;</i>  上传
+													</button>
+												</a>
 									        <?php }else{ ?>
 												<a style="margin-left: 10px;" href="<?= RUN. '/goods/goods_csv_caizhuangxiang?id='.$once['id'] ?>">
 													<button class="layui-btn layui-btn-normal">
 														<i class="iconfont">&#xe74a;</i>  导出
 													</button>
 												</a>
+												<button class="layui-btn layui-btn-normal"
+														onclick="xadmin.open('上传导出表','<?= RUN . '/goods/goods_add_new_excel_zhuangxiang?id=' ?>'+'<?= $once['id'] ?>',900,500)">
+													<i class="iconfont">&#xe74a;</i>  上传
+												</button>
 									        <?php } ?>
 										</td>
 									</tr>

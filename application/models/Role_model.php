@@ -1233,4 +1233,32 @@ class Role_model extends CI_Model
 		$sql = "UPDATE `erp_xiangmukuanhao` SET juesuanurl=$excelwendang WHERE id = $id";
 		return $this->db->query($sql);
 	}
+	public function role_save1_jihua_zhishi($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET zhishiurl=$excelwendang WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function role_save1_jihua_caiduan($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET caidingurl=$excelwendang WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function role_save1_jihua_zhuangxiang($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET zhuangxiangurl=$excelwendang WHERE id = $id";
+		return $this->db->query($sql);
+	}
+	public function role_save1_jihua_yangpin($id,$excelwendang)
+	{
+		$excelwendang = $this->db->escape($excelwendang);
+		$id = $this->db->escape($id);
+		$sql = "UPDATE `erp_yangmingmingxi` SET yangpinurl=$excelwendang WHERE zid = $id";
+		return $this->db->query($sql);
+	}
 }

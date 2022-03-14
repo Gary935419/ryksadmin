@@ -47,6 +47,10 @@
 						<i class="iconfont">&#xe74a;</i>  导出
 					</button>
 				</a>
+				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 220px;"
+						onclick="xadmin.open('上传导出表','<?= RUN . '/goods/goods_add_new_excel_yangpin?zid='.$id ?>',900,500)">
+					<i class="iconfont">&#xe74a;</i>  上传
+				</button>
                 <button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
                         onclick="xadmin.open('添加','<?= RUN . '/label/yangpin_add?zid='.$id ?>')"><i
                             class="layui-icon"></i>添加

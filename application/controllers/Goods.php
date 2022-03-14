@@ -6094,32 +6094,6 @@ class Goods extends CI_Controller
 		$data['zuname'] = $zuname;
 		$this->display("goods/goods_add_new_shengchan_excel", $data);
 	}
-	public function goods_add_new_excel_baojiadan()
-	{
-		$btype = isset($_GET['btype']) ? $_GET['btype'] : '';
-		$id = isset($_GET['id']) ? $_GET['id'] : '';
-		$data['id'] = $id;
-		$data['btype'] = $btype;
-		$this->display("goods/goods_add_new_excel_baojiadan", $data);
-	}
-	public function goods_save_jihua_excel_baojia()
-	{
-		if (empty($_SESSION['user_name'])) {
-			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
-			return;
-		}
-		$id = isset($_POST["id"]) ? $_POST["id"] : '';
-		$btype = isset($_POST["btype"]) ? $_POST["btype"] : '';
-		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
-
-		if ($btype == 1){
-			$this->role->role_save1_jihua_baojiayu($id,$excelwendang);
-		}else{
-			$this->role->role_save1_jihua_baojiajue($id,$excelwendang);
-		}
-
-		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
-	}
 
 	public function goods_save_jihua_excel()
 	{
@@ -7536,5 +7510,112 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "操作失败"));
 			return;
 		}
+	}
+
+	public function goods_add_new_excel_baojiadan()
+	{
+		$btype = isset($_GET['btype']) ? $_GET['btype'] : '';
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data['id'] = $id;
+		$data['btype'] = $btype;
+		$this->display("goods/goods_add_new_excel_baojiadan", $data);
+	}
+	public function goods_save_jihua_excel_baojia()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$btype = isset($_POST["btype"]) ? $_POST["btype"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		if ($btype == 1){
+			$this->role->role_save1_jihua_baojiayu($id,$excelwendang);
+		}else{
+			$this->role->role_save1_jihua_baojiajue($id,$excelwendang);
+		}
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+	public function goods_add_new_excel_zhishi()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data['id'] = $id;
+		$this->display("goods/goods_add_new_excel_zhishi", $data);
+	}
+	public function goods_save_jihua_excel_zhishi()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		$this->role->role_save1_jihua_zhishi($id,$excelwendang);
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+	public function goods_add_new_excel_caiduan()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data['id'] = $id;
+		$this->display("goods/goods_add_new_excel_caiduan", $data);
+	}
+	public function goods_save_jihua_excel_caiduan()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		$this->role->role_save1_jihua_caiduan($id,$excelwendang);
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+	public function goods_add_new_excel_zhuangxiang()
+	{
+		$id = isset($_GET['id']) ? $_GET['id'] : '';
+		$data['id'] = $id;
+		$this->display("goods/goods_add_new_excel_zhuangxiang", $data);
+	}
+	public function goods_save_jihua_excel_zhuangxiang()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		$this->role->role_save1_jihua_zhuangxiang($id,$excelwendang);
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
+	}
+
+	public function goods_add_new_excel_yangpin()
+	{
+		$id = isset($_GET['zid']) ? $_GET['zid'] : '';
+		$data['id'] = $id;
+		$this->display("goods/goods_add_new_excel_yangpin", $data);
+	}
+	public function goods_save_jihua_excel_yangpin()
+	{
+		if (empty($_SESSION['user_name'])) {
+			echo json_encode(array('error' => false, 'msg' => "无法添加数据"));
+			return;
+		}
+		$id = isset($_POST["id"]) ? $_POST["id"] : '';
+		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
+
+		$this->role->role_save1_jihua_yangpin($id,$excelwendang);
+
+		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
 	}
 }

@@ -263,24 +263,24 @@ class Member_model extends CI_Model
     //获取会员总人数  用户
     public function getmemberAllPage($account)
     {
-        $sqlw = " where 1=1 and type = 1 ";
+        $sqlw = " where 1=1 ";
 		if (!empty($account)) {
-			$sqlw .= " and ( account like '%" . $account . "%' ) ";
+			$sqlw .= " and ( nickname like '%" . $account . "%' ) ";
 		}
-        $sql = "SELECT count(1) as number FROM `user` " . $sqlw;
+        $sql = "SELECT count(1) as number FROM `member` " . $sqlw;
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
     //获取会员总信息 用户
     public function getmemberAll($pg, $account)
     {
-		$sqlw = " where 1=1 and type = 1 ";
+		$sqlw = " where 1=1 ";
 		if (!empty($account)) {
-			$sqlw .= " and ( account like '%" . $account . "%' ) ";
+			$sqlw .= " and ( nickname like '%" . $account . "%' ) ";
 		}
         $start = ($pg - 1) * 10;
         $stop = 10;
-        $sql = "SELECT * FROM `user` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+        $sql = "SELECT * FROM `member` " . $sqlw . " order by mid desc LIMIT $start, $stop";
         return $this->db->query($sql)->result_array();
     }
     //获取会员总人数  司机

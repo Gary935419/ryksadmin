@@ -17,6 +17,7 @@ class Index extends CI_Controller
         $this->load->model('Member_model', 'member');
 		$this->load->model('Task_model', 'task');
 		$this->load->model('Goods_model', 'goods');
+		$this->load->model('Role_model', 'role');
     }
 
     //获取合同
@@ -56,10 +57,91 @@ class Index extends CI_Controller
 		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
 		$xid = isset($_POST["xid"]) ? $_POST["xid"] : '';
 		$list = $this->goods->getbaojiadankuanhaoAll($page,$xid);
+		foreach ($list as $k=>$v){
+			$list[$k]['jiaohuoqi'] = date("Y-m-d",$v['jiaohuoqi']);
+			$kuanhaoallone = $this->role->gettidlistpinmingkuanhao($v['kuanhao']);
+			$list[$k]['yuanfuliaourl'] = empty($kuanhaoallone[0]['excelwendang'])?'':$kuanhaoallone[0]['excelwendang'];
+		}
 		$data["list"] = $list;
 		$this->back_json(200, '操作成功', $data);
 	}
 
+	//获取班
+	public function ban_list()
+	{
+		if (!isset($_POST['token']) || empty($_POST['token'])) {
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$token = $_POST['token'];
+		$member = $this->member->getMemberInfotoken($token);
+		if (empty($member)){
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$mid = $member['mid'];
+		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
+		$list = $this->goods->getbanAll($page);
+		$data["list"] = $list;
+		$this->back_json(200, '操作成功', $data);
+	}
+
+	//获取公司
+	public function gongsi_list()
+	{
+		if (!isset($_POST['token']) || empty($_POST['token'])) {
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$token = $_POST['token'];
+		$member = $this->member->getMemberInfotoken($token);
+		if (empty($member)){
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$mid = $member['mid'];
+		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
+		$list = $this->goods->getgongsiAll($page);
+		$data["list"] = $list;
+		$this->back_json(200, '操作成功', $data);
+	}
+
+	//获取生产计划
+	public function baojiadankuanhaoshengchan_list()
+	{
+		if (!isset($_POST['token']) || empty($_POST['token'])) {
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$token = $_POST['token'];
+		$member = $this->member->getMemberInfotoken($token);
+		if (empty($member)){
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$mid = $member['mid'];
+		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
+		$zuname = isset($_POST["zu"]) ? $_POST["zu"] : "";
+		$yue = isset($_POST["yue"]) ? $_POST["yue"] : "";
+		$nian = isset($_POST["nian"]) ? $_POST["nian"] : "";
+		$jihuariqi = $nian.'-'.$yue;
+		$list = $this->goods->getshengchanjihuaAll($page,$jihuariqi,$zuname);
+		$data["list"] = $list;
+		$this->back_json(200, '操作成功', $data);
+	}
+
+	//获取样品
+	public function baojiadankuanhaoyangpin_list()
+	{
+		if (!isset($_POST['token']) || empty($_POST['token'])) {
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$token = $_POST['token'];
+		$member = $this->member->getMemberInfotoken($token);
+		if (empty($member)){
+			$this->back_json(205, '请您先去授权登录！');
+		}
+		$mid = $member['mid'];
+		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
+		$zid = isset($_POST["zid"]) ? $_POST["zid"] : "";
+		$list = $this->goods->getyangpinAll($page,$zid);
+		$data["list"] = $list;
+		$this->back_json(200, '操作成功', $data);
+	}
     /**
      * 个人中心
      */

@@ -311,23 +311,24 @@ class Member extends CI_Controller
 		$data["account"] = $account;
 		$this->display("member/complaint_list1", $data);
 	}
-    /**
-     * 用户列表页
-     */
-    public function member_list()
-    {
-        $account = isset($_GET['account']) ? $_GET['account'] : '';
-        $page = isset($_GET["page"]) ? $_GET["page"] : 1;
-        $allpage = $this->member->getmemberAllPage($account);
-        $page = $allpage > $page ? $page : $allpage;
-        $data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
-        $data["page"] = $page;
-        $data["allpage"] = $allpage;
-        $list = $this->member->getmemberAll($page, $account);
-        $data["list"] = $list;
-        $data["account"] = $account;
-        $this->display("member/member_list", $data);
-    }
+	/**
+	 * 会员列表页
+	 */
+	public function member_list()
+	{
+		$nickname = isset($_GET['nickname']) ? $_GET['nickname'] : '';
+		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
+		$allpage = $this->member->getmemberAllPage($nickname);
+		$page = $allpage > $page ? $page : $allpage;
+		$data["pagehtml"] = $this->getpage($page, $allpage, $_GET);
+		$data["page"] = $page;
+		$data["allpage"] = $allpage;
+		$list = $this->member->getmemberAll($page, $nickname);
+		$data["list"] = $list;
+		$data["nickname"] = $nickname;
+		$this->display("member/member_list", $data);
+	}
+
 	/**
 	 * 司机列表页
 	 */
