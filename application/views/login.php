@@ -31,7 +31,7 @@
 				</div>
 				<div class="login_box">
 					<img src="<?= STA ?>/images/ico2.png" alt="" />
-					<input type="text" name="password" placeholder="请输入密码" />
+					<input type="password" name="password" placeholder="请输入密码" />
 				</div>
 				<input type="submit" value="确认登录" lay-submit lay-filter="login" class="login_btu" />
 			</form>
