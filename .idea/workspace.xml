@@ -2,25 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="358b86d0-c90c-4aed-a45f-6f000ffa08be" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/views/goods/goods_add_new_excel_caiduan.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/goods/goods_add_new_excel_yangpin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/goods/goods_add_new_excel_zhishi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/goods/goods_add_new_excel_zhuangxiang.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/views/goods/goods_edit_new1old.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Member.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/api/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/api/Index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Goods_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Goods_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Member_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Member_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Role_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Role_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/goods/goods_list1_cai.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_list1_cai.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/goods/goods_list1_caiduan.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_list1_caiduan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/goods/goods_list1_caiduanzhuangxiang.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_list1_caiduanzhuangxiang.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/label/yangpin_add.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/label/yangpin_add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/label/yangpin_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/label/yangpin_list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/member/member_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/member/member_edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/member/member_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/member/member_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/goods/goods_edit_new1.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/goods/goods_edit_new1.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,15 +29,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/views/member" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/views/goods" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\phpstudy_pro\WWW\yifuerp\yifuerpnew\application\views\member" />
       <recent name="D:\phpstudy_pro\WWW\yifuerp\yifuerpnew\application\views\goods" />
+      <recent name="D:\phpstudy_pro\WWW\yifuerp\yifuerpnew\application\views\member" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -67,6 +53,7 @@
       <workItem from="1646744737925" duration="20921000" />
       <workItem from="1647054141333" duration="3386000" />
       <workItem from="1647148663737" duration="31227000" />
+      <workItem from="1647436491749" duration="16612000" />
     </task>
     <servers />
   </component>

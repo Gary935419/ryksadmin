@@ -1037,8 +1037,109 @@ class Goods extends CI_Controller
 
 		$data = array();
 		$data['kuanhao'] = $kuanhao;
-		$kuanhaos = $this->task->gettidlistguige($kuanhao);
-		$data['list'] = $kuanhaos;
+		$list1 = $this->task->gettidlistguige($kuanhao);
+
+		$GUIGE_ARR = array();
+		$SEHAO_ARR = array();
+		foreach ($list1 as $k=>$v){
+			$GUIGE_ARR[] = $v['guige'];
+			$SEHAO_ARR[] = $v['sehao'];
+		}
+		$GUIGE_ARR = array_unique($GUIGE_ARR);
+		$GUIGE_ARR = array_values ($GUIGE_ARR);
+		$SEHAO_ARR = array_unique($SEHAO_ARR);
+		$SEHAO_ARR = array_values ($SEHAO_ARR);
+
+		foreach ($GUIGE_ARR as $kk=>$vv){
+			for ($i=0;$i<=11;$i++){
+				if (!isset($GUIGE_ARR[$i])){
+					$GUIGE_ARR[$i] = "";
+				}
+			}
+		}
+
+		$data['list'] = $GUIGE_ARR;
+		foreach ($GUIGE_ARR as $kk=>$vv){
+			foreach ($SEHAO_ARR as $kkk=>$vvv){
+				foreach ($list1 as $key=>$val){
+					if ($vv == $val['guige'] && $vvv == $val['sehao']){
+						$arr1[$kkk]['sehao'] = $val['sehao'];
+						$arr1[$kkk]['shuzhi'.$kk] = $val['shuzhi'];
+					}
+				}
+			}
+		}
+		foreach ($arr1 as $kv=>$vv){
+			for ($i=0;$i<=11;$i++){
+				if (!isset($vv['shuzhi'.$i])){
+					$arr1[$kv]['shuzhi'.$i] = 0;
+				}
+			}
+		}
+		foreach ($arr1 as $kv=>$vv){
+			$heji = 0;
+			for ($i=0;$i<=11;$i++){
+				$heji = $heji + $vv['shuzhi'.$i];
+			}
+			$arr1[$kv]['heji'] = $heji;
+		}
+
+		$shuzhi0 = 0;
+		$shuzhi1 = 0;
+		$shuzhi2 = 0;
+		$shuzhi3 = 0;
+		$shuzhi4 = 0;
+		$shuzhi5 = 0;
+		$shuzhi6 = 0;
+		$shuzhi7 = 0;
+		$shuzhi8 = 0;
+		$shuzhi9 = 0;
+		$shuzhi10 = 0;
+		$shuzhi11 = 0;
+		$heji = 0;
+		foreach ($arr1 as $k=>$v){
+			$shuzhi0 += $v['shuzhi0'];
+			$shuzhi1 += $v['shuzhi1'];
+			$shuzhi2 += $v['shuzhi2'];
+			$shuzhi3 += $v['shuzhi3'];
+			$shuzhi4 += $v['shuzhi4'];
+			$shuzhi5 += $v['shuzhi5'];
+			$shuzhi6 += $v['shuzhi6'];
+			$shuzhi7 += $v['shuzhi7'];
+			$shuzhi8 += $v['shuzhi8'];
+			$shuzhi9 += $v['shuzhi9'];
+			$shuzhi10 += $v['shuzhi10'];
+			$shuzhi11 += $v['shuzhi11'];
+			$heji += $v['heji'];
+		}
+		$data['shuzhi0'] = $shuzhi0;
+		$data['shuzhi1'] = $shuzhi1;
+		$data['shuzhi2'] = $shuzhi2;
+		$data['shuzhi3'] = $shuzhi3;
+		$data['shuzhi4'] = $shuzhi4;
+		$data['shuzhi5'] = $shuzhi5;
+		$data['shuzhi6'] = $shuzhi6;
+		$data['shuzhi7'] = $shuzhi7;
+		$data['shuzhi8'] = $shuzhi8;
+		$data['shuzhi9'] = $shuzhi9;
+		$data['shuzhi10'] = $shuzhi10;
+		$data['shuzhi11'] = $shuzhi11;
+		$data['shuzhi12'] = $heji;
+//		$data['shuzhi0'] = empty($arr1[0]['shuzhi0'])?0:$arr1[0]['shuzhi0'] + empty($arr1[1]['shuzhi0'])?0:$arr1[1]['shuzhi0'] + empty($arr1[2]['shuzhi0'])?0:$arr1[2]['shuzhi0'] + empty($arr1[3]['shuzhi0'])?0:$arr1[3]['shuzhi0'] + empty($arr1[4]['shuzhi0'])?0:$arr1[4]['shuzhi0'] + empty($arr1[5]['shuzhi0'])?0:$arr1[5]['shuzhi0'] + empty($arr1[6]['shuzhi0'])?0:$arr1[6]['shuzhi0'] + empty($arr1[7]['shuzhi0'])?0:$arr1[7]['shuzhi0'] + empty($arr1[8]['shuzhi0'])?0:$arr1[8]['shuzhi0'] + empty($arr1[9]['shuzhi0'])?0:$arr1[9]['shuzhi0'] + empty($arr1[10]['shuzhi0'])?0:$arr1[10]['shuzhi0'] + empty($arr1[11]['shuzhi0'])?0:$arr1[11]['shuzhi0'];
+//		$data['shuzhi1'] = empty($arr1[0]['shuzhi1'])?0:$arr1[0]['shuzhi1'] + empty($arr1[1]['shuzhi1'])?0:$arr1[1]['shuzhi1'] + empty($arr1[2]['shuzhi1'])?0:$arr1[2]['shuzhi1'] + empty($arr1[3]['shuzhi1'])?0:$arr1[3]['shuzhi1'] + empty($arr1[4]['shuzhi1'])?0:$arr1[4]['shuzhi1'] + empty($arr1[5]['shuzhi1'])?0:$arr1[5]['shuzhi1'] + empty($arr1[6]['shuzhi1'])?0:$arr1[6]['shuzhi1'] + empty($arr1[7]['shuzhi1'])?0:$arr1[7]['shuzhi1'] + empty($arr1[8]['shuzhi1'])?0:$arr1[8]['shuzhi1'] + empty($arr1[9]['shuzhi1'])?0:$arr1[9]['shuzhi1'] + empty($arr1[10]['shuzhi1'])?0:$arr1[10]['shuzhi1'] + empty($arr1[11]['shuzhi1'])?0:$arr1[11]['shuzhi1'];
+//		$data['shuzhi2'] = empty($arr1[0]['shuzhi2'])?0:$arr1[0]['shuzhi2'] + empty($arr1[1]['shuzhi2'])?0:$arr1[1]['shuzhi2'] + empty($arr1[2]['shuzhi2'])?0:$arr1[2]['shuzhi2'] + empty($arr1[3]['shuzhi2'])?0:$arr1[3]['shuzhi2'] + empty($arr1[4]['shuzhi2'])?0:$arr1[4]['shuzhi2'] + empty($arr1[5]['shuzhi2'])?0:$arr1[5]['shuzhi2'] + empty($arr1[6]['shuzhi2'])?0:$arr1[6]['shuzhi2'] + empty($arr1[7]['shuzhi2'])?0:$arr1[7]['shuzhi2'] + empty($arr1[8]['shuzhi2'])?0:$arr1[8]['shuzhi2'] + empty($arr1[9]['shuzhi2'])?0:$arr1[9]['shuzhi2'] + empty($arr1[10]['shuzhi2'])?0:$arr1[10]['shuzhi2'] + empty($arr1[11]['shuzhi2'])?0:$arr1[11]['shuzhi2'];
+//		$data['shuzhi3'] = empty($arr1[0]['shuzhi3'])?0:$arr1[0]['shuzhi3'] + empty($arr1[1]['shuzhi3'])?0:$arr1[1]['shuzhi3'] + empty($arr1[2]['shuzhi3'])?0:$arr1[2]['shuzhi3'] + empty($arr1[3]['shuzhi3'])?0:$arr1[3]['shuzhi3'] + empty($arr1[4]['shuzhi3'])?0:$arr1[4]['shuzhi3'] + empty($arr1[5]['shuzhi3'])?0:$arr1[5]['shuzhi3'] + empty($arr1[6]['shuzhi3'])?0:$arr1[6]['shuzhi3'] + empty($arr1[7]['shuzhi3'])?0:$arr1[7]['shuzhi3'] + empty($arr1[8]['shuzhi3'])?0:$arr1[8]['shuzhi3'] + empty($arr1[9]['shuzhi3'])?0:$arr1[9]['shuzhi3'] + empty($arr1[10]['shuzhi3'])?0:$arr1[10]['shuzhi3'] + empty($arr1[11]['shuzhi3'])?0:$arr1[11]['shuzhi3'];
+//		$data['shuzhi4'] = empty($arr1[0]['shuzhi4'])?0:$arr1[0]['shuzhi4'] + empty($arr1[1]['shuzhi4'])?0:$arr1[1]['shuzhi4'] + empty($arr1[2]['shuzhi4'])?0:$arr1[2]['shuzhi4'] + empty($arr1[3]['shuzhi4'])?0:$arr1[3]['shuzhi4'] + empty($arr1[4]['shuzhi4'])?0:$arr1[4]['shuzhi4'] + empty($arr1[5]['shuzhi4'])?0:$arr1[5]['shuzhi4'] + empty($arr1[6]['shuzhi4'])?0:$arr1[6]['shuzhi4'] + empty($arr1[7]['shuzhi4'])?0:$arr1[7]['shuzhi4'] + empty($arr1[8]['shuzhi4'])?0:$arr1[8]['shuzhi4'] + empty($arr1[9]['shuzhi4'])?0:$arr1[9]['shuzhi4'] + empty($arr1[10]['shuzhi4'])?0:$arr1[10]['shuzhi4'] + empty($arr1[11]['shuzhi4'])?0:$arr1[11]['shuzhi4'];
+//		$data['shuzhi5'] = empty($arr1[0]['shuzhi5'])?0:$arr1[0]['shuzhi5'] + empty($arr1[1]['shuzhi5'])?0:$arr1[1]['shuzhi5'] + empty($arr1[2]['shuzhi5'])?0:$arr1[2]['shuzhi5'] + empty($arr1[3]['shuzhi5'])?0:$arr1[3]['shuzhi5'] + empty($arr1[4]['shuzhi5'])?0:$arr1[4]['shuzhi5'] + empty($arr1[5]['shuzhi5'])?0:$arr1[5]['shuzhi5'] + empty($arr1[6]['shuzhi5'])?0:$arr1[6]['shuzhi5'] + empty($arr1[7]['shuzhi5'])?0:$arr1[7]['shuzhi5'] + empty($arr1[8]['shuzhi5'])?0:$arr1[8]['shuzhi5'] + empty($arr1[9]['shuzhi5'])?0:$arr1[9]['shuzhi5'] + empty($arr1[10]['shuzhi5'])?0:$arr1[10]['shuzhi5'] + empty($arr1[11]['shuzhi5'])?0:$arr1[11]['shuzhi5'];
+//		$data['shuzhi6'] = empty($arr1[0]['shuzhi6'])?0:$arr1[0]['shuzhi6'] + empty($arr1[1]['shuzhi6'])?0:$arr1[1]['shuzhi6'] + empty($arr1[2]['shuzhi6'])?0:$arr1[2]['shuzhi6'] + empty($arr1[3]['shuzhi6'])?0:$arr1[3]['shuzhi6'] + empty($arr1[4]['shuzhi6'])?0:$arr1[4]['shuzhi6'] + empty($arr1[5]['shuzhi6'])?0:$arr1[5]['shuzhi6'] + empty($arr1[6]['shuzhi6'])?0:$arr1[6]['shuzhi6'] + empty($arr1[7]['shuzhi6'])?0:$arr1[7]['shuzhi6'] + empty($arr1[8]['shuzhi6'])?0:$arr1[8]['shuzhi6'] + empty($arr1[9]['shuzhi6'])?0:$arr1[9]['shuzhi6'] + empty($arr1[10]['shuzhi6'])?0:$arr1[10]['shuzhi6'] + empty($arr1[11]['shuzhi6'])?0:$arr1[11]['shuzhi6'];
+//		$data['shuzhi7'] = empty($arr1[0]['shuzhi7'])?0:$arr1[0]['shuzhi7'] + empty($arr1[1]['shuzhi7'])?0:$arr1[1]['shuzhi7'] + empty($arr1[2]['shuzhi7'])?0:$arr1[2]['shuzhi7'] + empty($arr1[3]['shuzhi7'])?0:$arr1[3]['shuzhi7'] + empty($arr1[4]['shuzhi7'])?0:$arr1[4]['shuzhi7'] + empty($arr1[5]['shuzhi7'])?0:$arr1[5]['shuzhi7'] + empty($arr1[6]['shuzhi7'])?0:$arr1[6]['shuzhi7'] + empty($arr1[7]['shuzhi7'])?0:$arr1[7]['shuzhi7'] + empty($arr1[8]['shuzhi7'])?0:$arr1[8]['shuzhi7'] + empty($arr1[9]['shuzhi7'])?0:$arr1[9]['shuzhi7'] + empty($arr1[10]['shuzhi7'])?0:$arr1[10]['shuzhi7'] + empty($arr1[11]['shuzhi7'])?0:$arr1[11]['shuzhi7'];
+//		$data['shuzhi8'] = empty($arr1[0]['shuzhi8'])?0:$arr1[0]['shuzhi8'] + empty($arr1[1]['shuzhi8'])?0:$arr1[1]['shuzhi8'] + empty($arr1[2]['shuzhi8'])?0:$arr1[2]['shuzhi8'] + empty($arr1[3]['shuzhi8'])?0:$arr1[3]['shuzhi8'] + empty($arr1[4]['shuzhi8'])?0:$arr1[4]['shuzhi8'] + empty($arr1[5]['shuzhi8'])?0:$arr1[5]['shuzhi8'] + empty($arr1[6]['shuzhi8'])?0:$arr1[6]['shuzhi8'] + empty($arr1[7]['shuzhi8'])?0:$arr1[7]['shuzhi8'] + empty($arr1[8]['shuzhi8'])?0:$arr1[8]['shuzhi8'] + empty($arr1[9]['shuzhi8'])?0:$arr1[9]['shuzhi8'] + empty($arr1[10]['shuzhi8'])?0:$arr1[10]['shuzhi8'] + empty($arr1[11]['shuzhi8'])?0:$arr1[11]['shuzhi8'];
+//		$data['shuzhi9'] = empty($arr1[0]['shuzhi9'])?0:$arr1[0]['shuzhi9'] + empty($arr1[1]['shuzhi9'])?0:$arr1[1]['shuzhi9'] + empty($arr1[2]['shuzhi9'])?0:$arr1[2]['shuzhi9'] + empty($arr1[3]['shuzhi9'])?0:$arr1[3]['shuzhi9'] + empty($arr1[4]['shuzhi9'])?0:$arr1[4]['shuzhi9'] + empty($arr1[5]['shuzhi9'])?0:$arr1[5]['shuzhi9'] + empty($arr1[6]['shuzhi9'])?0:$arr1[6]['shuzhi9'] + empty($arr1[7]['shuzhi9'])?0:$arr1[7]['shuzhi9'] + empty($arr1[8]['shuzhi9'])?0:$arr1[8]['shuzhi9'] + empty($arr1[9]['shuzhi9'])?0:$arr1[9]['shuzhi9'] + empty($arr1[10]['shuzhi9'])?0:$arr1[10]['shuzhi9'] + empty($arr1[11]['shuzhi9'])?0:$arr1[11]['shuzhi9'];
+//		$data['shuzhi10'] = empty($arr1[0]['shuzhi10'])?0:$arr1[0]['shuzhi10'] + empty($arr1[1]['shuzhi10'])?0:$arr1[1]['shuzhi10'] + empty($arr1[2]['shuzhi10'])?0:$arr1[2]['shuzhi10'] + empty($arr1[3]['shuzhi10'])?0:$arr1[3]['shuzhi10'] + empty($arr1[4]['shuzhi10'])?0:$arr1[4]['shuzhi10'] + empty($arr1[5]['shuzhi10'])?0:$arr1[5]['shuzhi10'] + empty($arr1[6]['shuzhi10'])?0:$arr1[6]['shuzhi10'] + empty($arr1[7]['shuzhi10'])?0:$arr1[7]['shuzhi10'] + empty($arr1[8]['shuzhi10'])?0:$arr1[8]['shuzhi10'] + empty($arr1[9]['shuzhi10'])?0:$arr1[9]['shuzhi10'] + empty($arr1[10]['shuzhi10'])?0:$arr1[10]['shuzhi10'] + empty($arr1[11]['shuzhi10'])?0:$arr1[11]['shuzhi10'];
+//		$data['shuzhi11'] = empty($arr1[0]['shuzhi11'])?0:$arr1[0]['shuzhi11'] + empty($arr1[1]['shuzhi11'])?0:$arr1[1]['shuzhi11'] + empty($arr1[2]['shuzhi11'])?0:$arr1[2]['shuzhi11'] + empty($arr1[3]['shuzhi11'])?0:$arr1[3]['shuzhi11'] + empty($arr1[4]['shuzhi11'])?0:$arr1[4]['shuzhi11'] + empty($arr1[5]['shuzhi11'])?0:$arr1[5]['shuzhi11'] + empty($arr1[6]['shuzhi11'])?0:$arr1[6]['shuzhi11'] + empty($arr1[7]['shuzhi11'])?0:$arr1[7]['shuzhi11'] + empty($arr1[8]['shuzhi11'])?0:$arr1[8]['shuzhi11'] + empty($arr1[9]['shuzhi11'])?0:$arr1[9]['shuzhi11'] + empty($arr1[10]['shuzhi11'])?0:$arr1[10]['shuzhi11'] + empty($arr1[11]['shuzhi11'])?0:$arr1[11]['shuzhi11'];
+//		$data['shuzhi12'] = empty($arr1[0]['heji'])?0:$arr1[0]['heji'] + empty($arr1[1]['heji'])?0:$arr1[1]['heji'] + empty($arr1[2]['heji'])?0:$arr1[2]['heji'] + empty($arr1[3]['heji'])?0:$arr1[3]['heji']+ empty($arr1[4]['heji'])?0:$arr1[4]['heji'] + empty($arr1[5]['heji'])?0:$arr1[5]['heji'] + empty($arr1[6]['heji'])?0:$arr1[6]['heji'] + empty($arr1[7]['heji'])?0:$arr1[7]['heji'] + empty($arr1[8]['heji'])?0:$arr1[8]['heji'] + empty($arr1[9]['heji'])?0:$arr1[9]['heji'] + empty($arr1[10]['heji'])?0:$arr1[10]['heji'] + empty($arr1[11]['heji'])?0:$arr1[11]['heji'];
+
+		$data['list1'] = $arr1;
 		$this->display("goods/goods_edit_new1", $data);
 	}
 	public function goods_add_new2()
