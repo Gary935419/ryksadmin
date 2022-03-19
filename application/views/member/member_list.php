@@ -46,6 +46,7 @@
                         <tr>
                             <th>序号</th>
                             <th>会员昵称</th>
+							<th>授权账号</th>
                             <th>会员头像</th>
 <!--                            <th>会员电话</th>-->
 <!--                            <th>会员性别</th>-->
@@ -57,6 +58,7 @@
                                 <tr id="p<?= $once['mid'] ?>" sid="<?= $once['mid'] ?>">
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['nickname'] ?></td>
+									<td><?= $once['truename'] ?></td>
                                     <td><img src="<?= $once['avater'] ?>" style="width: 50px;height: 50px;"></td>
 <!--                                    <td>--><?//= empty($once['mobile']) ? '暂无数据' : $once['mobile'] ?><!--</td>-->
 <!--                                    <td>--><?//= $once['sex'] == 1 ? '男' : '女' ?><!--</td>-->

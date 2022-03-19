@@ -31,10 +31,10 @@ class Index extends CI_Controller
 		if (empty($member)){
 			$this->back_json(205, '请您先去授权登录！');
 		}
-		$mid = $member['mid'];
+		$member_id = $member['member_id'];
 		$gname = isset($_POST['gname']) ? $_POST['gname'] : '';
 		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
-		$list = $this->goods->getbaojiadanAll($page,$gname);
+		$list = $this->goods->getbaojiadanAll($page,$gname,$member_id);
 		foreach ($list as $k=>$v){
 			$list[$k]['qianding'] = date("Y-m-d",$v['qianding']);
 		}
@@ -113,14 +113,35 @@ class Index extends CI_Controller
 		if (empty($member)){
 			$this->back_json(205, '请您先去授权登录！');
 		}
-		$mid = $member['mid'];
+		$member_id = $member['member_id'];
 		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
 		$zuname = isset($_POST["zu"]) ? $_POST["zu"] : "";
 		$yue = isset($_POST["yue"]) ? $_POST["yue"] : "";
 		$nian = isset($_POST["nian"]) ? $_POST["nian"] : "";
 		$jihuariqi = $nian.'-'.$yue;
 		$list = $this->goods->getshengchanjihuaAll($page,$jihuariqi,$zuname);
-		$data["list"] = $list;
+		$you_flg = false;
+		foreach ($list as $k=>$v){
+			$kuanhao = $v['zhipinfanhao'];
+			$listcheck = $this->member->geterp_xiangmukuanhao($kuanhao);
+			if (!empty($listcheck)){
+				$xid = $listcheck['xid'];
+				$listcheck1 = $this->member->geterp_xiangmukuanhaoxid($xid);
+				if (!empty($listcheck1)){
+					foreach ($listcheck1 as $kk=>$vv){
+						if ($member_id == $vv['uid']){
+							$you_flg = true;
+						}
+					}
+				}
+			}
+		}
+		if ($you_flg){
+			$data["list"][0] = $list[0];
+		}else{
+			$data["list"] = array();
+		}
+
 		$this->back_json(200, '操作成功', $data);
 	}
 
@@ -135,11 +156,32 @@ class Index extends CI_Controller
 		if (empty($member)){
 			$this->back_json(205, '请您先去授权登录！');
 		}
-		$mid = $member['mid'];
+		$member_id = $member['member_id'];
 		$page = isset($_POST["page"]) ? $_POST["page"] : 1;
 		$zid = isset($_POST["zid"]) ? $_POST["zid"] : "";
 		$list = $this->goods->getyangpinAll($page,$zid);
-		$data["list"] = $list;
+
+		$you_flg = false;
+		foreach ($list as $k=>$v){
+			$kuanhao = $v['kuanhao'];
+			$listcheck = $this->member->geterp_xiangmukuanhao($kuanhao);
+			if (!empty($listcheck)){
+				$xid = $listcheck['xid'];
+				$listcheck1 = $this->member->geterp_xiangmukuanhaoxid($xid);
+				if (!empty($listcheck1)){
+					foreach ($listcheck1 as $kk=>$vv){
+						if ($member_id == $vv['uid']){
+							$you_flg = true;
+						}
+					}
+				}
+			}
+		}
+		if ($you_flg){
+			$data["list"][0] = $list[0];
+		}else{
+			$data["list"] = array();
+		}
 		$this->back_json(200, '操作成功', $data);
 	}
     /**

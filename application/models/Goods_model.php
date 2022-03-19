@@ -21,11 +21,17 @@ class Goods_model extends CI_Model
         $number = $this->db->query($sql)->row()->number;
         return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
     }
-	public function getbaojiadanAll($pg,$gname)
+	public function getbaojiadanAll($pg,$gname,$memberid)
 	{
 		$sqlw = " where 1=1 ";
+
+		if (!empty($memberid)) {
+			$memberid = $this->db->escape($memberid);
+			$sqlw .= " and me.uid= " . $memberid;
+		}
+
 		if (!empty($gname)) {
-			$sqlw .= " and ( bianhao like '%" . $gname . "%' ) ";
+			$sqlw .= " and ( m.bianhao like '%" . $gname . "%' ) ";
 			$start = ($pg - 1) * 1000;
 			$stop = 1000;
 		}else{
@@ -33,7 +39,7 @@ class Goods_model extends CI_Model
 			$stop = 20;
 		}
 
-		$sql = "SELECT * FROM `erp_xiangmuhetong` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
+		$sql = "SELECT m.* FROM `erp_xiangmuhetong` m LEFT JOIN `erp_xiangmufuzeren` me ON me.xid = m.id" . $sqlw . " order by m.addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
 	public function getbanAll($pg)
@@ -59,8 +65,8 @@ class Goods_model extends CI_Model
 		$jihuariqi = $this->db->escape($jihuariqi);
 		$zuname = $this->db->escape($zuname);
 		$sqlw = " where 1=1 and jihuariqi=$jihuariqi and zuname=$zuname ";
-		$start = ($pg - 1) * 1;
-		$stop = 1;
+		$start = ($pg - 1) * 100;
+		$stop = 100;
 
 		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 
@@ -83,8 +89,8 @@ class Goods_model extends CI_Model
 	{
 		$sqlw = " where 1=1 and xid=$xid ";
 
-			$start = ($pg - 1) * 20;
-			$stop = 20;
+		$start = ($pg - 1) * 20;
+		$stop = 20;
 
 		$sql = "SELECT * FROM `erp_xiangmukuanhao` " . $sqlw . " order by addtime desc LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();

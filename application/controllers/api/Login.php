@@ -21,6 +21,17 @@ class Login extends CI_Controller
      */
     public function register()
     {
+		if (!isset($_POST['account']) || empty($_POST['account'])) {
+			$this->back_json(201, '请输入员工账号！');
+		}
+		if (!isset($_POST['password']) || empty($_POST['password'])) {
+			$this->back_json(201, '请输入员工密码！');
+		}
+		$Member = $this->member->getMember($_POST['account'],$_POST['password']);
+		if (empty($Member)) {
+			$this->back_json(201, '抱歉!账号或密码错误!');
+		}
+		$uid = $Member['id'];
         //验证loginCode是否传递
         if (!isset($_POST['loginCode']) || empty($_POST['loginCode'])) {
             $this->back_json(201, '未传递loginCode');
@@ -44,7 +55,8 @@ class Login extends CI_Controller
         $avatarurl = $_POST['avatarurl'];
         //获得性别
         $gender = $_POST['gender'];
-
+		$account = $_POST['account'];
+		$password = $_POST['password'];
         // 取得登录凭证 
         $resultnew = $this->get_code2Session($this->appid, $this->secret, $loginCode);
 
@@ -79,7 +91,7 @@ class Login extends CI_Controller
             $is_agent = 2;
 			$idnumber = $this->GetRandStr(6);
             // 注册操作
-            $this->member->register($member_id,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state,$idnumber);
+            $this->member->register($uid,$account,$password,$member_id,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state,$idnumber);
 
             $member_newinfo = $this->member->getMemberInfo($openid);
 			$member_newinfo['session_key'] = $resultnew['session_key'];

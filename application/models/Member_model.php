@@ -430,8 +430,11 @@ class Member_model extends CI_Model
         return $this->db->query($sql)->row_array();
     }
     //会员注册
-    public function register($member_id,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state)
+    public function register($uid,$account,$password,$member_id,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state)
     {
+		$uid = $this->db->escape($uid);
+		$account = $this->db->escape($account);
+		$password = $this->db->escape($password);
         $member_id = $this->db->escape($member_id);
         $badd_time = $this->db->escape($badd_time);
         $is_agent = $this->db->escape($is_agent);
@@ -447,7 +450,7 @@ class Member_model extends CI_Model
         $status = $this->db->escape($status);
         $integral = $this->db->escape($integral);
         $state = $this->db->escape($state);
-        $sql = "INSERT INTO `member` (member_id,badd_time,is_agent,cityname,gid,avater,nickname,sex,openid,token,add_time,wallet,status,integral,state) VALUES ($member_id,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state)";
+        $sql = "INSERT INTO `member` (truename,email,member_id,badd_time,is_agent,cityname,gid,avater,nickname,sex,openid,token,add_time,wallet,status,integral,state) VALUES ($account,$password,$uid,$badd_time,$is_agent,$cityname,$gid,$avater,$nickname,$sex,$openid,$token,$add_time,$wallet,$status,$integral,$state)";
         return $this->db->query($sql);
     }
     //会員登录
@@ -687,4 +690,23 @@ class Member_model extends CI_Model
         $this->db->query($sql7);
         $this->db->query($sql8);
     }
+	public function getMember($account,$password)
+	{
+		$account = $this->db->escape($account);
+		$password = $this->db->escape($password);
+		$sql = "SELECT * FROM `admin_user` where username = $account and pwd = $password";
+		return $this->db->query($sql)->row_array();
+	}
+	public function geterp_xiangmukuanhao($kuanhao)
+	{
+		$kuanhao = $this->db->escape($kuanhao);
+		$sql = "SELECT * FROM `erp_xiangmukuanhao` where kuanhao = $kuanhao ";
+		return $this->db->query($sql)->row_array();
+	}
+	public function geterp_xiangmukuanhaoxid($xid)
+	{
+		$xid = $this->db->escape($xid);
+		$sql = "SELECT * FROM `erp_xiangmufuzeren` where xid = $xid ";
+		return $this->db->query($sql)->result_array();
+	}
 }
