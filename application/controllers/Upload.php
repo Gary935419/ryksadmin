@@ -97,9 +97,7 @@ class Upload extends CI_Controller
 		return;
 	}
 	public function upload_img()
-
 	{
-
 		$img = isset($_POST["img"]) ? $_POST["img"] : '';
 		$src = $this->base64_image_content($img);
 		$data = array();
