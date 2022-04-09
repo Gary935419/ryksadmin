@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="358b86d0-c90c-4aed-a45f-6f000ffa08be" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/api/Uploads.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/api/Uploads.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/views/goods" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../aihuishouadmin" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -52,7 +50,7 @@
       <workItem from="1646744737925" duration="20921000" />
       <workItem from="1647054141333" duration="3386000" />
       <workItem from="1647148663737" duration="31227000" />
-      <workItem from="1647436491749" duration="30195000" />
+      <workItem from="1647436491749" duration="30857000" />
     </task>
     <servers />
   </component>
