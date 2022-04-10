@@ -41,6 +41,7 @@
 							<th>日期</th>
 							<th>品类</th>
 							<th>合计数量</th>
+							<th>状态</th>
 							<th>操作</th>
 						</thead>
 						<tbody>
@@ -54,11 +55,23 @@
 										<td><?= date('Y-m-d', $once['qianding']) ?></td>
 										<td><?= $once['pinlei'] ?></td>
 										<td><?= $once['heji'] ?></td>
+										<?php if ($once['status'] == 1){ ?>
+											<td style="color: blue">审核中</td>
+										<?php }elseif ($once['status'] == 2){ ?>
+											<td style="color: green">项目结束</td>
+										<?php }else{ ?>
+											<td style="color: red">未审核</td>
+										<?php } ?>
 										<td class="td-manage">
 											<button class="layui-btn layui-btn-normal"
-													onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new22_caitongji?id=' ?>'+'<?= $once['id'] ?>')">
+													onclick="xadmin.open('编辑','<?= RUN . '/goods/goods_edit_new22_caitongji?id=' ?>'+'<?= $once['id'] ?>'+'&bianhao='+'<?= $once['bianhao'] ?>')">
 												<i class="layui-icon">&#xe642;</i>编辑
 											</button>
+											<?php if ($once['status'] == 1 && $_SESSION['rid']==1 || $_SESSION['rid']==18){ ?>
+												<button class="layui-btn layui-btn-danger"
+														onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe642;</i>确认结束
+												</button>
+											<?php } ?>
 										</td>
 									</tr>
 								<?php } ?>
@@ -81,5 +94,41 @@
 		</div>
 	</div>
 </div>
+<script>
+	function goods_delete(id) {
+		layer.confirm('您是否确认审核完毕？', {
+					title: '温馨提示',
+					btn: ['确认', '取消']
+					// 按钮
+				},
+				function (index) {
+					$.ajax({
+						type: "post",
+						data: {"id": id},
+						dataType: "json",
+						url: "<?= RUN . '/goods/goods_delete_wanbi' ?>",
+						success: function (data) {
+							if (data.success) {
+								layer.alert(data.msg, {
+											title: '温馨提示',
+											icon: 6,
+											btn: ['确认']
+										},
+								);
+								window.location.reload();
+							} else {
+								layer.alert(data.msg, {
+											title: '温馨提示',
+											icon: 5,
+											btn: ['确认']
+										},
+								);
+								window.location.reload();
+							}
+						},
+					});
+				});
+	}
+</script>
 </body>
 </html>

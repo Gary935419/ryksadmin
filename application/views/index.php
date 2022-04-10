@@ -126,12 +126,12 @@
 					<cite>裁断报告书管理</cite>
 					<i class="iconfont nav_right">&#xe697;</i></a>
 				<ul class="sub-menu">
-					<li>
-						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_cai' ?>')">
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>指示数量管理</cite>
-						</a>
-					</li>
+<!--					<li>-->
+<!--						<a onclick="changeSrc(/goods/goods_list_cai)">-->
+<!--							<i class="iconfont">&#xe6a7;</i>-->
+<!--							<cite>指示数量管理</cite>-->
+<!--						</a>-->
+<!--					</li>-->
 					<li>
 						<a onclick="changeSrc('<?= RUN . '/goods/goods_list_caiduan' ?>')">
 							<i class="iconfont">&#xe6a7;</i>

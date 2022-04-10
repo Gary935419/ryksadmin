@@ -707,6 +707,13 @@ class Role_model extends CI_Model
 		$sql = "UPDATE `erp_baojiaxiangmu` SET newren=$user_name,status=$status,state=$state WHERE kid = $id";
 		return $this->db->query($sql);
 	}
+	public function update_xiangmukuanhao_status($id,$status)
+	{
+		$id = $this->db->escape($id);
+		$status = $this->db->escape($status);
+		$sql = "UPDATE `erp_xiangmukuanhao` SET status=$status WHERE id = $id";
+		return $this->db->query($sql);
+	}
 	public function goodsimg_delete_jichu_up1($id,$status,$state)
 	{
 		$id = $this->db->escape($id);

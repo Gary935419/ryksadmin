@@ -4220,6 +4220,7 @@ class Goods extends CI_Controller
 	public function goods_edit_new22_caitongji()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$bianhao = isset($_GET['bianhao']) ? $_GET['bianhao'] : 0;
 		$goods_info = $this->role->getgoodsByIdkuanhao($id);
 		if (empty($goods_info)) {
 			echo json_encode(array('error' => true, 'msg' => "数据错误"));
@@ -4227,6 +4228,7 @@ class Goods extends CI_Controller
 		}
 		$data = array();
 		$data['id'] = $id;
+		$data['bianhao'] = $bianhao;
 		$kuanhaos = $this->task->gettidlistpinming_cai($id);
 
 		$data['caiduanshu1'] = '';
@@ -4520,11 +4522,12 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => true, 'msg' => "请添加备注!"));
 			return;
 		}
+
 		$this->role->goodsimg_delete4_cai($id);
 		foreach ($sehaos as $k => $v) {
-			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k]) || empty($biaoji[$k]) || empty($beizhu[$k])) {
-				continue;
-			}
+//			if (empty($v) || empty($pinfan[$k]) || empty($caiduanshu[$k]) || empty($zhishishu[$k]) || empty($biaoji[$k]) || empty($beizhu[$k])) {
+//				continue;
+//			}
 			if (empty($zhuangxiangxinxi[$k])){
 				$zhuangxiangxinxi[$k] = 0;
 			}
@@ -4534,6 +4537,7 @@ class Goods extends CI_Controller
 			$this->role->role_save123_caitongji($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time(),$zhuangxiangxinxi[$k],$zhuangxiangshuliang[$k],$biaoji[$k],$beizhu[$k]);
 		}
 
+		$this->role->update_xiangmukuanhao_status($id,1);
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
 
 	}
@@ -5406,6 +5410,9 @@ class Goods extends CI_Controller
 		$rownew = 16;
 		$rowoldnew1 = -1;
 		foreach ($list2 as $kp=>$vp){
+			if ($kk>=5){
+				break;
+			}
 			$rowoldnew1 = $rowoldnew1 + 1;
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinming']);
@@ -6520,8 +6527,11 @@ class Goods extends CI_Controller
 			}
 		}
 
+		$getroleBynamekuanhaoinfo = $this->role->getroleBynamekuanhao($kuanhao);
+
 		foreach ($arrnew as $kkk => $vvv) {
 			$this->role->role_save12($vvv['guige'], $vvv['sehao'], $vvv['shuzhi'], $kuanhao, time());
+			$this->role->role_save123_cai($vvv['sehao'],$vvv['guige'],0,$vvv['shuzhi'],$getroleBynamekuanhaoinfo['id'],time());
 		}
 
 		//循环读取sheet
@@ -6666,26 +6676,29 @@ class Goods extends CI_Controller
 				$zimu = 'U';
 			}
 			if ($rowold1 == 7){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'V5',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'V5',$vvv);
 				$zimu = 'V';
 			}
 			if ($rowold1 == 8){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'W5',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'W5',$vvv);
 				$zimu = 'W';
 			}
 			if ($rowold1 == 9){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'X5',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'X5',$vvv);
 				$zimu = 'X';
 			}
 			if ($rowold1 == 10){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'Y5',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'Y5',$vvv);
 				$zimu = 'Y';
 			}
 			if ($rowold1 == 11){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'Z5',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'Z5',$vvv);
 				$zimu = 'Z';
 			}
 			foreach ($arr1 as $keyy=>$vall){
+				if ($zimu == 'V' || $zimu == 'W' || $zimu == 'X' || $zimu == 'Y' || $zimu == 'Z'){
+					break;
+				}
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
 				}
@@ -6694,9 +6707,14 @@ class Goods extends CI_Controller
 
 		$rownew = 7;
 		$rowoldnew1 = -1;
+		$count = 0;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
+			}
+			$count = $count + 1;
+			if ($count>6){
+				break;
 			}
 			$rowoldnew1 = $rowoldnew1 + 1;
 			$row11 = $rownew + $rowoldnew1;
@@ -6844,13 +6862,23 @@ class Goods extends CI_Controller
 			}
 		}
 
-		$rownew = 19;
+		$rownew = 13;
 		$rowoldnew1 = -1;
+		$count = 0;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
 			}
-			$rowoldnew1 = $rowoldnew1 + 1;
+			$count = $count + 1;
+			if ($count>5){
+				break;
+			}
+			if ($rowoldnew1 < 1){
+				$rowoldnew1 = $rowoldnew1 + 1;
+			}else{
+				$rowoldnew1 = $rowoldnew1 + 2;
+			}
+
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
@@ -6928,6 +6956,9 @@ class Goods extends CI_Controller
 		foreach ($SEHAO_ARR as $kk=>$vv){
 			$rowold = $rowold + 1;
 			$row = $rowold + 6;
+			if ($row > 10){
+				break;
+			}
 			$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$row,$vv);
 			foreach ($list1 as $key=>$val){
 				if ($vv == $val['sehao']){
@@ -6978,31 +7009,43 @@ class Goods extends CI_Controller
 				$zimu = 'P';
 			}
 			if ($rowold1 == 9){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
 				$zimu = 'Q';
 			}
 			if ($rowold1 == 10){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
 				$zimu = 'R';
 			}
 			if ($rowold1 == 11){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
 				$zimu = 'S';
 			}
 			foreach ($arr1 as $keyy=>$vall){
+				if ($zimu == 'Q' || $zimu == 'R' || $zimu == 'S'){
+					break;
+				}
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
 				}
 			}
 		}
 
-		$rownew = 19;
+		$rownew = 12;
 		$rowoldnew1 = -1;
+		$count = 0;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
 			}
-			$rowoldnew1 = $rowoldnew1 + 1;
+			$count = $count + 1;
+			if ($count>5){
+				break;
+			}
+			if ($rowoldnew1 == -1){
+				$rowoldnew1 = $rowoldnew1 + 1;
+			}else{
+				$rowoldnew1 = $rowoldnew1 + 2;
+			}
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
@@ -7148,13 +7191,22 @@ class Goods extends CI_Controller
 			}
 		}
 
-		$rownew = 20;
+		$rownew = 14;
 		$rowoldnew1 = -1;
+		$count = 0;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
 			}
-			$rowoldnew1 = $rowoldnew1 + 1;
+			$count = $count + 1;
+			if ($count>5){
+				break;
+			}
+			if ($rowoldnew1 < 1){
+				$rowoldnew1 = $rowoldnew1 + 1;
+			}else{
+				$rowoldnew1 = $rowoldnew1 + 2;
+			}
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
@@ -7232,6 +7284,9 @@ class Goods extends CI_Controller
 		foreach ($SEHAO_ARR as $kk=>$vv){
 			$rowold = $rowold + 1;
 			$row = $rowold + 6;
+			if ($row > 10){
+				break;
+			}
 			$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$row,$vv);
 			foreach ($list1 as $key=>$val){
 				if ($vv == $val['sehao']){
@@ -7282,31 +7337,43 @@ class Goods extends CI_Controller
 				$zimu = 'P';
 			}
 			if ($rowold1 == 9){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
 				$zimu = 'Q';
 			}
 			if ($rowold1 == 10){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
 				$zimu = 'R';
 			}
 			if ($rowold1 == 11){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
 				$zimu = 'S';
 			}
 			foreach ($arr1 as $keyy=>$vall){
+				if ($zimu == 'Q' || $zimu == 'R' || $zimu == 'S'){
+					break;
+				}
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
 				}
 			}
 		}
 
-		$rownew = 20;
+		$rownew = 12;
 		$rowoldnew1 = -1;
+		$count = 0;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
 			}
-			$rowoldnew1 = $rowoldnew1 + 1;
+			$count = $count + 1;
+			if ($count>5){
+				break;
+			}
+			if ($rowoldnew1 == -1){
+				$rowoldnew1 = $rowoldnew1 + 1;
+			}else{
+				$rowoldnew1 = $rowoldnew1 + 2;
+			}
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
@@ -7384,6 +7451,9 @@ class Goods extends CI_Controller
 		foreach ($SEHAO_ARR as $kk=>$vv){
 			$rowold = $rowold + 1;
 			$row = $rowold + 6;
+			if ($row > 10){
+				break;
+			}
 			$objPHPExcel->getActiveSheet()->setCellValue( 'G'.$row,$vv);
 			foreach ($list1 as $key=>$val){
 				if ($vv == $val['sehao']){
@@ -7434,31 +7504,42 @@ class Goods extends CI_Controller
 				$zimu = 'P';
 			}
 			if ($rowold1 == 9){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'Q4',$vvv);
 				$zimu = 'Q';
 			}
 			if ($rowold1 == 10){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'R4',$vvv);
 				$zimu = 'R';
 			}
 			if ($rowold1 == 11){
-				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
+//				$objPHPExcel->getActiveSheet()->setCellValue( 'S4',$vvv);
 				$zimu = 'S';
 			}
 			foreach ($arr1 as $keyy=>$vall){
+				if ($zimu == 'Q' || $zimu == 'R' || $zimu == 'S'){
+					break;
+				}
 				if ($vall['guigeold'] == $vvv){
 					$objPHPExcel->getActiveSheet()->setCellValue($zimu.$vall['lin'],$vall['shuzihold']);
 				}
 			}
 		}
 
-		$rownew = 20;
+		$rownew = 12;
 		$rowoldnew1 = -1;
 		foreach ($list2 as $kp=>$vp){
 			if (empty($vp['pinming'])){
 				continue;
 			}
-			$rowoldnew1 = $rowoldnew1 + 1;
+			$count = $count + 1;
+			if ($count>5){
+				break;
+			}
+			if ($rowoldnew1 == -1){
+				$rowoldnew1 = $rowoldnew1 + 1;
+			}else{
+				$rowoldnew1 = $rowoldnew1 + 2;
+			}
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
@@ -7546,6 +7627,20 @@ class Goods extends CI_Controller
 			return;
 		}
 	}
+
+
+	public function goods_delete_wanbi()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : 0;
+		if ($this->role->update_xiangmukuanhao_status($id,2)) {
+			echo json_encode(array('success' => true, 'msg' => "审核完毕"));
+			return;
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "审核失败"));
+			return;
+		}
+	}
+
 
 	public function goods_delete_zi()
 	{
