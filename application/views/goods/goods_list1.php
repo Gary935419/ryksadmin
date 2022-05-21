@@ -94,6 +94,9 @@
 													<i class="iconfont">&#xe74a;</i>  模板下载
 												</button>
 											</a>
+								            &nbsp;&nbsp;
+    										<button class="layui-btn layui-btn-danger"onclick="goods_yuanfuliao_delete('<?= $once['kuanhao'] ?>')"><i class="layui-icon">&#xe640;</i>删除
+    										</button>
 										<?php } ?>
 									</td>
 								</tr>
@@ -153,4 +156,40 @@
 	</div>
 </div>
 </body>
+<script>
+	function goods_yuanfuliao_delete(id) {
+		layer.confirm('您是否确认删除？', {
+					title: '温馨提示',
+					btn: ['确认', '取消']
+					// 按钮
+				},
+				function (index) {
+					$.ajax({
+						type: "post",
+						data: {"id": id},
+						dataType: "json",
+						url: "<?= RUN . '/goods/goods_delete_yuanfuliao' ?>",
+						success: function (data) {
+							if (data.success) {
+								//$("#p" + id).remove();
+								layer.alert(data.msg, {
+											title: '温馨提示',
+											icon: 6,
+											btn: ['确认']
+										},
+								location.reload();
+								);
+							} else {
+								layer.alert(data.msg, {
+											title: '温馨提示',
+											icon: 5,
+											btn: ['确认']
+										},
+								);
+							}
+						},
+					});
+				});
+	}
+</script>
 </html>

@@ -8417,4 +8417,18 @@ class Goods extends CI_Controller
 
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
 	}
+	
+		public function goods_delete_yuanfuliao()
+	{
+		$id = isset($_POST['id']) ? $_POST['id'] : "";
+		if ($this->role->goods_delete_yuanfuliao($id)) {
+			echo json_encode(array('success' => true, 'msg' => "删除成功"));
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "删除失败"));
+		}
+	}
+
+	
+	
+	
 }

@@ -1267,4 +1267,13 @@ class Role_model extends CI_Model
 		$sql = "UPDATE `erp_yangmingmingxi` SET yangpinurl=$excelwendang WHERE zid = $id";
 		return $this->db->query($sql);
 	}
+	
+
+	public function goods_delete_yuanfuliao($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_yuanfuliaopinghengbian WHERE kuanhao = $id";
+        return $this->db->query($sql);
+	}
+	
 }
