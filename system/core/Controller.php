@@ -53,8 +53,8 @@ class CI_Controller {
     protected $membertoken;
     protected $memberinfo;
     protected $memberid;
-    protected $appid = 'wxa8bddd3a22798a42';
-    protected $secret = 'e9578aa9da4bc76bc7066969049e2f25';
+    protected $appid = 'wx8be053f4e70ec431';
+    protected $secret = '81b90b68c8169e20ed61886f86fd208c';
     //商户支付密钥
     protected $pay_KEY = 'FSKEPj7eHARPgmdAL5T8KtBPofhLq6JY';
     //应用ID

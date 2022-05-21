@@ -3,79 +3,79 @@
 
 class Role_model extends CI_Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->date = time();
-        $this->load->database();
-    }
-    //查询角色信息列表
-    public function getroleAll()
-    {
-        $sql = "SELECT * FROM `role` order by rid desc";
-        return $this->db->query($sql)->result_array();
-    }
-    //角色count
-    public function getroleAllPage()
-    {
-        $sqlw = " where 1=1 ";
-        $sql = "SELECT count(1) as number FROM `role` " . $sqlw;
+	public function __construct()
+	{
+		parent::__construct();
+		$this->date = time();
+		$this->load->database();
+	}
+	//查询角色信息列表
+	public function getroleAll()
+	{
+		$sql = "SELECT * FROM `role` order by rid desc";
+		return $this->db->query($sql)->result_array();
+	}
+	//角色count
+	public function getroleAllPage()
+	{
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT count(1) as number FROM `role` " . $sqlw;
 
-        $number = $this->db->query($sql)->row()->number;
-        return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
-    }
-    //角色list
-    public function getroleAllNew($pg)
-    {
-        $start = ($pg - 1) * 10;
-        $stop = 10;
-        $sqlw = " where 1=1 ";
-        $sql = "SELECT * FROM `role` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
-        return $this->db->query($sql)->result_array();
-    }
+		$number = $this->db->query($sql)->row()->number;
+		return ceil($number / 10) == 0 ? 1 : ceil($number / 10);
+	}
+	//角色list
+	public function getroleAllNew($pg)
+	{
+		$start = ($pg - 1) * 10;
+		$stop = 10;
+		$sqlw = " where 1=1 ";
+		$sql = "SELECT * FROM `role` " . $sqlw . " order by add_time desc LIMIT $start, $stop";
+		return $this->db->query($sql)->result_array();
+	}
 	public function getRtomList($rid)
 	{
 		$sqlw = " where rid = $rid ";
 		$sql = "SELECT * FROM `rtom` " . $sqlw;
 		return $this->db->query($sql)->result_array();
 	}
-    //角色save
-    public function role_save($rname, $rdetails, $add_time)
-    {
-        $rname = $this->db->escape($rname);
-        $rdetails = $this->db->escape($rdetails);
-        $add_time = $this->db->escape($add_time);
+	//角色save
+	public function role_save($rname, $rdetails, $add_time)
+	{
+		$rname = $this->db->escape($rname);
+		$rdetails = $this->db->escape($rdetails);
+		$add_time = $this->db->escape($add_time);
 
-        $sql = "INSERT INTO `role` (rname,rdetails,add_time) VALUES ($rname,$rdetails,$add_time)";
+		$sql = "INSERT INTO `role` (rname,rdetails,add_time) VALUES ($rname,$rdetails,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
 		return $rid;
-    }
+	}
 	public function rtom_save($rid,$mid)
 	{
 		$sql = "INSERT INTO `rtom` (rid,mid) VALUES ($rid,$mid);";
 		return $this->db->query($sql);
 	}
-    //角色delete
-    public function role_delete($id)
-    {
-        $id = $this->db->escape($id);
-        $sql = "DELETE FROM role WHERE rid = $id";
-        return $this->db->query($sql);
-    }
+	//角色delete
+	public function role_delete($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM role WHERE rid = $id";
+		return $this->db->query($sql);
+	}
 	public function role_delete_rtom($rid)
 	{
 		$rid = $this->db->escape($rid);
 		$sql = "DELETE FROM rtom WHERE rid = $rid";
 		return $this->db->query($sql);
 	}
-    //角色byid
-    public function getroleById($id)
-    {
-        $id = $this->db->escape($id);
-        $sql = "SELECT * FROM `role` where rid=$id ";
-        return $this->db->query($sql)->row_array();
-    }
+	//角色byid
+	public function getroleById($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "SELECT * FROM `role` where rid=$id ";
+		return $this->db->query($sql)->row_array();
+	}
 	public function getroleByIdRtom($id,$mid)
 	{
 		$id = $this->db->escape($id);
@@ -83,23 +83,23 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `rtom` where rid=$id and mid=$mid";
 		return $this->db->query($sql)->row_array();
 	}
-    //角色byname
-    public function getroleByname($rname)
-    {
-        $rname = $this->db->escape($rname);
-        $sql = "SELECT * FROM `role` where rname=$rname ";
-        return $this->db->query($sql)->row_array();
-    }
-    //角色save_edit
-    public function role_save_edit($rid, $rname, $rdetails)
-    {
-        $rid = $this->db->escape($rid);
-        $rname = $this->db->escape($rname);
-        $rdetails = $this->db->escape($rdetails);
+	//角色byname
+	public function getroleByname($rname)
+	{
+		$rname = $this->db->escape($rname);
+		$sql = "SELECT * FROM `role` where rname=$rname ";
+		return $this->db->query($sql)->row_array();
+	}
+	//角色save_edit
+	public function role_save_edit($rid, $rname, $rdetails)
+	{
+		$rid = $this->db->escape($rid);
+		$rname = $this->db->escape($rname);
+		$rdetails = $this->db->escape($rdetails);
 
-        $sql = "UPDATE `role` SET rname=$rname,rdetails=$rdetails WHERE rid = $rid";
-        return $this->db->query($sql);
-    }
+		$sql = "UPDATE `role` SET rname=$rname,rdetails=$rdetails WHERE rid = $rid";
+		return $this->db->query($sql);
+	}
 
 
 
@@ -953,9 +953,11 @@ class Role_model extends CI_Model
 	}
 	public function getgoodsAllPageshengchannew1($zuname,$time)
 	{
-		$sqlw = " where 1=1 and htype!=1 and jihuariqi= '$time' and zuname= '$zuname' ";
+		$sqlw = " where zuname='$zuname' and htype!=1 and jihuariqi= '$time' ";
 
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
+		
+		//print_r($sql);
 
 		$number = $this->db->query($sql)->row()->number;
 		return $number;
@@ -970,39 +972,36 @@ class Role_model extends CI_Model
 	}
 	public function getgoodsAllPageshengchan($zuname,$jihuariqi)
 	{
-		$sqlw = " where 1=1 and htype != 1 and zuname= '$zuname' ";
-
+		$sqlw = " where 1=1 and htype != 1 ";
 		if (!empty($jihuariqi)) {
 			$sqlw .= " and jihuariqi = '$jihuariqi'";
 		}
-		$sql = "SELECT distinct jihuariqi FROM `erp_shengcanjihua`" . $sqlw;
-// print_r($sql);
-// 		$number = $this->db->query($sql)->row()->number;
+//		$sql = "SELECT distinct zuname FROM `erp_shengcanjihua`" . $sqlw;
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " group by zuname";
 		$number = $this->db->query($sql)->result_array();
-// 		print_r();die;
 		return ceil(count($number) / 10) == 0 ? 1 : ceil(count($number) / 10);
 	}
 	public function getgoodsAllNewshengchan($pg,$zuname,$jihuariqi)
 	{
-		$sqlw = " where 1=1 and htype != 1 and  zuname= '$zuname' ";
+		$sqlw = " where 1=1 and htype != 1 ";
 		if (!empty($jihuariqi)) {
 			$sqlw .= " and jihuariqi = '$jihuariqi'";
 		}
 		$start = ($pg - 1) * 10;
 		$stop = 10;
 
-		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " group by jihuariqi LIMIT $start, $stop";
+		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " group by zuname LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
-	
-	
+
+
 	public function getgoodsAllPageshengchandetails($zuname,$jihuariqi)
 	{
 		$sqlw = " where 1=1 and zuname= '$zuname' and jihuariqi= '$jihuariqi' ";
 
 		$sql = "SELECT count(1) as number FROM `erp_shengcanjihua`" . $sqlw;
 		$number = $this->db->query($sql)->row()->number;
-		
+
 		return ceil($number / 50) == 0 ? 1 : ceil($number / 50);
 	}
 	public function getgoodsAllNewshengchandetails($pg,$zuname,$jihuariqi)
@@ -1014,8 +1013,8 @@ class Role_model extends CI_Model
 		$sql = "SELECT * FROM `erp_shengcanjihua` " . $sqlw . " LIMIT $start, $stop";
 		return $this->db->query($sql)->result_array();
 	}
-	
-	
+
+
 	public function getgoodsByIdshengchan($id)
 	{
 		$id = $this->db->escape($id);
@@ -1063,7 +1062,7 @@ class Role_model extends CI_Model
 		$sid = $this->db->escape($sid);
 		$add_time = $this->db->escape($add_time);
 		$user_name = $this->db->escape($_SESSION['user_name']);
-		
+
 		$sql = "INSERT INTO `erp_shengcanjihuadate` (newren,sid,addtime) VALUES ($user_name,$sid,$add_time)";
 		$this->db->query($sql);
 		$rid=$this->db->insert_id();
@@ -1211,11 +1210,11 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_shengcanjihua where zuname=$zuname and jihuariqi=$jihuariqi ";
 		return $this->db->query($sql);
 	}
-	
+
 	public function getjihuariqizunamedelete1guige($kuanhao)
 	{
 		$kuanhao = $this->db->escape($kuanhao);
-		
+
 		$sql = "DELETE FROM erp_yuanfuliaoguige where kuanhao=$kuanhao ";
 		return $this->db->query($sql);
 	}

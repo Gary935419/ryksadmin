@@ -134,14 +134,14 @@
 						layer = layui.layer;
 				//自定义验证规则
 				form.verify({
-					zuname: function (value) {
+					// zuname: function (value) {
 						// if ($("#zuname option:selected").val() == "") {
 						// 	return '请选择选择组别信息。';
 						// }
-						if ($('#zuname').val() == "") {
-							return '请录入组别信息。';
-						}
-					},
+						// if ($('#zuname').val() == "") {
+						// 	return '请录入组别信息。';
+						// }
+					// },
 					excelwendang: function (value) {
 						if ($('#excelwendang').val() == "") {
 							return '请上传计划文档。';

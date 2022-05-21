@@ -1737,7 +1737,7 @@ class Goods extends CI_Controller
 		if ($btype == 1 || $btype == 3){
 			$goods_info = $this->role->getgoodsByIdxiaojiejei($id);
 		}
-        if ($btype == 2 || $btype == 4){
+		if ($btype == 2 || $btype == 4){
 			$goods_info = $this->role->getgoodsByIdxiaojiejeijue($id);
 		}
 		if (empty($goods_info)) {
@@ -1767,7 +1767,7 @@ class Goods extends CI_Controller
 		$data['yunfeiyongliang'] = $goods_info['yunfeiyongliang'];
 		$data['qitadanjia'] = $goods_info['qitadanjia'];
 		$data['qitayongliang'] = $goods_info['qitayongliang'];
-        $data['infomation'] = $goods_info['infomation'];
+		$data['infomation'] = $goods_info['infomation'];
 		$data['tidlist'] = $tidlist;
 
 		$this->display("goods/goods_edit_jichufei", $data);
@@ -1802,7 +1802,7 @@ class Goods extends CI_Controller
 		$qitadanjia = isset($_POST["qitadanjia"]) ? $_POST["qitadanjia"] : '';
 		$qitayongliang = isset($_POST["qitayongliang"]) ? $_POST["qitayongliang"] : '';
 		$infomation = isset($_POST["infomation"]) ? $_POST["infomation"] : '';
-        $status = isset($_POST["status"]) ? $_POST["status"] : 1;
+		$status = isset($_POST["status"]) ? $_POST["status"] : 1;
 		$state = isset($_POST["state"]) ? $_POST["state"] : 4;
 		if($state == 1 || $state == 4){
 			$infomation = "";
@@ -1968,10 +1968,10 @@ class Goods extends CI_Controller
 		$data = array();
 		$data['id'] = $id;
 		$data['btype'] = $btype;
-        if ($btype == 1 || $btype == 3 || $btype == 888){
+		if ($btype == 1 || $btype == 3 || $btype == 888){
 			$kuanhaos = $this->task->gettidlistjichu1($id);
 		}
-        if ($btype == 2 || $btype == 4 || $btype == 999){
+		if ($btype == 2 || $btype == 4 || $btype == 999){
 			$kuanhaos = $this->task->gettidlistjichu1jue($id);
 		}
 		$data['infomation'] = empty($kuanhaos[0]['infomation'])?'':$kuanhaos[0]['infomation'];
@@ -4960,19 +4960,19 @@ class Goods extends CI_Controller
 			$list[$k]['shuoming'] = $rowdata['shuoming'];
 			$list[$k]['danjia'] = $rowdata['danjia'];
 		}
-		
+
 		$data["list"] = $list;
 		$this->display("goods/goods_list_shengchan", $data);
 	}
 	function getchanzhi($id,$list){
-        $onces=0;
-        foreach ($list as $num => $once){
-            if($once[$id]>0){
-               $onces=$onces+$once[$id]*$once['danjia']; 
-            }
-        }
-        return $onces;
-    }
+		$onces=0;
+		foreach ($list as $num => $once){
+			if($once[$id]>0){
+				$onces=$onces+$once[$id]*$once['danjia'];
+			}
+		}
+		return $onces;
+	}
 	public function goods_edit_new_shengchan()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
@@ -6212,14 +6212,6 @@ class Goods extends CI_Controller
 		$zuname = isset($_POST["zuname"]) ? $_POST["zuname"] : '';
 		$jihuariqi = isset($_POST["jihuariqi"]) ? $_POST["jihuariqi"] : '';
 
-		$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
-		if (!empty($getjihuariqizuname)){
-			foreach ($getjihuariqizuname as $k=>$v){
-				$sid = $v['id'];
-				$this->role->getjihuariqizunamedelete($sid);
-			}
-			$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
-		}
 		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
 		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -17);
 		date_default_timezone_set('PRC');
@@ -6259,6 +6251,21 @@ class Goods extends CI_Controller
 		}
 		for ($i=1; $i<=21; $i++)
 		{
+			if (empty($res_arr[1][0])){
+				break;
+			}
+			$zuname = $res_arr[1][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
 			$zhipinfanhao = $res_arr[$i][1];
 			$pinming = $res_arr[$i][2];
 			$qihuashu = $res_arr[$i][3];
@@ -6275,7 +6282,7 @@ class Goods extends CI_Controller
 				$heji = 0;
 				$zengjian = $chanliangzhi;
 			}else{
-				if (empty($zhipinfanhao) || empty($pinming) || empty($qihuashu) || empty($naqi)){
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
 					continue;
 				}
 				$htype = 0;
@@ -6307,11 +6314,607 @@ class Goods extends CI_Controller
 				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
 			);
 		}
+
+		for ($i=22; $i<=42; $i++)
+		{
+			if (empty($res_arr[22][0])){
+				break;
+			}
+			$zuname = $res_arr[22][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=43; $i<=63; $i++)
+		{
+			if (empty($res_arr[43][0])){
+				break;
+			}
+			$zuname = $res_arr[43][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=64; $i<=84; $i++)
+		{
+			if (empty($res_arr[64][0])){
+				break;
+			}
+			$zuname = $res_arr[64][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=85; $i<=105; $i++)
+		{
+			if (empty($res_arr[85][0])){
+				break;
+			}
+			$zuname = $res_arr[85][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=106; $i<=126; $i++)
+		{
+			if (empty($res_arr[106][0])){
+				break;
+			}
+			$zuname = $res_arr[106][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=127; $i<=147; $i++)
+		{
+			if (empty($res_arr[127][0])){
+				break;
+			}
+			$zuname = $res_arr[127][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=148; $i<=168; $i++)
+		{
+			if (empty($res_arr[148][0])){
+				break;
+			}
+			$zuname = $res_arr[148][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=169; $i<=189; $i++)
+		{
+			if (empty($res_arr[169][0])){
+				break;
+			}
+			$zuname = $res_arr[169][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+		for ($i=190; $i<=210; $i++)
+		{
+			if (empty($res_arr[190][0])){
+				break;
+			}
+			$zuname = $res_arr[190][0];
+			if ($i == 1){
+				$getjihuariqizuname = $this->role->getjihuariqizuname($zuname,$jihuariqi);
+				if (!empty($getjihuariqizuname)){
+					foreach ($getjihuariqizuname as $k=>$v){
+						$sid = $v['id'];
+						$this->role->getjihuariqizunamedelete($sid);
+					}
+					$this->role->getjihuariqizunamedelete1($zuname,$jihuariqi);
+				}
+			}
+
+			$zhipinfanhao = $res_arr[$i][1];
+			$pinming = $res_arr[$i][2];
+			$qihuashu = $res_arr[$i][3];
+			$naqi = $res_arr[$i][4];
+			if ($zhipinfanhao == "产值"){
+				$htype = 1;
+				$chanliangzhi = 0;
+				// $chanliangzhi = $res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+				// 	+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+				// 	+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+				// 	+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+				// 	+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36]+$res_arr[$i][37];
+
+				$heji = 0;
+				$zengjian = $chanliangzhi;
+			}else{
+				if (empty($zhipinfanhao) && empty($pinming) && empty($qihuashu) && empty($naqi)){
+					continue;
+				}
+				$htype = 0;
+				$chanliangzhi = 0;
+				$heji = $res_arr[$i][5]+$res_arr[$i][6]+$res_arr[$i][7]+$res_arr[$i][8]+$res_arr[$i][9]+$res_arr[$i][10]+$res_arr[$i][11]+$res_arr[$i][12]+$res_arr[$i][13]
+					+$res_arr[$i][14]+$res_arr[$i][15]+$res_arr[$i][16]+$res_arr[$i][17]+$res_arr[$i][18]+$res_arr[$i][19]
+					+$res_arr[$i][20]+$res_arr[$i][21]+$res_arr[$i][22]+$res_arr[$i][23]+$res_arr[$i][24]+$res_arr[$i][25]
+					+$res_arr[$i][26]+$res_arr[$i][27]+$res_arr[$i][28]+$res_arr[$i][29]+$res_arr[$i][30]+$res_arr[$i][31]
+					+$res_arr[$i][32]+$res_arr[$i][33]+$res_arr[$i][34]+$res_arr[$i][35]+$res_arr[$i][36];
+				$zengjian = $heji - $res_arr[$i][3];
+			}
+
+			$shangyue = $res_arr[$i][5];
+
+			$add_time = time();
+			$role_info = $this->role->getroleByname1_zhipinfanhao($zhipinfanhao,$zuname,$jihuariqi);
+			if (!empty($role_info)) {
+				continue;
+			}
+			$naqi = strtotime($naqi);
+			$rid = $this->role->role_save1_jihua($zuname, $zhipinfanhao, $pinming, $qihuashu, $naqi, $jihuariqi, $add_time,$shangyue,$htype,$chanliangzhi,$excelwendang);
+
+			$this->role->role_saveerp_shengcanjihuadate(
+				$rid,$add_time,$res_arr[$i][6],$res_arr[$i][7],$res_arr[$i][8],$res_arr[$i][9],$res_arr[$i][10],$res_arr[$i][11]
+				,$res_arr[$i][12],$res_arr[$i][13],$res_arr[$i][14],$res_arr[$i][15],$res_arr[$i][16],$res_arr[$i][17]
+				,$res_arr[$i][18],$res_arr[$i][19],$res_arr[$i][20],$res_arr[$i][21],$res_arr[$i][22],$res_arr[$i][23]
+				,$res_arr[$i][24],$res_arr[$i][25],$res_arr[$i][26],$res_arr[$i][27],$res_arr[$i][28],$res_arr[$i][29]
+				,$res_arr[$i][30],$res_arr[$i][31],$res_arr[$i][32],$res_arr[$i][33],$res_arr[$i][34],$res_arr[$i][35]
+				,$res_arr[$i][36],$heji,$zengjian,$res_arr[$i][39],$res_arr[$i][40]
+			);
+		}
+
+
 		echo json_encode(array('success' => true, 'msg' => "处理完成。"));
 	}
 	public function goods_list_shengchannew()
 	{
-		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : '';
+		$jihuariqi = isset($_GET['jihuariqi']) ? $_GET['jihuariqi'] : date('Y-m',time());
 		$zuname = isset($_GET['zuname']) ? $_GET['zuname'] : '';
 		$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 		$allpage = $this->role->getgoodsAllPageshengchan($zuname,$jihuariqi);
@@ -6324,56 +6927,56 @@ class Goods extends CI_Controller
 		$data["jihuariqi"] = $jihuariqi;
 		foreach ($list as $k=>$v){
 			$time = $v['jihuariqi'];
-			$nums = $this->role->getgoodsAllPageshengchannew1($zuname,$time);
+			$nums = $this->role->getgoodsAllPageshengchannew1($list[$k]['zuname'],$time);
 			$list[$k]['kuanhaoliang'] = $nums;
-			
-    		$zunamenew = $v['zuname'];
-    		$jihuariqinew = $v['jihuariqi'];
-    		$listnew = $this->role->getgoodsAllNewshengchandetails(1,$zunamenew,$jihuariqinew);
-    		foreach ($listnew as $kk=>$vv){
-    			$sid = $vv['id'];
-    			$rowdata = $this->role->geterp_shengcanjihuadate($sid);
-    			$listnew[$kk]['y1'] = $rowdata['y1'];
-    			$listnew[$kk]['y2'] = $rowdata['y2'];
-    			$listnew[$kk]['y3'] = $rowdata['y3'];
-    			$listnew[$kk]['y4'] = $rowdata['y4'];
-    			$listnew[$kk]['y5'] = $rowdata['y5'];
-    			$listnew[$kk]['y6'] = $rowdata['y6'];
-    			$listnew[$kk]['y7'] = $rowdata['y7'];
-    			$listnew[$kk]['y8'] = $rowdata['y8'];
-    			$listnew[$kk]['y9'] = $rowdata['y9'];
-    			$listnew[$kk]['y10'] = $rowdata['y10'];
-    			$listnew[$kk]['y11'] = $rowdata['y11'];
-    			$listnew[$kk]['y12'] = $rowdata['y12'];
-    			$listnew[$kk]['y13'] = $rowdata['y13'];
-    			$listnew[$kk]['y14'] = $rowdata['y14'];
-    			$listnew[$kk]['y15'] = $rowdata['y15'];
-    			$listnew[$kk]['y16'] = $rowdata['y16'];
-    			$listnew[$kk]['y17'] = $rowdata['y17'];
-    			$listnew[$kk]['y18'] = $rowdata['y18'];
-    			$listnew[$kk]['y19'] = $rowdata['y19'];
-    			$listnew[$kk]['y20'] = $rowdata['y20'];
-    			$listnew[$kk]['y21'] = $rowdata['y21'];
-    			$listnew[$kk]['y22'] = $rowdata['y22'];
-    			$listnew[$kk]['y23'] = $rowdata['y23'];
-    			$listnew[$kk]['y24'] = $rowdata['y24'];
-    			$listnew[$kk]['y25'] = $rowdata['y25'];
-    			$listnew[$kk]['y26'] = $rowdata['y26'];
-    			$listnew[$kk]['y27'] = $rowdata['y27'];
-    			$listnew[$kk]['y28'] = $rowdata['y28'];
-    			$listnew[$kk]['y29'] = $rowdata['y29'];
-    			$listnew[$kk]['y30'] = $rowdata['y30'];
-    			$listnew[$kk]['y31'] = $rowdata['y31'];
-    			$listnew[$kk]['heji'] = $rowdata['heji'];
-    			$listnew[$kk]['zengjian'] = $rowdata['zengjian'];
-    			$listnew[$kk]['shuoming'] = $rowdata['shuoming'];
-    			$listnew[$kk]['danjia'] = $rowdata['danjia'];
-    		}
-    		$chazhis=0;
-	        for ($ii=1;$ii<32;$ii++) {
-	             $chazhi=$this->getchanzhi('y'.$ii,$listnew);
-            	 $chazhis=$chazhis+$chazhi;
-	        }
+
+			$zunamenew = $v['zuname'];
+			$jihuariqinew = $v['jihuariqi'];
+			$listnew = $this->role->getgoodsAllNewshengchandetails(1,$zunamenew,$jihuariqinew);
+			foreach ($listnew as $kk=>$vv){
+				$sid = $vv['id'];
+				$rowdata = $this->role->geterp_shengcanjihuadate($sid);
+				$listnew[$kk]['y1'] = $rowdata['y1'];
+				$listnew[$kk]['y2'] = $rowdata['y2'];
+				$listnew[$kk]['y3'] = $rowdata['y3'];
+				$listnew[$kk]['y4'] = $rowdata['y4'];
+				$listnew[$kk]['y5'] = $rowdata['y5'];
+				$listnew[$kk]['y6'] = $rowdata['y6'];
+				$listnew[$kk]['y7'] = $rowdata['y7'];
+				$listnew[$kk]['y8'] = $rowdata['y8'];
+				$listnew[$kk]['y9'] = $rowdata['y9'];
+				$listnew[$kk]['y10'] = $rowdata['y10'];
+				$listnew[$kk]['y11'] = $rowdata['y11'];
+				$listnew[$kk]['y12'] = $rowdata['y12'];
+				$listnew[$kk]['y13'] = $rowdata['y13'];
+				$listnew[$kk]['y14'] = $rowdata['y14'];
+				$listnew[$kk]['y15'] = $rowdata['y15'];
+				$listnew[$kk]['y16'] = $rowdata['y16'];
+				$listnew[$kk]['y17'] = $rowdata['y17'];
+				$listnew[$kk]['y18'] = $rowdata['y18'];
+				$listnew[$kk]['y19'] = $rowdata['y19'];
+				$listnew[$kk]['y20'] = $rowdata['y20'];
+				$listnew[$kk]['y21'] = $rowdata['y21'];
+				$listnew[$kk]['y22'] = $rowdata['y22'];
+				$listnew[$kk]['y23'] = $rowdata['y23'];
+				$listnew[$kk]['y24'] = $rowdata['y24'];
+				$listnew[$kk]['y25'] = $rowdata['y25'];
+				$listnew[$kk]['y26'] = $rowdata['y26'];
+				$listnew[$kk]['y27'] = $rowdata['y27'];
+				$listnew[$kk]['y28'] = $rowdata['y28'];
+				$listnew[$kk]['y29'] = $rowdata['y29'];
+				$listnew[$kk]['y30'] = $rowdata['y30'];
+				$listnew[$kk]['y31'] = $rowdata['y31'];
+				$listnew[$kk]['heji'] = $rowdata['heji'];
+				$listnew[$kk]['zengjian'] = $rowdata['zengjian'];
+				$listnew[$kk]['shuoming'] = $rowdata['shuoming'];
+				$listnew[$kk]['danjia'] = $rowdata['danjia'];
+			}
+			$chazhis=0;
+			for ($ii=1;$ii<32;$ii++) {
+				$chazhi=$this->getchanzhi('y'.$ii,$listnew);
+				$chazhis=$chazhis+$chazhi;
+			}
 			$list[$k]['chanliangzhi'] = $chazhis;
 		}
 		$data["list"] = $list;
@@ -6396,7 +6999,7 @@ class Goods extends CI_Controller
 
 		$this->role->getjihuariqizunamedelete1guige($kuanhao);
 		$this->role->getjihuariqizunamedelete1pinghengbiao($kuanhao);
-		
+
 		$excelwendang = isset($_POST["excelwendang"]) ? $_POST["excelwendang"] : '';
 		$inputFileName = "./static/uploads/".substr($_POST["excelwendang"], -16);
 		date_default_timezone_set('PRC');
@@ -7078,7 +7681,7 @@ class Goods extends CI_Controller
 		$PHPWriter->save("php://output");
 		exit;
 	}
-	
+
 	/**
 	 * 竖版完成卡下载导出
 	 */
@@ -7239,7 +7842,7 @@ class Goods extends CI_Controller
 		$PHPWriter->save("php://output");
 		exit;
 	}
-	
+
 	/**
 	 * 竖版特种卡下载导出
 	 */
@@ -7406,7 +8009,7 @@ class Goods extends CI_Controller
 		$PHPWriter->save("php://output");
 		exit;
 	}
-	
+
 	/**
 	 * 竖版手缝卡下载导出
 	 */

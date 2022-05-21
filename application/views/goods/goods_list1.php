@@ -63,6 +63,11 @@
 													<i class="iconfont">&#xe74a;</i>  下载
 												</button>
 											</a>
+											<a style="margin-left: 10px;" href="https://ryksa.dltqwy.com/static/uploads/yuanmoban.xls">
+												<button class="layui-btn layui-btn-normal">
+													<i class="iconfont">&#xe74a;</i>  模板下载
+												</button>
+											</a>
 										<?php }else{ ?>
 											<button class="layui-btn layui-btn-normal"
 													onclick="xadmin.open('原辅料导入','<?= RUN . '/goods/goods_add_new_yuanfuliao_excel?kuanhao=' ?>'+'<?= $once['kuanhao'] ?>',900,500)">
@@ -84,7 +89,11 @@
 													<i class="iconfont">&#xe74a;</i>  下载
 												</button>
 											</a>
-
+                                            <a style="margin-left: 10px;" href="https://ryksa.dltqwy.com/static/uploads/yuanmoban.xls">
+												<button class="layui-btn layui-btn-normal">
+													<i class="iconfont">&#xe74a;</i>  模板下载
+												</button>
+											</a>
 										<?php } ?>
 									</td>
 								</tr>

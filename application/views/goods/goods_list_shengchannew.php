@@ -39,7 +39,7 @@
 					</form>
 				</div>
 				<button class="layui-btn layui-card-header" style="float: right;margin-top: -40px;margin-right: 20px;"
-						onclick="xadmin.open('生产计划导入','<?= RUN . '/goods/goods_add_new_shengchan_excel?zuname=' ?>'+'<?php echo $zuname ?>',900,500)">
+						onclick="xadmin.open('生产计划导入','<?= RUN . '/goods/goods_add_new_shengchan_excel' ?>',900,500)">
 					<i class="iconfont">&#xe74a;</i> 导入
 				</button>
                 <div class="layui-card-body ">
@@ -66,6 +66,9 @@
 										<button class="layui-btn layui-btn-normal"
 												onclick="xadmin.open('查看','<?= RUN . '/goods/goods_list_shengchan?zuname=' ?>'+'<?= $once['zuname'] ?>'+'&jihuariqi='+'<?= $once['jihuariqi'] ?>')">
 											<i class="layui-icon">&#xe642;</i>查看
+										</button>
+										<button class="layui-btn layui-btn-danger"
+												onclick="goods_delete('<?= $once['id'] ?>')"><i class="layui-icon">&#xe640;</i>删除
 										</button>
                                     </td>
                                 </tr>
