@@ -1038,7 +1038,6 @@ class Goods extends CI_Controller
 		$data = array();
 		$data['kuanhao'] = $kuanhao;
 		$list1 = $this->task->gettidlistguige($kuanhao);
-
 		$GUIGE_ARR = array();
 		$SEHAO_ARR = array();
 		foreach ($list1 as $k=>$v){
@@ -7038,10 +7037,14 @@ class Goods extends CI_Controller
 				$res_arr1[] = $row_arr1;
 			}
 		}
-
 		$arrnew = array();
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13;
+			if ($i < 14 && empty($res_arr1[2][$i]) && !empty($res_arr1[2][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[2][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[2][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[2][12];
@@ -7051,6 +7054,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 12;
+			if ($i < 14 && empty($res_arr1[3][$i]) && !empty($res_arr1[3][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[3][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[3][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[3][12];
@@ -7060,6 +7068,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 24;
+			if ($i < 14 && empty($res_arr1[4][$i]) && !empty($res_arr1[4][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[4][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[4][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[4][12];
@@ -7069,6 +7082,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 36;
+			if ($i < 14 && empty($res_arr1[5][$i]) && !empty($res_arr1[5][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[5][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[5][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[5][12];
@@ -7078,6 +7096,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 48;
+			if ($i < 14 && empty($res_arr1[6][$i]) && !empty($res_arr1[6][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[6][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[6][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[6][12];
@@ -7087,6 +7110,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 60;
+			if ($i < 14 && empty($res_arr1[7][$i]) && !empty($res_arr1[7][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[7][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[7][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[7][12];
@@ -7096,6 +7124,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 72;
+			if ($i < 14 && empty($res_arr1[8][$i]) && !empty($res_arr1[8][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[8][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[8][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[8][12];
@@ -7105,6 +7138,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 84;
+			if ($i < 14 && empty($res_arr1[9][$i]) && !empty($res_arr1[9][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[9][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[9][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[9][12];
@@ -7114,6 +7152,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 96;
+			if ($i < 14 && empty($res_arr1[10][$i]) && !empty($res_arr1[10][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[10][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[10][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[10][12];
@@ -7123,6 +7166,11 @@ class Goods extends CI_Controller
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 108;
+			if ($i < 14 && empty($res_arr1[11][$i]) && !empty($res_arr1[11][12])){
+				$arrnew[$numk]['guige'] = '';
+				$arrnew[$numk]['sehao'] = $res_arr1[11][12];
+				$arrnew[$numk]['shuzhi'] = 0;
+			}
 			if (!empty($res_arr1[11][$i])){
 				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
 				$arrnew[$numk]['sehao'] = $res_arr1[11][12];
@@ -8427,8 +8475,5 @@ class Goods extends CI_Controller
 			echo json_encode(array('success' => false, 'msg' => "删除失败"));
 		}
 	}
-
-	
-	
 	
 }

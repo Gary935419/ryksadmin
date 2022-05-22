@@ -1272,6 +1272,8 @@ class Role_model extends CI_Model
 	public function goods_delete_yuanfuliao($id)
 	{
 		$id = $this->db->escape($id);
+		$sql1 = "DELETE FROM erp_yuanfuliaoguige WHERE kuanhao = $id";
+		$this->db->query($sql1);
 		$sql = "DELETE FROM erp_yuanfuliaopinghengbian WHERE kuanhao = $id";
         return $this->db->query($sql);
 	}
