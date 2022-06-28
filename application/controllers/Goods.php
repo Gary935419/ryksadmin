@@ -1468,6 +1468,8 @@ class Goods extends CI_Controller
 		$data['list'] = $kuanhaos;
 		$this->display("goods/goods_edit_new22", $data);
 	}
+	
+	
 	public function goods_list_yuan()
 	{
 		$gname = isset($_GET['gname']) ? $_GET['gname'] : '';
@@ -3794,6 +3796,7 @@ class Goods extends CI_Controller
 		}
 		$this->display("goods/goods_edit_new22_cai", $data);
 	}
+	
 	public function goods_edit_new22_caiduan()
 	{
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
@@ -7360,13 +7363,23 @@ class Goods extends CI_Controller
 		$rowoldnew1 = -1;
 		$count = 0;
 		foreach ($list2 as $kp=>$vp){
-			if (empty($vp['pinming'])){
-				continue;
+		    if($vp['daochu']==0){
+		    continue;
+		    }
+			//if (empty($vp['pinming'])){
+			//	continue;
+			//}
+			//$count = $count + 1;
+			//if ($count>6){
+			//	break;
+			//}
+			
+						if($kp==0){
+			 $row22=12;   
+			}else{
+			 $row22=$row11;      
 			}
-			$count = $count + 1;
-			if ($count>6){
-				break;
-			}
+			
 			$rowoldnew1 = $rowoldnew1 + 1;
 			$row11 = $rownew + $rowoldnew1;
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
@@ -7516,23 +7529,41 @@ class Goods extends CI_Controller
 		$rownew = 13;
 		$rowoldnew1 = -1;
 		$count = 0;
+		$row12=10;
+		$ii=0;
+		$row22=0;
+		$arr=array("E","I","M","Q","U","Y");
 		foreach ($list2 as $kp=>$vp){
-			if (empty($vp['pinming'])){
-				continue;
-			}
-			$count = $count + 1;
-			if ($count>5){
-				break;
-			}
+			if($vp['daochu']==0){
+		    continue;
+		    }
+			
+			//$count = $count + 1;
+			//if ($count>5){
+			//	break;
+			//}
 			if ($rowoldnew1 < 1){
 				$rowoldnew1 = $rowoldnew1 + 1;
 			}else{
-				$rowoldnew1 = $rowoldnew1 + 2;
+			$rowoldnew1 = $rowoldnew1 + 2;
 			}
 
 			$row11 = $rownew + $rowoldnew1;
+			
+			//if ($vp['pinming']){
+			//    $ii=0;
+			//    $row22=2*$ii+12; 
+			//    $objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
+			//    $objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
+			//    $objPHPExcel->getActiveSheet()->setCellValue('E12',$vp['pinfan']);
+			//}else{
+			//    $ii++;
+    		//	$objPHPExcel->getActiveSheet()->setCellValue($arr[$ii].$row22,$vp['sehao']);
+			//}
+
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
+			//$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('E'.$row11,$vp['guige']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
@@ -7548,6 +7579,7 @@ class Goods extends CI_Controller
 //			$objPHPExcel->getActiveSheet()->setCellValue('Q'.$row11,$vp['shengyu']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('X'.$row11,$vp['daoliaori']);
 		}
+		
 
 		ob_end_clean();//清除缓存区，解决乱码问题
 		$fileName = '竖版裁断下载表' . date('Ymd_His');
@@ -7685,13 +7717,16 @@ class Goods extends CI_Controller
 		$rowoldnew1 = -1;
 		$count = 0;
 		foreach ($list2 as $kp=>$vp){
-			if (empty($vp['pinming'])){
-				continue;
-			}
-			$count = $count + 1;
-			if ($count>5){
-				break;
-			}
+			if($vp['daochu']==0){
+		    continue;
+		    }
+			//if (empty($vp['pinming'])){
+			//	continue;
+			//}
+			//$count = $count + 1;
+			//if ($count>5){
+			//	break;
+			//}
 			if ($rowoldnew1 == -1){
 				$rowoldnew1 = $rowoldnew1 + 1;
 			}else{
@@ -7846,24 +7881,35 @@ class Goods extends CI_Controller
 		$rowoldnew1 = -1;
 		$count = 0;
 		foreach ($list2 as $kp=>$vp){
-			if (empty($vp['pinming'])){
-				continue;
-			}
-			$count = $count + 1;
-			if ($count>5){
-				break;
-			}
+			if($vp['daochu']==0){
+		    continue;
+		    }
+			//if (empty($vp['pinming'])){
+			//	continue;
+			//}
+			//$count = $count + 1;
+			//if ($count>5){
+			//	break;
+			//}
 			if ($rowoldnew1 < 1){
 				$rowoldnew1 = $rowoldnew1 + 1;
 			}else{
 				$rowoldnew1 = $rowoldnew1 + 2;
 			}
 			$row11 = $rownew + $rowoldnew1;
+			
+			$row22=12;
+			if($kp==0){
+			 $row22=13;   
+			}else{
+			 $row22=$row11;      
+			}
+			
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['pinfan']);
 // 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['sehao']);
 			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['guige']);
-//			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
+			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row22,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
@@ -8013,25 +8059,36 @@ class Goods extends CI_Controller
 		$rowoldnew1 = -1;
 		$count = 0;
 		foreach ($list2 as $kp=>$vp){
-			if (empty($vp['pinming'])){
-				continue;
-			}
+			if($vp['daochu']==0){
+		    continue;
+		    }
+			
+			//if (empty($vp['pinming'])){
+			//	continue;
+			//}
 			$count = $count + 1;
-			if ($count>5){
-				break;
-			}
+			//if ($count>5){
+			//	break;
+			//}
 			if ($rowoldnew1 == -1){
 				$rowoldnew1 = $rowoldnew1 + 1;
 			}else{
 				$rowoldnew1 = $rowoldnew1 + 2;
 			}
 			$row11 = $rownew + $rowoldnew1;
+
+			if($kp==0){
+			 $row22=12;   
+			}else{
+			 $row22=$row11;      
+			}
+			
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['guige']);
 // 			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
-//			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row22,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
@@ -8179,12 +8236,15 @@ class Goods extends CI_Controller
 		$rownew = 12;
 		$rowoldnew1 = -1;
 		foreach ($list2 as $kp=>$vp){
+					    if($vp['daochu']==0){
+		    continue;
+		    }
 			if (empty($vp['pinming'])){
-				continue;
+			//	continue;
 			}
 			$count = $count + 1;
 			if ($count>5){
-				break;
+			//	break;
 			}
 			if ($rowoldnew1 == -1){
 				$rowoldnew1 = $rowoldnew1 + 1;
@@ -8192,12 +8252,19 @@ class Goods extends CI_Controller
 				$rowoldnew1 = $rowoldnew1 + 2;
 			}
 			$row11 = $rownew + $rowoldnew1;
+			
+			if($kp==0){
+			 $row22=12;   
+			}else{
+			 $row22=$row11;      
+			}
+			
 			$objPHPExcel->getActiveSheet()->setCellValue('A'.$row11,$vp['pinming']);
 			$objPHPExcel->getActiveSheet()->setCellValue('B'.$row11,$vp['pinfan']);
 			$objPHPExcel->getActiveSheet()->setCellValue('C'.$row11,$vp['guige']);
 // 			$objPHPExcel->getActiveSheet()->setCellValue('D'.$row11,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('F'.$row11,$vp['danwei']);
-//			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['tidanshu']);
+			$objPHPExcel->getActiveSheet()->setCellValue('G'.$row11,$vp['sehao']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('H'.$row11,$vp['qingdianshu']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('I'.$row11,$vp['yangzhishi']);
 //			$objPHPExcel->getActiveSheet()->setCellValue('J'.$row11,$vp['shiji']);
@@ -8475,5 +8542,18 @@ class Goods extends CI_Controller
 			echo json_encode(array('success' => false, 'msg' => "删除失败"));
 		}
 	}
+	
+		
+	public function goods_save_edit2_change()
+	{
+		$idlist=$_POST['cb'];
+		$kuanhao=$_POST['kuanhao'];
+	    if ($this->role->goods_save_edit2_change111($idlist,$kuanhao)) {
+			echo json_encode(array('success' => true, 'msg' => "设定成功"));
+		} else {
+			echo json_encode(array('success' => false, 'msg' => "设定失败"));
+		}
+	}
+	
 	
 }

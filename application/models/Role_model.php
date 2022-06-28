@@ -1278,4 +1278,18 @@ class Role_model extends CI_Model
         return $this->db->query($sql);
 	}
 	
+	public function goods_save_edit2_change111($idlist,$kuanhao)
+	{
+	    $idlist = $this->db->escape($idlist);
+	    $kuanhao = $this->db->escape($kuanhao);
+		$sql1 = "UPDATE `erp_yuanfuliaopinghengbian` SET daochu=0 WHERE kuanhao = $kuanhao";
+    	$this->db->query($sql1);
+		
+        foreach($idlist as $id){
+    		$sql = "UPDATE `erp_yuanfuliaopinghengbian` SET daochu=1 WHERE id = $id";
+    		$this->db->query($sql);
+       }
+       return true;
+	}
+	
 }

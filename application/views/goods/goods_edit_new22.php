@@ -16,6 +16,9 @@
 	<script type="text/javascript" src="<?= STA ?>/js/jquery.validate.js"></script>
 	<script type="text/javascript" src="<?= STA ?>/js/upload/jquery_form.js"></script>
 </head>
+<?
+$kuanhao="";
+?>
 <body>
 <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
@@ -26,6 +29,7 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
+							<th>导出</th>
 							<th>箱号</th>
 							<th>品名</th>
 							<th>品番</th>
@@ -49,6 +53,10 @@
                         <tbody>
 						<?php foreach ($list as $k=>$v){ ?>
 							<tr id="div1">
+								<td>
+									<input type="checkbox" name="cb[]" value="<?php echo $v["id"]?>" <?php echo $v['daochu'] == 1 ?'checked':'' ?> lay-skin="primary" lay-filter="father"
+										   lay-verify="check">
+								</td>
 								<td>
 								    <!--<input readonly="readonly" name="xianghao[]" id="val" value="<?= $k + 1 ?>" autocomplete="off" class="layui-input">-->
 								    <span><?= $k + 1 ?></span>
@@ -126,9 +134,16 @@
 								    <span><?= $v['daoliaori'] ?></span>
 								</td>
 							</tr>
+							<?php $kuanhao= $v['kuanhao'];?>
 						<?php } ?>
                         </tbody>
                     </table>
+            <div class="layui-form-item">
+                <input type="hidden" id="kuanhao" name="kuanhao" value="<?=$kuanhao;?>">
+                <button class="layui-btn" lay-filter="add" lay-submit="">
+                    确认提交
+                </button>
+            </div>
 					</form>
 				</div>
             </div>
@@ -245,7 +260,7 @@
 						$.ajax({
 							cache: true,
 							type: "POST",
-							url: "<?= RUN . '/goods/goods_save_edit2' ?>",
+							url: "<?= RUN . '/goods/goods_save_edit2_change' ?>",
 							data: $('#tab').serialize(),
 							async: false,
 							error: function (request) {
