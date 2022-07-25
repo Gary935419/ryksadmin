@@ -3808,126 +3808,7 @@ class Goods extends CI_Controller
 		$data = array();
 		$data['id'] = $id;
 		$kuanhaos = $this->task->gettidlistpinming_cai($id);
-
-		$data['caiduanshu1'] = '';
-		$data['pinfan1'] = '';
-		$data['sehao1'] = '';
-		$data['zhishishu1'] = '';
-
-		$data['caiduanshu2'] = '';
-		$data['pinfan2'] = '';
-		$data['sehao2'] = '';
-		$data['zhishishu2'] = '';
-
-		$data['caiduanshu3'] = '';
-		$data['pinfan3'] = '';
-		$data['sehao3'] = '';
-		$data['zhishishu3'] = '';
-
-		$data['caiduanshu4'] = '';
-		$data['pinfan4'] = '';
-		$data['sehao4'] = '';
-		$data['zhishishu4'] = '';
-
-		$data['caiduanshu5'] = '';
-		$data['pinfan5'] = '';
-		$data['sehao5'] = '';
-		$data['zhishishu5'] = '';
-
-		$data['caiduanshu6'] = '';
-		$data['pinfan6'] = '';
-		$data['sehao6'] = '';
-		$data['zhishishu6'] = '';
-
-		$data['caiduanshu7'] = '';
-		$data['pinfan7'] = '';
-		$data['sehao7'] = '';
-		$data['zhishishu7'] = '';
-
-		$data['caiduanshu8'] = '';
-		$data['pinfan8'] = '';
-		$data['sehao8'] = '';
-		$data['zhishishu8'] = '';
-
-		$data['caiduanshu9'] = '';
-		$data['pinfan9'] = '';
-		$data['sehao9'] = '';
-		$data['zhishishu9'] = '';
-
-		$data['caiduanshu10'] = '';
-		$data['pinfan10'] = '';
-		$data['sehao10'] = '';
-		$data['zhishishu10'] = '';
-
-		if (!empty($kuanhaos[0]['sehao'])) {
-			$data['sehao1'] = $kuanhaos[0]['sehao'];
-			$data['pinfan1'] = $kuanhaos[0]['pinfan'];
-			$data['caiduanshu1'] = $kuanhaos[0]['caiduanshu'];
-			$data['zhishishu1'] = $kuanhaos[0]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[1]['sehao'])) {
-			$data['sehao2'] = $kuanhaos[1]['sehao'];
-			$data['pinfan2'] = $kuanhaos[1]['pinfan'];
-			$data['caiduanshu2'] = $kuanhaos[1]['caiduanshu'];
-			$data['zhishishu2'] = $kuanhaos[1]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[2]['sehao'])) {
-			$data['sehao3'] = $kuanhaos[2]['sehao'];
-			$data['pinfan3'] = $kuanhaos[2]['pinfan'];
-			$data['caiduanshu3'] = $kuanhaos[2]['caiduanshu'];
-			$data['zhishishu3'] = $kuanhaos[2]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[3]['sehao'])) {
-			$data['sehao4'] = $kuanhaos[3]['sehao'];
-			$data['pinfan4'] = $kuanhaos[3]['pinfan'];
-			$data['caiduanshu4'] = $kuanhaos[3]['caiduanshu'];
-			$data['zhishishu4'] = $kuanhaos[3]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[4]['sehao'])) {
-			$data['sehao5'] = $kuanhaos[4]['sehao'];
-			$data['pinfan5'] = $kuanhaos[4]['pinfan'];
-			$data['caiduanshu5'] = $kuanhaos[4]['caiduanshu'];
-			$data['zhishishu5'] = $kuanhaos[4]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[5]['sehao'])) {
-			$data['sehao6'] = $kuanhaos[5]['sehao'];
-			$data['pinfan6'] = $kuanhaos[5]['pinfan'];
-			$data['caiduanshu6'] = $kuanhaos[5]['caiduanshu'];
-			$data['zhishishu6'] = $kuanhaos[5]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[6]['sehao'])) {
-			$data['sehao7'] = $kuanhaos[6]['sehao'];
-			$data['pinfan7'] = $kuanhaos[6]['pinfan'];
-			$data['caiduanshu7'] = $kuanhaos[6]['caiduanshu'];
-			$data['zhishishu7'] = $kuanhaos[6]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[7]['sehao'])) {
-			$data['sehao8'] = $kuanhaos[7]['sehao'];
-			$data['pinfan8'] = $kuanhaos[7]['pinfan'];
-			$data['caiduanshu8'] = $kuanhaos[7]['caiduanshu'];
-			$data['zhishishu8'] = $kuanhaos[7]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[8]['sehao'])) {
-			$data['sehao9'] = $kuanhaos[8]['sehao'];
-			$data['pinfan9'] = $kuanhaos[8]['pinfan'];
-			$data['caiduanshu9'] = $kuanhaos[8]['caiduanshu'];
-			$data['zhishishu9'] = $kuanhaos[8]['zhishishu'];
-		}
-
-		if (!empty($kuanhaos[9]['sehao'])) {
-			$data['sehao10'] = $kuanhaos[9]['sehao'];
-			$data['pinfan10'] = $kuanhaos[9]['pinfan'];
-			$data['caiduanshu10'] = $kuanhaos[9]['caiduanshu'];
-			$data['zhishishu10'] = $kuanhaos[9]['zhishishu'];
-		}
+		$data['list'] = $kuanhaos;
 		$this->display("goods/goods_edit_new22_caiduan", $data);
 	}
 	public function goods_save_edit2_cai()
@@ -3936,13 +3817,6 @@ class Goods extends CI_Controller
 			echo json_encode(array('error' => false, 'msg' => "无法修改数据"));
 			return;
 		}
-		$id = isset($_POST['id']) ? $_POST['id'] : 0;
-		$goods_info = $this->role->getgoodsByIdkuanhao($id);
-		if (empty($goods_info)) {
-			echo json_encode(array('error' => true, 'msg' => "数据错误"));
-			return;
-		}
-
 		$sehaos = isset($_POST["sehao"]) ? $_POST["sehao"] : '';
 		if (empty($sehaos[0])) {
 			echo json_encode(array('error' => true, 'msg' => "请添加色号!"));
@@ -3954,16 +3828,16 @@ class Goods extends CI_Controller
 			return;
 		}
 		$caiduanshu = isset($_POST["caiduanshu"]) ? $_POST["caiduanshu"] : '';
-//		if (empty($caiduanshu[0])) {
-//			echo json_encode(array('error' => true, 'msg' => "请添加裁断数量!"));
-//			return;
-//		}
 		$zhishishu = isset($_POST["zhishishu"]) ? $_POST["zhishishu"] : '';
+		$kid = isset($_POST["kid"]) ? $_POST["kid"] : '';
 		if (empty($zhishishu[0])) {
 			echo json_encode(array('error' => true, 'msg' => "请添加指示数量!"));
 			return;
 		}
-		$this->role->goodsimg_delete4_cai($id);
+		foreach ($_POST["id"] as $k => $v){
+		    $this->role->goodsimg_delete4_cai_new($v);
+		}
+		
 		foreach ($sehaos as $k => $v) {
 			if (empty($v) || empty($pinfan[$k]) || empty($zhishishu[$k])) {
 				continue;
@@ -3971,7 +3845,7 @@ class Goods extends CI_Controller
 			if (empty($caiduanshu[$k])){
 				$caiduanshu[$k] = 0;
 			}
-			$this->role->role_save123_cai($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$id,time());
+			$this->role->role_save123_cai($v,$pinfan[$k],$caiduanshu[$k],$zhishishu[$k],$kid,time());
 		}
 
 		echo json_encode(array('success' => true, 'msg' => "操作成功。"));
@@ -4232,206 +4106,7 @@ class Goods extends CI_Controller
 		$data['id'] = $id;
 		$data['bianhao'] = $bianhao;
 		$kuanhaos = $this->task->gettidlistpinming_cai($id);
-
-		$data['caiduanshu1'] = '';
-		$data['pinfan1'] = '';
-		$data['sehao1'] = '';
-		$data['zhishishu1'] = '';
-		$data['biaoji1'] = '';
-		$data['beizhu1'] = '';
-		$data['zhuangxiangxinxi1'] = '';
-		$data['zhuangxiangshuliang1'] = '';
-
-		$data['caiduanshu2'] = '';
-		$data['pinfan2'] = '';
-		$data['sehao2'] = '';
-		$data['zhishishu2'] = '';
-		$data['biaoji2'] = '';
-		$data['beizhu2'] = '';
-		$data['zhuangxiangxinxi2'] = '';
-		$data['zhuangxiangshuliang2'] = '';
-
-		$data['caiduanshu3'] = '';
-		$data['pinfan3'] = '';
-		$data['sehao3'] = '';
-		$data['zhishishu3'] = '';
-		$data['biaoji3'] = '';
-		$data['beizhu3'] = '';
-		$data['zhuangxiangxinxi3'] = '';
-		$data['zhuangxiangshuliang3'] = '';
-
-		$data['caiduanshu4'] = '';
-		$data['pinfan4'] = '';
-		$data['sehao4'] = '';
-		$data['zhishishu4'] = '';
-		$data['biaoji4'] = '';
-		$data['beizhu4'] = '';
-		$data['zhuangxiangxinxi4'] = '';
-		$data['zhuangxiangshuliang4'] = '';
-
-		$data['caiduanshu5'] = '';
-		$data['pinfan5'] = '';
-		$data['sehao5'] = '';
-		$data['zhishishu5'] = '';
-		$data['biaoji5'] = '';
-		$data['beizhu5'] = '';
-		$data['zhuangxiangxinxi5'] = '';
-		$data['zhuangxiangshuliang5'] = '';
-
-		$data['caiduanshu6'] = '';
-		$data['pinfan6'] = '';
-		$data['sehao6'] = '';
-		$data['zhishishu6'] = '';
-		$data['biaoji6'] = '';
-		$data['beizhu6'] = '';
-		$data['zhuangxiangxinxi6'] = '';
-		$data['zhuangxiangshuliang6'] = '';
-
-		$data['caiduanshu7'] = '';
-		$data['pinfan7'] = '';
-		$data['sehao7'] = '';
-		$data['zhishishu7'] = '';
-		$data['biaoji7'] = '';
-		$data['beizhu7'] = '';
-		$data['zhuangxiangxinxi7'] = '';
-		$data['zhuangxiangshuliang7'] = '';
-
-		$data['caiduanshu8'] = '';
-		$data['pinfan8'] = '';
-		$data['sehao8'] = '';
-		$data['zhishishu8'] = '';
-		$data['biaoji8'] = '';
-		$data['beizhu8'] = '';
-		$data['zhuangxiangxinxi8'] = '';
-		$data['zhuangxiangshuliang8'] = '';
-
-		$data['caiduanshu9'] = '';
-		$data['pinfan9'] = '';
-		$data['sehao9'] = '';
-		$data['zhishishu9'] = '';
-		$data['biaoji9'] = '';
-		$data['beizhu9'] = '';
-		$data['zhuangxiangxinxi9'] = '';
-		$data['zhuangxiangshuliang9'] = '';
-
-		$data['caiduanshu10'] = '';
-		$data['pinfan10'] = '';
-		$data['sehao10'] = '';
-		$data['zhishishu10'] = '';
-		$data['biaoji10'] = '';
-		$data['beizhu10'] = '';
-		$data['zhuangxiangxinxi10'] = '';
-		$data['zhuangxiangshuliang10'] = '';
-
-		if (!empty($kuanhaos[0]['sehao'])) {
-			$data['sehao1'] = $kuanhaos[0]['sehao'];
-			$data['pinfan1'] = $kuanhaos[0]['pinfan'];
-			$data['caiduanshu1'] = $kuanhaos[0]['caiduanshu'];
-			$data['zhishishu1'] = $kuanhaos[0]['zhishishu'];
-			$data['biaoji1'] = $kuanhaos[0]['biaoji'];
-			$data['beizhu1'] = $kuanhaos[0]['beizhu'];
-			$data['zhuangxiangxinxi1'] = $kuanhaos[0]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang1'] = $kuanhaos[0]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[1]['sehao'])) {
-			$data['sehao2'] = $kuanhaos[1]['sehao'];
-			$data['pinfan2'] = $kuanhaos[1]['pinfan'];
-			$data['caiduanshu2'] = $kuanhaos[1]['caiduanshu'];
-			$data['zhishishu2'] = $kuanhaos[1]['zhishishu'];
-			$data['biaoji2'] = $kuanhaos[1]['biaoji'];
-			$data['beizhu2'] = $kuanhaos[1]['beizhu'];
-			$data['zhuangxiangxinxi2'] = $kuanhaos[1]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang2'] = $kuanhaos[1]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[2]['sehao'])) {
-			$data['sehao3'] = $kuanhaos[2]['sehao'];
-			$data['pinfan3'] = $kuanhaos[2]['pinfan'];
-			$data['caiduanshu3'] = $kuanhaos[2]['caiduanshu'];
-			$data['zhishishu3'] = $kuanhaos[2]['zhishishu'];
-			$data['biaoji3'] = $kuanhaos[2]['biaoji'];
-			$data['beizhu3'] = $kuanhaos[2]['beizhu'];
-			$data['zhuangxiangxinxi3'] = $kuanhaos[2]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang3'] = $kuanhaos[2]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[3]['sehao'])) {
-			$data['sehao4'] = $kuanhaos[3]['sehao'];
-			$data['pinfan4'] = $kuanhaos[3]['pinfan'];
-			$data['caiduanshu4'] = $kuanhaos[3]['caiduanshu'];
-			$data['zhishishu4'] = $kuanhaos[3]['zhishishu'];
-			$data['biaoji4'] = $kuanhaos[3]['biaoji'];
-			$data['beizhu4'] = $kuanhaos[3]['beizhu'];
-			$data['zhuangxiangxinxi4'] = $kuanhaos[3]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang4'] = $kuanhaos[3]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[4]['sehao'])) {
-			$data['sehao5'] = $kuanhaos[4]['sehao'];
-			$data['pinfan5'] = $kuanhaos[4]['pinfan'];
-			$data['caiduanshu5'] = $kuanhaos[4]['caiduanshu'];
-			$data['zhishishu5'] = $kuanhaos[4]['zhishishu'];
-			$data['biaoji5'] = $kuanhaos[4]['biaoji'];
-			$data['beizhu5'] = $kuanhaos[4]['beizhu'];
-			$data['zhuangxiangxinxi5'] = $kuanhaos[4]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang5'] = $kuanhaos[4]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[5]['sehao'])) {
-			$data['sehao6'] = $kuanhaos[5]['sehao'];
-			$data['pinfan6'] = $kuanhaos[5]['pinfan'];
-			$data['caiduanshu6'] = $kuanhaos[5]['caiduanshu'];
-			$data['zhishishu6'] = $kuanhaos[5]['zhishishu'];
-			$data['biaoji6'] = $kuanhaos[5]['biaoji'];
-			$data['beizhu6'] = $kuanhaos[5]['beizhu'];
-			$data['zhuangxiangxinxi6'] = $kuanhaos[5]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang6'] = $kuanhaos[5]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[6]['sehao'])) {
-			$data['sehao7'] = $kuanhaos[6]['sehao'];
-			$data['pinfan7'] = $kuanhaos[6]['pinfan'];
-			$data['caiduanshu7'] = $kuanhaos[6]['caiduanshu'];
-			$data['zhishishu7'] = $kuanhaos[6]['zhishishu'];
-			$data['biaoji7'] = $kuanhaos[6]['biaoji'];
-			$data['beizhu7'] = $kuanhaos[6]['beizhu'];
-			$data['zhuangxiangxinxi7'] = $kuanhaos[6]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang7'] = $kuanhaos[6]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[7]['sehao'])) {
-			$data['sehao8'] = $kuanhaos[7]['sehao'];
-			$data['pinfan8'] = $kuanhaos[7]['pinfan'];
-			$data['caiduanshu8'] = $kuanhaos[7]['caiduanshu'];
-			$data['zhishishu8'] = $kuanhaos[7]['zhishishu'];
-			$data['biaoji8'] = $kuanhaos[7]['biaoji'];
-			$data['beizhu8'] = $kuanhaos[7]['beizhu'];
-			$data['zhuangxiangxinxi8'] = $kuanhaos[7]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang8'] = $kuanhaos[7]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[8]['sehao'])) {
-			$data['sehao9'] = $kuanhaos[8]['sehao'];
-			$data['pinfan9'] = $kuanhaos[8]['pinfan'];
-			$data['caiduanshu9'] = $kuanhaos[8]['caiduanshu'];
-			$data['zhishishu9'] = $kuanhaos[8]['zhishishu'];
-			$data['biaoji9'] = $kuanhaos[8]['biaoji'];
-			$data['beizhu9'] = $kuanhaos[8]['beizhu'];
-			$data['zhuangxiangxinxi9'] = $kuanhaos[8]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang9'] = $kuanhaos[8]['zhuangxiangshuliang'];
-		}
-
-		if (!empty($kuanhaos[9]['sehao'])) {
-			$data['sehao10'] = $kuanhaos[9]['sehao'];
-			$data['pinfan10'] = $kuanhaos[9]['pinfan'];
-			$data['caiduanshu10'] = $kuanhaos[9]['caiduanshu'];
-			$data['zhishishu10'] = $kuanhaos[9]['zhishishu'];
-			$data['biaoji10'] = $kuanhaos[9]['biaoji'];
-			$data['beizhu10'] = $kuanhaos[9]['beizhu'];
-			$data['zhuangxiangxinxi10'] = $kuanhaos[9]['zhuangxiangxinxi'];
-			$data['zhuangxiangshuliang10'] = $kuanhaos[9]['zhuangxiangshuliang'];
-		}
+        $data['list'] = $kuanhaos;
 		$this->display("goods/goods_edit_new22_caitongji", $data);
 	}
 	public function goods_save_edit2_caij()
@@ -6245,7 +5920,7 @@ class Goods extends CI_Controller
 				//逐列读取
 				foreach($columns as $head => $cell) {
 					//获取cell中数据
-					$data = $cell->getValue();
+					$data = $cell->getCalculatedValue();
 					$row_arr[] = $data;
 				}
 				$res_arr[] = $row_arr;
@@ -6999,6 +6674,8 @@ class Goods extends CI_Controller
 		}
 		$kuanhao = isset($_POST["kuanhao"]) ? $_POST["kuanhao"] : '';
 
+        $xiangmu = $this->role->getxiangmuByIdnew($kuanhao);
+        $this->role->getcaiduanjihuadelete($xiangmu['id']);
 		$this->role->getjihuariqizunamedelete1guige($kuanhao);
 		$this->role->getjihuariqizunamedelete1pinghengbiao($kuanhao);
 
@@ -7034,7 +6711,7 @@ class Goods extends CI_Controller
 				//逐列读取
 				foreach($columns1 as $head1 => $cell1) {
 					//获取cell中数据
-					$data1 = $cell1->getValue();
+					$data1 = $cell1->getCalculatedValue();
 					$row_arr1[] = $data1;
 				}
 				$res_arr1[] = $row_arr1;
@@ -7205,7 +6882,7 @@ class Goods extends CI_Controller
 				//逐列读取
 				foreach($columns as $head => $cell) {
 					//获取cell中数据
-					$data = $cell->getValue();
+					$data = $cell->getCalculatedValue();
 					$row_arr[] = $data;
 				}
 				$res_arr[] = $row_arr;
@@ -8537,6 +8214,8 @@ class Goods extends CI_Controller
 	{
 		$id = isset($_POST['id']) ? $_POST['id'] : "";
 		if ($this->role->goods_delete_yuanfuliao($id)) {
+		    $xiangmu = $this->role->getxiangmuByIdnew($id);
+            $this->role->getcaiduanjihuadelete($xiangmu['id']);
 			echo json_encode(array('success' => true, 'msg' => "删除成功"));
 		} else {
 			echo json_encode(array('success' => false, 'msg' => "删除失败"));

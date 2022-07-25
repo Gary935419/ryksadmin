@@ -24,7 +24,7 @@ $kuanhao="";
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body" style="overflow-x: auto; overflow-y: auto; width:95%;">
+                <div class="layui-card-body" style="height: calc(100vh - 36px);overflow-x: auto; overflow-y: auto; width:95%;">
 					<form method="post" class="layui-form" style="margin-top: 15px" action="" name="basic_validate" id="tab">
                     <table class="layui-table layui-form">
                         <thead>

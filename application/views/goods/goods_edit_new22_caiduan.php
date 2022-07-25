@@ -26,13 +26,26 @@
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-							<th>操作</th>
 							<th>色号</th>
 							<th>规格</th>
 							<th>裁断数量</th>
 							<th>指示数量</th>
                         </thead>
                         <tbody>
+                            <?php if (isset($list) && !empty($list)) { ?>
+							<?php foreach ($list as $num => $once): ?>
+                            <tr>
+								<td><input name="sehao[]" value="<?php echo $once['sehao'] ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="pinfan[]" value="<?php echo $once['pinfan'] ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="caiduanshu[]" value="<?php echo $once['caiduanshu'] ?>" autocomplete="off" class="layui-input"></td>
+								<td><input name="zhishishu[]" readonly value="<?php echo $once['zhishishu'] ?>" autocomplete="off" class="layui-input"></td>
+								<input type="hidden" name="id[]" value="<?php echo $once['id'] ?>">
+							</tr>
+							<?php endforeach; ?>
+								<input type="hidden" name="kid" value="<?php echo $id ?>">
+						    <?php } ?>
+                            
+                            <!--
 							<tr id="div1">
 								<td style="min-width: 80px">
 									<?php if (!empty($sehao1) && empty($sehao2)) { ?>
@@ -282,7 +295,7 @@
 								<td><input name="caiduanshu[]" id="val101010" value="<?php echo $caiduanshu10 ?>" autocomplete="off" class="layui-input"></td>
 								<td><input name="zhishishu[]" readonly id="val10101010" value="<?php echo $zhishishu10 ?>" autocomplete="off" class="layui-input"></td>
 							</tr>
-							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">
+							<input type="hidden" id="id" name="id" value="<?php echo $id ?>">-->
                         </tbody>
                     </table>
 					<div class="layui-form-item" style="margin-top: 15px;">

@@ -9,6 +9,12 @@ class Role_model extends CI_Model
 		$this->date = time();
 		$this->load->database();
 	}
+	public function getxiangmuByIdnew($kuanhao)
+	{
+		$kuanhao = $this->db->escape($kuanhao);
+		$sql = "SELECT * FROM `erp_xiangmukuanhao` where kuanhao=$kuanhao";
+		return $this->db->query($sql)->row_array();
+	}
 	//查询角色信息列表
 	public function getroleAll()
 	{
@@ -401,6 +407,12 @@ class Role_model extends CI_Model
 	{
 		$id = $this->db->escape($id);
 		$sql = "DELETE FROM erp_caiduanbaogaoshu WHERE kid = $id";
+		return $this->db->query($sql);
+	}
+	public function goodsimg_delete4_cai_new($id)
+	{
+		$id = $this->db->escape($id);
+		$sql = "DELETE FROM erp_caiduanbaogaoshu WHERE id = $id";
 		return $this->db->query($sql);
 	}
 	public function goodsimg_delete4_caij($id)
@@ -1210,7 +1222,12 @@ class Role_model extends CI_Model
 		$sql = "DELETE FROM erp_shengcanjihua where zuname=$zuname and jihuariqi=$jihuariqi ";
 		return $this->db->query($sql);
 	}
-
+    public function getcaiduanjihuadelete($kid)
+	{
+		$kid = $this->db->escape($kid);
+		$sql = "DELETE FROM erp_caiduanbaogaoshu where kid=$kid ";
+		return $this->db->query($sql);
+	}
 	public function getjihuariqizunamedelete1guige($kuanhao)
 	{
 		$kuanhao = $this->db->escape($kuanhao);
