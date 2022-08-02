@@ -41,7 +41,7 @@ class Task_model extends CI_Model
 	public function gettidlistpinming_cai($id)
 	{
 		$id = $this->db->escape($id);
-		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id order by sehao";
+		$sql = "SELECT * FROM `erp_caiduanbaogaoshu` where kid = $id order by id";
 		return $this->db->query($sql)->result_array();
 	}
 	public function gettidlistpinming_caij($id)

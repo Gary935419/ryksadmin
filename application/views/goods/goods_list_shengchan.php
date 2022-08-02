@@ -103,7 +103,7 @@
                             //print_r($list);
                             //exit();
                             foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>" >
+                                <tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>" >
 									<?php if ($once['zhipinfanhao'] == "产值"){ ?>
 										<td style="min-width: 50px"></td>
 										<td style="min-width: 100px"><?= $once['zhipinfanhao'] ?></td>

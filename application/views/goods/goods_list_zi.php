@@ -55,7 +55,7 @@
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['gid'] ?>" sid="<?= $once['gid'] ?>">
+                                <tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['gid'] ?>" sid="<?= $once['gid'] ?>">
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['gname'] ?></td>
 									<td><?= $once['gsort'] ?></td>

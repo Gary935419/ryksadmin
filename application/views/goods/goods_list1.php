@@ -46,7 +46,7 @@
 						<tbody>
 						<?php if (isset($list) && !empty($list)) { ?>
 							<?php foreach ($list as $num => $once): ?>
-								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+								<tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
 									<td><?= $once['bianhao'] ?></td>
 									<td><?= $once['kuanhao'] ?></td>
 									<td><?= date('Y-m-d', $once['qianding']) ?></td>
@@ -100,7 +100,7 @@
 										<?php } ?>
 									</td>
 								</tr>
-								<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+								<tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
 									<?php if ($once['excelwendang'] != "#"){ ?>
 										<td colspan="10" style="text-align: center;">
 											<a style="margin-left: 10px;" href="<?= RUN. '/goods/paibanka_csv?id='.$once['kuanhao'] ?>">

@@ -44,7 +44,7 @@
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['rid'] ?>" sid="<?= $once['rid'] ?>">
+                                <tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['rid'] ?>" sid="<?= $once['rid'] ?>">
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['rname'] ?></td>
                                     <td><?= $once['rdetails'] ?></td>

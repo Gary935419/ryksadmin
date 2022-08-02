@@ -48,7 +48,7 @@
 						<?php if (isset($list) && !empty($list)) { ?>
 							<?php foreach ($list as $num => $once): ?>
 						        <?php if ($once['openflg2']>=1){ ?>
-									<tr id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
+									<tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['id'] ?>" sid="<?= $once['id'] ?>">
 										<td><?= $once['bianhao'] ?></td>
 										<td><?= $once['kuanhao'] ?></td>
 										<td><?= $once['mingcheng'] ?></td>

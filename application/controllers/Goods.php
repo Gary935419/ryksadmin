@@ -6717,7 +6717,11 @@ class Goods extends CI_Controller
 				$res_arr1[] = $row_arr1;
 			}
 		}
+		
+		
 		$arrnew = array();
+		
+		/**
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13;
 			if ($i < 14 && empty($res_arr1[2][$i]) && !empty($res_arr1[2][12])){
@@ -6731,6 +6735,7 @@ class Goods extends CI_Controller
 				$arrnew[$numk]['shuzhi'] = $res_arr1[2][$i];
 			}
 		}
+		
 
 		for ($i=13; $i<25; $i++){
 			$numk = $i - 13 + 12;
@@ -6857,12 +6862,25 @@ class Goods extends CI_Controller
 				$arrnew[$numk]['shuzhi'] = $res_arr1[11][$i];
 			}
 		}
+				*/
+		
+		for($j=0;$j<10;$j++){
+			for ($i=13; $i<25; $i++){
+			$numk = $i - 13+(12*$j);
+				$arrnew[$numk]['guige'] = $res_arr1[0][$i];
+				$arrnew[$numk]['sehao'] = $res_arr1[2+$j][12];
+				$arrnew[$numk]['shuzhi'] = $res_arr1[2+$j][$i];
+		    }
+        }
+
 
 		$getroleBynamekuanhaoinfo = $this->role->getroleBynamekuanhao($kuanhao);
 
 		foreach ($arrnew as $kkk => $vvv) {
-			$this->role->role_save12($vvv['guige'], $vvv['sehao'], $vvv['shuzhi'], $kuanhao, time());
-			$this->role->role_save123_cai($vvv['sehao'],$vvv['guige'],0,$vvv['shuzhi'],$getroleBynamekuanhaoinfo['id'],time());
+		    if($vvv['guige'] && $vvv['sehao']){
+    			$this->role->role_save12($vvv['guige'], $vvv['sehao'], $vvv['shuzhi'], $kuanhao, time());
+    			$this->role->role_save123_cai($vvv['sehao'],$vvv['guige'],0,$vvv['shuzhi'],$getroleBynamekuanhaoinfo['id'],time());
+			}
 		}
 
 		//循环读取sheet

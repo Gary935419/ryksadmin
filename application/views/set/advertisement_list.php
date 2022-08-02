@@ -53,7 +53,7 @@
                         <tbody>
                         <?php if (isset($list) && !empty($list)) { ?>
                             <?php foreach ($list as $num => $once): ?>
-                                <tr id="p<?= $once['aid'] ?>" sid="<?= $once['aid'] ?>">
+                                <tr style="<?php echo $num%2 != 0 ? 'background-color: #f8f8f8': '' ?>" id="p<?= $once['aid'] ?>" sid="<?= $once['aid'] ?>">
                                     <td><?= $num + 1 ?></td>
                                     <td><?= $once['aname'] ?></td>
                                     <td><img src="<?= $once['aimg'] ?>" style="width: 50px;height: 50px;"></td>
